@@ -66,4 +66,16 @@ public class ManageProfileDaoImpl implements ManageProfileDao{
 		sessionFactory.getCurrentSession().saveOrUpdate(company);			
 	}
 	
+	
+	/*
+	 * added by @ZNevzz
+	 * ?
+	 */
+	
+	public List<Company> listCompanies(){
+		// TODO Auto-generated method stub
+		return (List<Company>) sessionFactory.getCurrentSession().createCriteria(Company.class).list();
+		//return (List<Allotment>) sessionFactory.openSession().createCriteria(Allotment.class).list();
+	}
+	 
 }

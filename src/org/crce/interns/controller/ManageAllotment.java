@@ -65,7 +65,8 @@ public class ManageAllotment extends HttpServlet{
 		
 		manageAllotmentService.addAllotment(allotmentBean);
 		manageAllotmentService.handleFileUpload(request,fileUpload);
-		return new ModelAndView("FacultyTPC");
+		//return new ModelAndView("FacultyTPC"); //the FacultyTPC.jsp notify issue is to be resolved
+		return new ModelAndView("success");
 	}
 	
 	
@@ -83,7 +84,9 @@ public class ManageAllotment extends HttpServlet{
 	
 	//Method to create a new allotment
 	@RequestMapping(value = "/addAllotment", method = RequestMethod.GET)
-	public ModelAndView createAllotment(HttpServletRequest request,Model model) {
+	public ModelAndView createAllotment(/*HttpServletRequest request,*/Model model) {
+		
+		/* To be checked 
 		HttpSession session=request.getSession();
 		String roleId=(String)session.getAttribute("roleId");
 		String user=(String)session.getAttribute("userName");
@@ -91,6 +94,7 @@ public class ManageAllotment extends HttpServlet{
 		if(!(crService.checkRole("ManageAllotment", roleId)&&name.equals("703")))
 			return new ModelAndView("403");
 		else
+		*/
 		{
 			AllotmentBean allotmentBean = new AllotmentBean(); // declaring
 

@@ -19,5 +19,5 @@ public interface ManageProfileService {
 	public void addProfile(CriteriaBean criteriaBean);
 	public void addProfile(CompanyBean companyBean);
 	public List<Job> listProfile();
-
+	public List<CompanyBean> listCompanies();
 }

@@ -4,6 +4,6 @@
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <property name="context-root" value="PMS_v1"/>
-        <property name="java-output-path" value="/PMS_v1/target/classes"/>
+        <property name="java-output-path" value="/PMS_new/target/classes"/>
     </wb-module>
 </project-modules>

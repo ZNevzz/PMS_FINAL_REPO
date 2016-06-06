@@ -12,24 +12,24 @@
 <form method="POST"   action="saveProfile">
 	<h2><u>Job Details</u></h2>
 		<table>
-	 	<%-- 
+	 	
 			<tr>
-				<td>Company :</td>
-				<td><form:select path="company_id">
-						<form:option value="0" label="Select" /> 
-						<form:option value="1"  label="TCS" />
-						<form:option value="2" label="Accenture" />
-						<form:option value="3"  label="Reliance" />
-						<form:option value="4" label="Godrej" />
+				<td>Company Name:</td>
+				<td><select  name="company_id">
 						
-					</form:select></td>
+						<option value="1" >ABC</option>
+						<option value="5">DirectI</option>
+						<option value="3">IBM</option>
+						<option value="4">Morgan</option>
+						
+					</select></td>
 			</tr>
-			 --%> 
+			 
 
-			<tr>
+			<!-- <tr>
 				<td>Job Id :</td>
 				<td><input name="job_id" /></td>
-			</tr>
+			</tr> 
 			<tr>
 				<td>Company Id :</td>
 				<td><input name="company_id"/></td>
@@ -46,6 +46,7 @@
 				<td>Event Id :</td>
 				<td><input name="event_id" /></td>
 			</tr>
+			-->
 			<tr>
 				<td>Description :</td>
 				<td><textarea name="job_description"></textarea></td>
@@ -54,9 +55,9 @@
 				<td>Category :</td>
 				<td><select name="job_category">
 						<%-- <form:option value="0" label="Select" /> --%>
-						<option value="Non Dream"  label="Non Dream" />
-						<option value="Dream" label="Dream" />
-						<option value="Super Dream" label="Super Dream" />
+						<option value="Non Dream">Non Dream</option>
+						<option value="Dream">Dream </option>
+						<option value="Super Dream">Super Dream</option>
 						
 					</select></td>
 			</tr>
@@ -82,7 +83,7 @@
 				<td><input name="drive_date" placeholder="yyyy/mm/dd"/></td>
 			</tr>
 			
-			<tr>
+			<!-- <tr>
 				<td>Created Date :</td>
 				<td><input name="created_date" placeholder="yyyy/mm/dd" /></td>
 			</tr>
@@ -90,7 +91,7 @@
 			<tr>
 				<td>Created By :</td>
 				<td><input name="created_by" /></td>
-			</tr>
+			</tr> -->
 			 
 			<tr>
 				<td>Modified Date :</td>
@@ -107,10 +108,10 @@
 			
 			<td><b><u>Criteria Details :</u></b></td>
 			
-			<tr>
+			<!-- <tr>
 				<td>Criteria Id :</td>
 				<td><input name="criteria_id"/></td>
-			</tr>
+			</tr> -->
 			
 			<%-- <tr>
 				<td>Eligible Branches :</td>

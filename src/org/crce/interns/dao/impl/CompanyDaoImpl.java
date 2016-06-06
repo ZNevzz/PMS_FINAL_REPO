@@ -2,6 +2,7 @@ package org.crce.interns.dao.impl;
 
 
 import org.hibernate.SessionFactory;
+
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -68,7 +69,8 @@ public class CompanyDaoImpl implements CompanyDao{
 	   }	
 			}
 	@SuppressWarnings("unchecked")
-	public List<CompanyBean> getCompany() {  
+	public List<CompanyBean> getCompany() { 
+		
 		  return (List<CompanyBean>) sessionFactory.getCurrentSession().createCriteria(CompanyBean.class).list();  
 		 }  
 	}

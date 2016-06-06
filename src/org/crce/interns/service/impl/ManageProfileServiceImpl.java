@@ -1,17 +1,20 @@
 package org.crce.interns.service.impl;
 
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.crce.interns.beans.CompanyBean;
 import org.crce.interns.beans.CriteriaBean;
 import org.crce.interns.beans.JobBean;
+import org.crce.interns.beans.NotificationBean;
 //import org.crce.interns.beans.ProfileBean;
 import org.crce.interns.dao.ManageProfileDao;
 //import org.crce.interns.model.Allotment;
 import org.crce.interns.model.Company;
 import org.crce.interns.model.Criteria;
 import org.crce.interns.model.Job;
+import org.crce.interns.model.Notification;
 //import org.crce.interns.model.Profile;
 import org.crce.interns.service.ManageProfileService;
 import org.springframework.beans.BeanUtils;
@@ -95,4 +98,30 @@ public class ManageProfileServiceImpl implements ManageProfileService{
 		manageProfileDao.createProfile(profile);
 	}
 	*/
+	
+	/*
+	 * 
+	 * added by @ZNevzz
+	 *
+	
+	 */
+	
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public List<CompanyBean> listCompanies(){
+		
+		List<Company> nfList= manageProfileDao.listCompanies();
+		List<CompanyBean> nfBeanList= new LinkedList<CompanyBean>();
+		
+		for( Company c: nfList){
+			
+			CompanyBean cb = new CompanyBean();
+			BeanUtils.copyProperties(c, cb);
+			nfBeanList.add(cb);
+			
+		}
+		System.out.println((nfBeanList.size()));
+		return nfBeanList;
+	}
+	
+	
 }
