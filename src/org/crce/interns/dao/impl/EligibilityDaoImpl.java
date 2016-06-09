@@ -77,7 +77,7 @@ public class EligibilityDaoImpl implements EligibilityDao {
 			e.printStackTrace();
 		}
 	
-		return company.getCriteriaId();
+		return company.getCriteria_id();
 	}
 	
 	public String getJobCategory(String job_id)

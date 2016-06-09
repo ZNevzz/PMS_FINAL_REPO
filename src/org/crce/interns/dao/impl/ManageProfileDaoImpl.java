@@ -77,5 +77,11 @@ public class ManageProfileDaoImpl implements ManageProfileDao{
 		return (List<Company>) sessionFactory.getCurrentSession().createCriteria(Company.class).list();
 		//return (List<Allotment>) sessionFactory.openSession().createCriteria(Allotment.class).list();
 	}
+
+	@Override
+	public List<Job> listJob() {
+		// TODO Auto-generated method stub
+		return (List<Job>) sessionFactory.getCurrentSession().createCriteria(Job.class).list();
+	}
 	 
 }

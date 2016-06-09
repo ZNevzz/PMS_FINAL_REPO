@@ -243,39 +243,70 @@ public class ManageProfile extends HttpServlet{
 	}
 	}
 	
-	@RequestMapping(value="/Company/companyname/{companyname}", method = RequestMethod.GET)
-	public ModelAndView Companies(@PathVariable String companyname) {
+	@RequestMapping(value="/JobPost", method = RequestMethod.GET)
+	public ModelAndView Companies(@RequestParam String companyname) {
 		
 	try{
 		ModelAndView model ;
 		model = null;
-		// 1. get company list using getCompany from company dao
-		// 2. iterate company list and select a new company bean which matches with String companyname
-		// 3. model.addObject() the new company bean
-		/*
-		 * for(Company c: list)
-		 * 
-		 * 
-		 */
 		
-		//List<CompanyBean> clist = companyService.getCompany();
 		List<CompanyBean> clist = manageProfileService.listCompanies();
+		Map<Integer, String> companyMapID = new HashMap<Integer, String>();
+		Map<String, Integer> companyMapName = new HashMap<String, Integer>();
+		
 		//CompanyBean cb = new CompanyBean();
 		
 		System.out.println(clist.size());
 		
+		CompanyBean c ;
+		
 		for( CompanyBean cb: clist){
-			System.out.println("Clist company name "+cb.getCompany_name());
-			System.out.println("Company Name "+companyname);
+			//System.out.println("Clist company name "+cb.getCompany_name());
+			//System.out.println("Company Name "+companyname);
+			c = new CompanyBean();
+			c = cb ;
+			System.out.println("C id "+c.getCompany_id());
+			System.out.println("Cany Name "+c.getCompany_name());
+			
+			companyMapID.put(c.getCompany_id(), c.getCompany_name());
+			System.out.println("Cany map get "+companyMapID.get(c.getCompany_id()));
+			companyMapName.put(c.getCompany_name(), c.getCompany_id());
+			/*
 			if(companyname.equalsIgnoreCase(cb.getCompany_name())){
 		//f(cb.getCompany_name().equalsIgnoreCase(companyname)){
 				model.addObject("company", cb);
+				break;
 			}
+			*/
 		}
 		
+		model = new ModelAndView("JobPosts");
+		
+		
+		List<JobBean> jlist = manageProfileService.listJob();
+		System.out.println(jlist.size());
+		for( JobBean jb: jlist){
+			//CompanyBean cb = new CompanyBean();
+			System.out.println("Jlist job id "+jb.getJob_id());
+			//if(cb.getCriteria_id().equals(jb.getJob_id())){
+		//f(cb.getCompany_name().equalsIgnoreCase(companyname)){
+			//System.out.println("List size "+jlist.size());
+			//System.out.println("List job id "+jb.getJob_id());
+			int a=Integer.parseInt(jb.getJob_id());
+			
+			System.out.println(companyMapID.get(a));
+			
+			
+			if(companyname.equalsIgnoreCase(companyMapID.get(a))){
+				model.addObject("job", jb);
+				break;
+				
+			}
+		}
 	
 		
-		model = new ModelAndView("Company");
+		
+		
 		return model;
 	}
 	catch(Exception e){
@@ -284,7 +315,7 @@ public class ManageProfile extends HttpServlet{
 		model1.addObject("exception", "/Company/companyname/{companyname}");
 		return model1;
 	}
-		
+	
 	}
 	
 	
@@ -306,6 +337,88 @@ public class ManageProfile extends HttpServlet{
 	}
 	}
 	
+	
+	
+	//changes
+	
+	/*
+	 * added by @ZNevzz : status = working
+	 * 
+	 */
+		@RequestMapping(value="/Company", method = RequestMethod.GET)
+		public ModelAndView test(
+				 @RequestParam("companyname") String companyname
+
+				) {
+			ModelAndView model ;
+			model = new ModelAndView("Company");
+			//model = null;
+			// 1. get company list using getCompany from company dao
+			// 2. iterate company list and select a new company bean which matches with String companyname
+			// 3. model.addObject() the new company bean
+			
+			/* * for(Company c: list)
+			 * 
+			 * 
+			 */
+			
+			//List<CompanyBean> clist = companyService.getCompany();
+			List<CompanyBean> clist = manageProfileService.listCompanies();
+			//CompanyBean cb = new CompanyBean();
+			
+			System.out.println(clist.size());
+			
+			
+			System.out.println("Company Name "+companyname);
+			
+			for( CompanyBean cb: clist){
+				System.out.println("Clist company name "+cb.getCompany_name());
+				
+				
+				
+				if(companyname.equals(cb.getCompany_name())){
+						
+					System.out.println("inside IF"+cb.getCompany_name());
+					model.addObject("company", cb);
+					
+				}
+			}
+			
+			/*if(companyname.equals(JPM)){
+				model.addObject("link", JPM_LINK);
+				
+			}else if(companyname.equals(DIRECTI)){
+				model.addObject("link", DIRECTI_LINK);
+				
+			}else if(companyname.equals(MS)){
+				model.addObject("link", MS_LINK);
+				
+			}else if(companyname.equals(TCS)){
+				model.addObject("link", TCS_LINK);
+				
+			}else if(companyname.equals(ACC)){
+				model.addObject("link", ACC_LINE);
+				
+			}else if(companyname.equals(ZS)){
+				model.addObject("link", ZS_LINK);
+				
+			}else if(companyname.equals(GOD)){
+				model.addObject("link", GOD_LINK);
+				
+			}else if(companyname.equals(LNT)){
+				model.addObject("link", LNT_LINK);
+				
+			}
+		
+		*/
+			// this was the error why the EL wasn't working. We were creating another object
+			//model = new ModelAndView("Company");
+			
+			return model;
+			   
+			
+		}
+
 	
 	private List<JobBean> prepareListofBean(List<Job> profiles) {
 		

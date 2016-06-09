@@ -17,5 +17,6 @@ public interface ManageProfileDao {
 	public void createProfile(Company company);
 	public List<Job> listProfile();
 	public List<Company> listCompanies();
+	public List<Job> listJob();
 
 }

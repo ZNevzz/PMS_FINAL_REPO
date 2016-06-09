@@ -41,6 +41,7 @@
 	<bean id="deleteApplicantsValidator" class="org.crce.interns.validators.DeleteApplicantsValidator" />
 	<bean id="companyValidator" class="org.crce.interns.validators.CompanyFormValidator" />
 	<bean id="criteriaValidator" class="org.crce.interns.validators.CriteriaFormValidator" />
+	<bean id="searchApplicantValidator" class="org.crce.interns.validators.SearchApplicantValidator" />
 	
 	<bean id="messageSource"
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">

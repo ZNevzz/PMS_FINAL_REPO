@@ -66,7 +66,7 @@ public class ManageAllotment extends HttpServlet{
 		manageAllotmentService.addAllotment(allotmentBean);
 		manageAllotmentService.handleFileUpload(request,fileUpload);
 		//return new ModelAndView("FacultyTPC"); //the FacultyTPC.jsp notify issue is to be resolved
-		return new ModelAndView("success");
+		return new ModelAndView("addAllotment");
 	}
 	
 	

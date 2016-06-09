@@ -81,6 +81,9 @@
 			<td><a href="viewAllotment">View Room Allotment</a></td>
 		</tr>
 		<tr>
+			<td><a href="SearchApplicant">Search Applicants company wise</a></td>
+		</tr>
+		<tr>
 			<td><a href="form">Logout</a></td>
 		</tr>
 	</table>

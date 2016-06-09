@@ -36,8 +36,8 @@ public class CompanyController {
 	}
 	 private Company prepareCompanyModel(CompanyBean companyBean){
 			Company company = new Company();
-			company.setCompanyAddress(companyBean.getCompany_address());
-			company.setCompanyName(companyBean.getCompany_name());
+			company.setCompany_address(companyBean.getCompany_address());
+			company.setCompany_name(companyBean.getCompany_name());
 			return company;
 		}
 	 

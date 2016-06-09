@@ -122,6 +122,24 @@ public class ManageProfileServiceImpl implements ManageProfileService{
 		System.out.println((nfBeanList.size()));
 		return nfBeanList;
 	}
+
+	//@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public List<JobBean> listJob() {
+		// TODO Auto-generated method stub
+		List<Job> nfList= manageProfileDao.listJob();
+		List<JobBean> nfBeanList= new LinkedList<JobBean>();
+		
+		for( Job c: nfList){
+			
+			JobBean cb = new JobBean();
+			BeanUtils.copyProperties(c, cb);
+			nfBeanList.add(cb);
+			
+		}
+		System.out.println((nfBeanList.size()));
+		return nfBeanList;
+	}
 	
 	
 }

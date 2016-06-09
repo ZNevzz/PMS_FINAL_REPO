@@ -33,7 +33,7 @@ public class EventDetailsDaoImpl implements EventDetailsDao{
 			Query q = session.createQuery(sql);
 			q.setParameter("n", cname);
 			List<Company> c = q.list();
-			int company_id = c.get(0).getCompanyId();
+			int company_id = c.get(0).getCompany_id();
 			event.setCompany_id(company_id);
 			tx=session.beginTransaction();			
 			session.save(event);
