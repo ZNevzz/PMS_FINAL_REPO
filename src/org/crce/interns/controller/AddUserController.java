@@ -19,6 +19,7 @@ package org.crce.interns.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import org.apache.log4j.Logger;
 
 import org.crce.interns.exception.IncorrectEncodingTypeException;
 import org.crce.interns.exception.IncorrectFileFormatException;
@@ -51,6 +52,8 @@ public class AddUserController {
 
 	@Autowired
 	private DirectoryService directoryService;
+        
+        private static final Logger logger = Logger.getLogger(AddUserController.class.getName()); 
 
 	// this function is used to navigate to AddUserViaCSV.jsp
 	@RequestMapping(value = "/addUser", method = RequestMethod.GET)
@@ -64,6 +67,7 @@ public class AddUserController {
 			else
 				return new ModelAndView("AddUserViaCSV");
 		} catch (Exception e) {
+                        logger.error("Exception in /addUser: ",e);
 			return new ModelAndView("500");
 		}
 	}
@@ -80,15 +84,17 @@ public class AddUserController {
 
 			// boolean flag = false;
 			fileUpload1.setFile(fileUpload);
-			System.out.println(fileUpload1.getFile().getSize());
+			//System.out.println(fileUpload1.getFile().getSize());
+                        logger.error("/uploadFile File size : "+ fileUpload1.getFile().getSize());
 			validator.validate(fileUpload1, result);
 			if (fileUpload1.getFile().getSize() == 0) {
-				System.out.println("Error in form");
+				//System.out.println("Error in form");
+                                logger.error("Error in form");
 
 				return new ModelAndView("AddUserViaCSV");
 			}
 			String userName = request.getSession().getAttribute("userName").toString();
-			System.out.println("");
+			//System.out.println("");
 			addUserService.handleFileUpload(request, fileUpload, userName);
 			model.addObject("success", 1);
 			// loadCopyFile("user_schema.userdetails");
@@ -96,17 +102,20 @@ public class AddUserController {
 			// returns to the same index page
 
 		} catch (IncorrectEncodingTypeException x) {
-			System.out.println(x);
+			//System.out.println(x);
+                    logger.error("Incorrect encoding type : ",x);
 			model.addObject("encoding", 1);
 
 		} catch (IncorrectFileFormatException e) {
 
-			System.out.println(e);
+			//System.out.println(e);
+                    logger.error("Incorrect file format ",e);
 			model.addObject("error", 1);
 
 		} catch (MaxFileSizeExceededError m) {
 
-			System.out.println(m);
+			//System.out.println(m);
+                        logger.error("Max size exceeded ",m);
 			model.addObject("error1", 1);
 
 		}

@@ -16,6 +16,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import org.apache.log4j.Logger;
 import org.crce.interns.beans.CompanyBean;
 
 import org.crce.interns.service.CheckRoleService;
@@ -44,6 +45,8 @@ public class SendEmailController {
 
 	@Autowired
 	private ManageProfileService manageProfileService;
+        
+        private static final Logger logger = Logger.getLogger(SendEmailController.class.getName());
 
 	/*
 	 * Return Type: Boolean-True/False Function: Checks for Files
@@ -86,10 +89,10 @@ public class SendEmailController {
 	public ModelAndView sendEmail(HttpServletRequest request,
 			@RequestParam(value = "fileUpload") CommonsMultipartFile[] file) throws IllegalStateException, IOException {
 		try {
-			String[] receivers = request.getParameterValues("receiver");
-			for (String i : receivers) {
-				System.out.println(i);
-			}
+			//String[] receivers = request.getParameterValues("receiver");
+			//for (String i : receivers) {
+			//	System.out.println(i);
+			//}
 			List<CompanyBean> companyList = manageProfileService.listCompanies();
 			Map<String, String> companyMap = new LinkedHashMap<String, String>();
 			companyList.stream().forEach((companyBean) -> {
@@ -110,7 +113,8 @@ public class SendEmailController {
 			// model.addObject("error1", "Group name not proper");
 			// return model;
 		} catch (Exception e) {
-			System.out.println(e);
+			//System.out.println(e);
+                        logger.error(e);
 			ModelAndView model = new ModelAndView("500");
 			model.addObject("exception", "/GroupSubmitEmail! Email not sent!");
 			return new ModelAndView("500");
@@ -132,7 +136,8 @@ public class SendEmailController {
 	public ModelAndView email_welcome(HttpServletRequest request) {
 
 		try {
-			System.out.println("Mapped to /sendMail");
+			//System.out.println("Mapped to /sendMail");
+                        logger.error("Mapped to /GroupSendMail");
 			HttpSession session = request.getSession();
 			String roleId = (String) session.getAttribute("roleId");
 			if (!crService.checkRole("SendEmail", roleId)) {
@@ -149,7 +154,8 @@ public class SendEmailController {
 			// return new ModelAndView("Email");
 			// return new ModelAndView("Final");
 		} catch (Exception e) {
-			System.out.println(e);
+			//System.out.println(e);
+                        logger.error(e);
 			ModelAndView model = new ModelAndView("500");
 			model.addObject("exception", "/GroupSendMail");
 			return model;
@@ -165,7 +171,8 @@ public class SendEmailController {
 	@RequestMapping(method = RequestMethod.GET, value = "/personalMail")
 	public ModelAndView individualMail(HttpServletRequest request) {
 		try {
-			System.out.println("Mapped to personalMail");
+			//System.out.println("Mapped to personalMail");
+                        logger.error("Mapped to personalMail");
 			HttpSession session = request.getSession();
 			String roleId = (String) session.getAttribute("roleId");
 			if (!crService.checkRole("SendEmail", roleId)) {
@@ -176,7 +183,8 @@ public class SendEmailController {
 			}
 			// return new ModelAndView("EmailForm");
 		} catch (Exception e) {
-			System.out.println(e);
+			//System.out.println(e);
+                        logger.error(e);
 			ModelAndView model = new ModelAndView("500");
 			model.addObject("exception", "/personalMail!");
 			return model;
@@ -210,7 +218,8 @@ public class SendEmailController {
 				return model;
 			}
 		} catch (Exception e) {
-			System.out.println(e);
+			//System.out.println(e);
+                        logger.error(e);
 			ModelAndView model = new ModelAndView("500");
 			model.addObject("exception", "/sendPersonalMail! Mail wasn't sent!");
 			return model;

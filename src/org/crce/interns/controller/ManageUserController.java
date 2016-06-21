@@ -21,6 +21,7 @@ package org.crce.interns.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import org.apache.log4j.Logger;
 
 import org.crce.interns.beans.FacultyBean;
 import org.crce.interns.beans.StudentBean;
@@ -57,6 +58,8 @@ public class ManageUserController {
 
 	 @Autowired
 	 private DirectoryService directoryService;
+         
+         private static final Logger logger = Logger.getLogger(ManageUserController.class.getName());
 	
 	//actually adding student
 	@RequestMapping(value = "/registerStudent", method = RequestMethod.POST)
@@ -66,7 +69,8 @@ public class ManageUserController {
 		try {
 			addStudentValidator.validate(studentBean, result);
 			if (result.hasErrors()) {
-				System.out.println("Binding Errors are present...");
+				//System.out.println("Binding Errors are present...");
+                                logger.error("Binding Errors are present...");
 				return new ModelAndView("addStudent");
 			}
 
@@ -75,7 +79,8 @@ public class ManageUserController {
 			directoryService.createStudentFolder();
 		} catch (org.springframework.dao.DataIntegrityViolationException e) {
 			
-			System.out.println(e.toString());
+			//System.out.println(e.toString());
+                        logger.error(e.toString());
 			model.addObject("error", 1);
 		}
 		return model;
@@ -89,7 +94,8 @@ public class ManageUserController {
 		try{
 			addFacultyValidator.validate(facultyBean, result);
 			if (result.hasErrors()) {
-				System.out.println("Binding Errors are present...");
+				//System.out.println("Binding Errors are present...");
+                                logger.error("Binding Errors are present...");
 				return new ModelAndView("addFaculty");
 			}
 		manageUserService.addFaculty(request, facultyBean);
@@ -97,7 +103,8 @@ public class ManageUserController {
 		directoryService.createFacultyFolder();
 		} catch (org.springframework.dao.DataIntegrityViolationException e) {
 			
-			System.out.println(e.toString());
+			//System.out.println(e.toString());
+                    logger.error(e.toString());
 			model.addObject("error", 1);
 		}
 		return model;
@@ -163,7 +170,8 @@ public class ManageUserController {
 		}	
 		catch (Exception e) {
 			
-			System.out.println(e.toString());
+			//System.out.println(e.toString());
+                        logger.error(e.toString());
 			model.addObject("error", 1);
 		}
 		return model;

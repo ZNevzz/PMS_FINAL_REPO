@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
+import org.apache.log4j.Logger;
 
 import org.crce.interns.model.TotalNoOfStudents;
 import org.crce.interns.service.AssignTPCService;
@@ -30,6 +31,8 @@ public class HighlightsController implements ConstantValues {
 
 	@Autowired
 	private AssignTPCService userService;
+        
+        private static final Logger logger = Logger.getLogger(HighlightsController.class.getName());
 
 	@RequestMapping(value = "/Statistics", method = RequestMethod.GET)
 	public ModelAndView view(HttpServletRequest request) {
@@ -77,6 +80,7 @@ public class HighlightsController implements ConstantValues {
 
 			return model;
 		} catch (Exception e) {
+                        logger.error(e);
 			return new ModelAndView("500");
 		}
 	}
@@ -88,6 +92,7 @@ public class HighlightsController implements ConstantValues {
 			profileService.listProfessionalProfile("2016");
 			return new ModelAndView("list");
 		} catch (Exception e) {
+                        logger.error(e);
 			return new ModelAndView("500");
 		}
 	}

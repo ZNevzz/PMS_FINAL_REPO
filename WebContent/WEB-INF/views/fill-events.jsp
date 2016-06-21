@@ -1,5 +1,3 @@
-
- 
 <!-- author: Pankaj sankpal
 description: contains fields to add a new event regarding placement drives ->
 <!-- -------------------------------------------------------------------------------------------------------- -->

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import org.apache.log4j.Logger;
 
 import org.crce.interns.beans.InterestedInHigherStudiesBean;
 import org.crce.interns.beans.InternshipPlacedBean;
@@ -44,6 +45,8 @@ public class StatisticsController {
 	
 	@Autowired
 	private StatisticsService statisticsService;
+        
+        private static final Logger logger = Logger.getLogger(StatisticsController.class.getName());
 	
 	@RequestMapping(value="/addStatistics", method = RequestMethod.GET)
 	public ModelAndView addStatistics(HttpServletRequest request) {
@@ -97,14 +100,17 @@ public class StatisticsController {
 				
 			InterestedInHigherStudiesBean ihs=new InterestedInHigherStudiesBean();
 			 InternshipPlacedBean ips=new InternshipPlacedBean();
-System.out.println(r.get("comps"));
+//System.out.println(r.get("comps"));
+                         logger.error(r.get("comps"));
 			 ihs.setComps(r.get("comps"));
-			 System.out.println(ihs.getComps());
+			 //System.out.println(ihs.getComps());
+                         logger.error(ihs.getComps());   
 			 ihs.setElex(r.get("elex"));
 			 ihs.setIt(r.get("it"));
 			 ihs.setProd(r.get("prod"));
 			 ihs.setYear(r.get("year"));
-			System.out.println("@@@@@"+ihs.getYear());
+			//System.out.println("@@@@@"+ihs.getYear());
+                            logger.error("@@@@@"+ihs.getYear());
 			 ips.setComps(r.get("compss"));
 			 ips.setElex(r.get("elexs"));
 			 ips.setIt(r.get("its"));

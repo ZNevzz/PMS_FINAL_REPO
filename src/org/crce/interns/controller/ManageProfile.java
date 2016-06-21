@@ -400,6 +400,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import org.apache.log4j.Logger;
 
 //import org.crce.interns.beans.AllotmentBean;
 import org.crce.interns.beans.CompanyBean;
@@ -465,6 +466,8 @@ public class ManageProfile extends HttpServlet implements ConstantValues {
 
 	@Autowired
 	private EmailNotificationServiceImpl emailNotificationService;
+        
+        private static final Logger logger = Logger.getLogger(ManageProfile.class.getName());
 
 /*	
 	@RequestMapping("/")
@@ -537,7 +540,8 @@ public class ManageProfile extends HttpServlet implements ConstantValues {
 		
 				//criteriaBean.setCriteria_id(Integer.parseInt(r.get("criteria_id")));
 				criteriaBean.setCriteria_id(Integer.parseInt(r.get("company_id")));
-				System.out.println(criteriaBean.getCriteria_id());
+				//System.out.println(criteriaBean.getCriteria_id());
+                                logger.error(criteriaBean.getCriteria_id());
 				
 				//criteriaBean.setEligible_branches(r.get("eligible_branches"));
 				//System.out.println(r.get("eligible_branches"));
@@ -552,7 +556,8 @@ public class ManageProfile extends HttpServlet implements ConstantValues {
 		
 				criteriaBean.setYear_of_passing(r.get("year_of_passing"));
 				criteriaBean.setPlaced_students_allowed(r.get("placed_students_allowed"));
-				System.out.println("Placed :::<<"+r.get("placed_students_allowed")+">>>");
+				//System.out.println("Placed :::<<"+r.get("placed_students_allowed")+">>>");
+                                logger.error("Placed :::<<"+r.get("placed_students_allowed")+">>>");    
 				criteriaBean.setPercentage(r.get("percentage"));
 				criteriaBean.setCgpa(r.get("cgpa"));
 				criteriaBean.setNo_of_live_kts_allowed(r.get("no_of_live_kts_allowed"));
@@ -653,7 +658,8 @@ public class ManageProfile extends HttpServlet implements ConstantValues {
 				//return new ModelAndView("TPO");
 		}
 		catch(Exception e){
-			System.out.println(e);
+			//System.out.println(e);
+                    logger.error(e);
 			ModelAndView model = new ModelAndView("500");
 			model.addObject("exception", "/saveProfile");
 			return model;
@@ -685,7 +691,7 @@ public class ManageProfile extends HttpServlet implements ConstantValues {
 						model.addAttribute("profileBean", criteriaBean);
 						//model.addAttribute("profileBean", companyBean);
 		
-						System.out.println("In Profile Controller");
+						//System.out.println("In Profile Controller");
 						
 						List<CompanyBean> companyList = manageProfileService.listCompanies();
 					    Map<Integer, String> companyMap = new LinkedHashMap<Integer,String>();
@@ -697,7 +703,8 @@ public class ManageProfile extends HttpServlet implements ConstantValues {
 					}
 				}
 			catch(Exception e){
-				System.out.println(e);
+				//System.out.println(e);
+                            logger.error(e);
 				ModelAndView model1=new ModelAndView("500");
 				model1.addObject("exception", "/addProfile");
 				return model1;
@@ -740,7 +747,8 @@ public class ManageProfile extends HttpServlet implements ConstantValues {
 				return new ModelAndView("CompaniesPage", model);
 			}
 		catch(Exception e){
-				System.out.println(e);
+				//System.out.println(e);
+                                logger.error(e);
 				ModelAndView model1=new ModelAndView("500");
 				model1.addObject("exception", "/viewProfile");
 				return model1;
@@ -760,7 +768,8 @@ public class ManageProfile extends HttpServlet implements ConstantValues {
 					return new ModelAndView("CompaniesPage");
 				}
 			catch(Exception e){
-					System.out.println(e);
+					//System.out.println(e);
+                                        logger.error(e);
 					ModelAndView model1=new ModelAndView("500");
 					model1.addObject("exception", "/CompaniesPage");
 					return model1;
@@ -800,7 +809,8 @@ public class ManageProfile extends HttpServlet implements ConstantValues {
 						System.out.println("Cany Name "+c.getCompany_name());
 			
 						companyMapID.put(c.getCompany_id(), c.getCompany_name());
-						System.out.println("Cany map get "+companyMapID.get(c.getCompany_id()));
+						//System.out.println("Cany map get "+companyMapID.get(c.getCompany_id()));
+                                                logger.error("Cany map get "+companyMapID.get(c.getCompany_id()));
 						companyMapName.put(c.getCompany_name(), c.getCompany_id());
 						
 						/*
@@ -816,7 +826,8 @@ public class ManageProfile extends HttpServlet implements ConstantValues {
 		
 		
 					List<JobBean> jlist = manageProfileService.listJob(curYear);
-					System.out.println(jlist.size());
+					//System.out.println(jlist.size());
+                                        logger.error(jlist.size());
 					for( JobBean jb: jlist){
 							//CompanyBean cb = new CompanyBean();
 							System.out.println("Jlist job id "+jb.getJob_id());
@@ -826,7 +837,8 @@ public class ManageProfile extends HttpServlet implements ConstantValues {
 							//System.out.println("List job id "+jb.getJob_id());
 							int a=Integer.parseInt(jb.getJob_id());
 			
-							System.out.println(companyMapID.get(a));
+							//System.out.println(companyMapID.get(a));
+                                                        logger.error(companyMapID.get(a));
 			
 			
 							if(companyname.equalsIgnoreCase(companyMapID.get(a))){
@@ -839,7 +851,8 @@ public class ManageProfile extends HttpServlet implements ConstantValues {
 					return model;
 			}
 			catch(Exception e){
-					System.out.println(e);
+					//System.out.println(e);
+                            logger.error(e);
 					ModelAndView model1=new ModelAndView("500");
 					model1.addObject("exception", "/JobPosts");
 					return model1;
@@ -862,8 +875,9 @@ public class ManageProfile extends HttpServlet implements ConstantValues {
 				//return new ModelAndView("CompaniesPage", model);
 			}
 		catch(Exception e){
-				System.out.println(e);
-				ModelAndView model1=new ModelAndView("500");
+				//System.out.println(e);
+				logger.error(e);
+                                ModelAndView model1=new ModelAndView("500");
 				model1.addObject("exception", "/JobPosts/companyname/{companyname}");
 				return model1;
 		}
@@ -890,19 +904,23 @@ public class ManageProfile extends HttpServlet implements ConstantValues {
 				
 					List<CompanyBean> clist = manageProfileService.listCompanies();
 				
-					System.out.println(clist.size());
+					//System.out.println(clist.size());
+                                        logger.error(clist.size());
 				
 				
-					System.out.println("Company Name "+companyname);
+					//System.out.println("Company Name "+companyname);
+                                        logger.error("Company Name "+companyname);
 				
 					for( CompanyBean cb: clist){
-						System.out.println("Clist company name "+cb.getCompany_name());
+						//System.out.println("Clist company name "+cb.getCompany_name());
+                                            logger.error("Clist company name "+cb.getCompany_name());
 					
 					
 					
 					if(companyname.equals(cb.getCompany_name())){
 							
-						System.out.println("inside IF"+cb.getCompany_name());
+						//System.out.println("inside IF"+cb.getCompany_name());
+                                                logger.error("inside IF"+cb.getCompany_name());
 						model.addObject("company", cb);
 						
 					}
@@ -939,7 +957,8 @@ public class ManageProfile extends HttpServlet implements ConstantValues {
 				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				System.out.println(e);
+				//System.out.println(e);
+                                logger.error(e);
 				ModelAndView model1=new ModelAndView("500");
 				model1.addObject("exception", "/Company");
 				return model1;

@@ -1,5 +1,6 @@
 package org.crce.interns.controller;
 
+import org.apache.log4j.Logger;
 import org.crce.interns.beans.CriteriaBean;
 import org.crce.interns.model.Criteria;
 import org.crce.interns.service.CriteriaService;
@@ -22,15 +23,18 @@ public class CriteriaController {
 
 	@Autowired
 	private CriteriaService criteriaService;
+        
+        private static final Logger logger = Logger.getLogger(CriteriaController.class.getName());
 
 	@RequestMapping(value = "/addCriteria", method = RequestMethod.GET)
 	public ModelAndView addCriteria(Model model) {
 		try {
 			CriteriaBean criteriaBean = new CriteriaBean();
 			model.addAttribute("criteriaBean", criteriaBean);
-			System.out.println("in controller11");
+			//System.out.println("in controller11");
 			return new ModelAndView("addCriteria");
 		} catch (Exception e) {
+                        logger.error(e);
 			return new ModelAndView("500");
 		}
 	}
@@ -41,8 +45,8 @@ public class CriteriaController {
 		try {
 			criteriaValidator.validate(criteriaBean, result);
 			if (result.hasErrors()) {
-				System.out.println("Error in form");
-
+				//System.out.println("Error in form");
+                                logger.error("Error in form");
 				return new ModelAndView("addCriteria");
 			}
 
@@ -50,6 +54,7 @@ public class CriteriaController {
 			criteriaService.addCriteria(criteria);
 			return new ModelAndView("redirect:/addCompany");
 		} catch (Exception e) {
+                        logger.error(e);
 			return new ModelAndView("500");
 		}
 	}
@@ -60,6 +65,7 @@ public class CriteriaController {
 			BeanUtils.copyProperties(criteriaBean, criteria);
 			return criteria;
 		} catch (Exception e) {
+                        logger.error(e);
 			return new Criteria();
 		}
 	}

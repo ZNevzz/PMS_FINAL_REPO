@@ -15,6 +15,7 @@ http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
    
 
 	<context:property-placeholder location="classpath:resources/database.properties" />
+        <context:property-placeholder location="/WEB-INF/log4j.properties" />
 	<context:annotation-config />
 	<mvc:annotation-driven />
 

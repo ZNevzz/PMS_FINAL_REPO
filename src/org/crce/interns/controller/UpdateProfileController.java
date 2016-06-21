@@ -38,6 +38,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
+import org.apache.log4j.Logger;
 
 @Controller
 public class UpdateProfileController {
@@ -48,6 +49,8 @@ public class UpdateProfileController {
 	private CheckRoleService crService;
 	@Autowired
 	private SearchService searchService;
+        
+        private static final Logger logger = Logger.getLogger(UpdateProfileController.class.getName());
 
 	// ------------------------------------------------------------------------------------------------------
 	// //
@@ -134,8 +137,8 @@ public class UpdateProfileController {
 		}
 		// }
 		catch (Exception e) {
-			System.out.println(e);
-
+			//System.out.println(e);
+                        logger.error(e);
 			ModelAndView model = new ModelAndView("500");
 			model.addObject("message", "Your session has timed out. Please login again");
 			model.addObject("url", "form");
@@ -186,8 +189,8 @@ public class UpdateProfileController {
 			return model;
 			// }
 		} catch (Exception e) {
-			System.out.println(e);
-
+			//System.out.println(e);
+                        logger.error(e);
 			ModelAndView model = new ModelAndView("500");
 			model.addObject("message", "Your session has timed out. Please login again");
 			model.addObject("url", "form");
@@ -251,8 +254,8 @@ public class UpdateProfileController {
 			return model;
 			// }
 		} catch (Exception e) {
-			System.out.println(e);
-
+			//System.out.println(e);
+                        logger.error(e);
 			ModelAndView model = new ModelAndView("500");
 			model.addObject("message", "Your session has timed out. Please login again");
 			model.addObject("url", "form");
@@ -296,8 +299,8 @@ public class UpdateProfileController {
 
 			return model;
 		} catch (Exception e) {
-			System.out.println(e);
-
+			//System.out.println(e);
+                        logger.error(e);
 			ModelAndView model = new ModelAndView("500");
 			model.addObject("message", "Your session has timed out. Please login again");
 			model.addObject("url", "form");
@@ -372,6 +375,7 @@ public class UpdateProfileController {
 
 			return model;
 		} catch (Exception e) {
+                        logger.error(e);
 			return new ModelAndView("500");
 		}
 		// }
@@ -396,6 +400,7 @@ public class UpdateProfileController {
 
 			return model;
 		} catch (Exception e) {
+                        logger.error(e);
 			return new ModelAndView("500");
 		}
 		// }
@@ -438,7 +443,8 @@ public class UpdateProfileController {
 
 			return new Gson().toJson(userDetailsList);
 		} catch (Exception e) {
-			System.out.println(e);
+			//System.out.println(e);
+                        logger.error(e);
 			// ModelAndView model=new ModelAndView("500");
 			// model.addObject("exception", "/viewprofile");
 			return "exception at /looseSearch";
@@ -451,7 +457,8 @@ public class UpdateProfileController {
 
 			List<Company> companyList = new ArrayList<Company>();
 			companyList = searchService.searchCompany(chars);
-			System.out.println(companyList.size());
+			//System.out.println(companyList.size());
+                        logger.error(companyList.size());
 
 			// ObjectMapper obj= new ObjectMapper();
 
@@ -459,7 +466,8 @@ public class UpdateProfileController {
 
 			return new Gson().toJson(companyList);
 		} catch (Exception e) {
-			System.out.println(e);
+			//System.out.println(e);
+                        logger.error(e);
 			// ModelAndView model=new ModelAndView("500");
 			// model.addObject("exception", "/viewprofile");
 			return "exception at /looseSearch2";
@@ -472,7 +480,8 @@ public class UpdateProfileController {
 	public ModelAndView search(final RedirectAttributes redirectAttributes, @RequestParam String userName) {
 
 		try {
-			System.out.println("Inside UpdateProfile Controller");
+			//System.out.println("Inside UpdateProfile Controller");
+                        logger.error("Inside UpdateProfile Controller");
 
 			ModelAndView model = null;
 
@@ -500,7 +509,8 @@ public class UpdateProfileController {
 
 			return model;
 		} catch (Exception e) {
-			System.out.println(e);
+			//System.out.println(e);
+                        logger.error(e);
 			ModelAndView model = new ModelAndView("500");
 			model.addObject("message", "Your session has timed out. Please login again");
 			model.addObject("url", "form");
@@ -524,7 +534,8 @@ public class UpdateProfileController {
 			return model;
 
 		} catch (Exception e) {
-			System.out.println(e);
+			//System.out.println(e);
+                    logger.error(e);
 			ModelAndView model = new ModelAndView("500");
 			model.addObject("message", "Your session has timed out. Please login again");
 			model.addObject("url", "form");
@@ -549,7 +560,8 @@ public class UpdateProfileController {
 			return model;
 
 		} catch (Exception e) {
-			System.out.println(e);
+			//System.out.println(e);
+                        logger.error(e);
 			ModelAndView model = new ModelAndView("500");
 			model.addObject("message", "Your session has timed out. Please login again");
 			model.addObject("url", "form");

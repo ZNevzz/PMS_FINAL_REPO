@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import org.apache.log4j.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -47,6 +48,8 @@ public class FeedbackController {
 
 	@Autowired
 	private ManageApplicantsService crudService;
+        
+        private static final Logger logger = Logger.getLogger(FeedbackController.class.getName());
 	/*
 	 * @InitBinder private void initBinder(WebDataBinder binder) {
 	 * binder.setValidator(validator); }
@@ -54,8 +57,9 @@ public class FeedbackController {
 
 	@RequestMapping(value = "/feedback", method = RequestMethod.GET)
 	public ModelAndView listFeedback(HttpServletRequest request, @RequestParam("companyname") String companyname) {
-		System.out.println(companyname);
-		System.out.println("Hi");
+		//System.out.println(companyname);
+                logger.error(companyname);
+		//System.out.println("Hi");
 
 		try {
 			HttpSession session = request.getSession();
@@ -69,22 +73,25 @@ public class FeedbackController {
 				// System.out.println(fb1);
 				if (fbl.getCompany().equalsIgnoreCase(companyname)) {
 
-					System.out.println("fdvgidmgvdlkmglkdfmkl" + companyname);
+					//System.out.println("fdvgidmgvdlkmglkdfmkl" + companyname);
+                                        logger.error("fdvgidmgvdlkmglkdfmkl" + companyname);
 					list1.add(fbl);
 
 				}
 			}
 
-			System.out.println(list1.size());
+			//System.out.println(list1.size());
+                        logger.error(list1.size());
 			// model.put("feedback",prepareListofBean(feedbackService.listFeedback()));
 			ModelAndView model = new ModelAndView("CompanyFeedback");
 			model.addObject("l", list1);
-			System.out.println(fb.getUsername());
+			//System.out.println(fb.getUsername());
+                        logger.error(fb.getUsername());
 			return model;
 			// return new ModelAndView("feedbackList", fb);
 		} catch (Exception e) {
-			System.out.println(e);
-
+			//System.out.println(e);
+                        logger.error(e);
 			ModelAndView model = new ModelAndView("500");
 			model.addObject("message", "Your session has timed out. Please login again");
 			// model.addObject("url", "form");
@@ -97,7 +104,7 @@ public class FeedbackController {
 	@RequestMapping(value = "/addFeedback", method = RequestMethod.GET)
 	public ModelAndView saveFeedback(HttpServletRequest request, @ModelAttribute("command") FeedbackBean feedbackBean,
 			BindingResult result) {
-		System.out.println("in controller1");
+		//System.out.println("in controller1");
 
 		// Feedback feedback = prepareModel(feedbackBean);
 		// feedbackService.addFeedback(feedback);
@@ -144,8 +151,9 @@ public class FeedbackController {
 			 * }
 			 */
 		} catch (Exception e) {
-			System.out.println(e);
-
+			//System.out.println(e);
+                        logger.error(e);
+                        
 			ModelAndView model = new ModelAndView("500");
 			model.addObject("message", "Your session has timed out. Please login again");
 			// model.addObject("url", "form");
@@ -166,15 +174,16 @@ public class FeedbackController {
 
 			validator.validate(feedbackBean, result);
 			if (result.hasErrors()) {
-				System.out.println("Error in form");
-
+				//System.out.println("Error in form");
+                                logger.error("Error in form");
 				return new ModelAndView("addFeedback");
 			}
 			boolean b = feedbackService.checkUser(user, feedbackBean.getCompany());
 			if (!b) {
 				ModelAndView m = new ModelAndView("500");
 				m.addObject("message", "You are not eligible to give  feedback for this company");
-				System.out.println("ERROR IN FEEDBACK");
+				//System.out.println("ERROR IN FEEDBACK");
+                                logger.error("ERROR IN FEEDBACK");
 				return m;
 			}
 
@@ -186,8 +195,8 @@ public class FeedbackController {
 		}
 
 		catch (Exception e) {
-			System.out.println(e);
-
+			//System.out.println(e);
+                        logger.error(e);
 			ModelAndView model = new ModelAndView("500");
 			model.addObject("message", "Your session has timed out. Please login again");
 			// model.addObject("url", "form");
@@ -208,7 +217,8 @@ public class FeedbackController {
 			FeedbackBean bean = null;
 			for (Feedback a : feedback) {
 
-				System.out.println(a.getFeeback() + "Inside controller");
+				//System.out.println(a.getFeeback() + "Inside controller");
+                                logger.error(a.getFeeback() + "Inside controller");
 
 				bean = new FeedbackBean();
 				bean.setUsername(a.getUsername());

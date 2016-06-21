@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import org.apache.log4j.Logger;
 
 import org.crce.interns.beans.LoginForm;
 import org.crce.interns.beans.NotifyForm;
@@ -35,6 +36,8 @@ public class LoginController{
         
    	@Autowired
     private DirectoryService directoryService;
+        
+        private static final Logger logger = Logger.getLogger(LoginController.class.getName()); 
     
    	//----------------------------------------------------------------------------------------------------------
 	
@@ -45,7 +48,8 @@ public class LoginController{
 	public ModelAndView welcome() throws ParseException {
 		
 		try{
-				System.out.println("return model");
+				//System.out.println("return model");
+                                logger.error("Return Model : Mapping /");
                 /**
                  * Year changing logic
                  * @author Leon
@@ -76,7 +80,8 @@ public class LoginController{
                 return new ModelAndView("redirect:/form");
 		}
 		catch(Exception e){
-			System.out.println(e);
+			//System.out.println(e);
+                    logger.error("Exception in / ",e);
 			ModelAndView model=new ModelAndView("500");
 			model.addObject("exception", "/");
 			return model;
@@ -91,8 +96,8 @@ public class LoginController{
 
 	try
 	{
-		System.out.println("Inside Login Controller");
-
+		//System.out.println("Inside Login Controller");
+                logger.error("Inside Login Controller /form");
 		LoginForm loginForm = new LoginForm();
 		ModelAndView model=null;
 		model = new ModelAndView("Login");
@@ -102,7 +107,8 @@ public class LoginController{
 	}
 	catch(Exception e)
 	{
-		System.out.println(e);
+		//System.out.println(e);
+            logger.error("Exception in /form ",e);
 		ModelAndView model=new ModelAndView("500");
 		model.addObject("exception", "loginForm");
 		return model;
@@ -113,13 +119,15 @@ public class LoginController{
 	@RequestMapping(value="/logged-out" , method = RequestMethod.GET)  
   	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) {
 	try{
-		System.out.println("Inside Controller");		
+		//System.out.println("Inside Controller");	
+            logger.error("Inside /logged-out");
 		ModelAndView model=null;		
 		model = new ModelAndView("redirect:/sign-out");				
 		return model;
 	}
 	catch(Exception e){
-		System.out.println(e);
+		//System.out.println(e);
+            logger.error("Exception in /logged-out ",e);
 		ModelAndView model=new ModelAndView("500");
 		model.addObject("exception", "/logged-out");
 		return model;
@@ -135,7 +143,8 @@ public class LoginController{
 
 	try
 	{
-		System.out.println("Inside Controller");
+		//System.out.println("Inside Controller");
+            logger.error("Inside /logged");
 		ModelAndView model=null;	
 		// get role
 		String role=loginService.checkLogin(loginForm.getUserName(),loginForm.getPassword());		
@@ -203,7 +212,8 @@ public class LoginController{
 
 	catch(Exception e)
 	{
-		System.out.println(e);
+		//System.out.println(e);
+            logger.error("Exception in /logged ",e);
 		ModelAndView model=new ModelAndView("500");
 		model.addObject("exception", "Logged page");
 		return model;

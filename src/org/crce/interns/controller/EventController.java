@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.apache.log4j.Logger;
 import org.crce.interns.beans.Event_detailsBean;
 import org.crce.interns.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,19 +30,24 @@ public class EventController {
 
 	@Autowired
 	private EventService eventService;
+        
+        private static final Logger logger = Logger.getLogger(EventController.class.getName());
 
 	@RequestMapping(value = "/InsertMonth", method = RequestMethod.GET) // Call to jsp to get the month number
 	public ModelAndView insertMonth(@ModelAttribute("command") Event_detailsBean edBean, BindingResult result) {
-		System.out.println("In Controller : Insert Month");
+		//System.out.println("In Controller : Insert Month");
+                logger.error("In Controller : Insert Month");
 		
 		return new ModelAndView("insertMonth");
 	}
 
 	@RequestMapping(value = "/SubmitMonth", method = RequestMethod.GET)
 	public ModelAndView submitMonth(@RequestParam("month") Integer month) {
-		System.out.println("In Controller : Submit Month");
+		//System.out.println("In Controller : Submit Month");
+                logger.error("In Controller : Submit Month");
 		
-		System.out.println("Month sent from front end :" + month);
+		//System.out.println("Month sent from front end :" + month);
+                logger.error("Month sent from front end :" + month);
 		months = month;
 		
 		return new ModelAndView("redirect:/ViewEvents");
@@ -54,15 +60,16 @@ public class EventController {
 			ModelAndView model;
 			String erroMesg = "";
 			
-		System.out.println("In View Events: " + months);
-		
+		//System.out.println("In View Events: " + months);
+                        logger.error("In View Events: " + months);
 		Map<String, Object> modelMap = new HashMap<String, Object>();
 
 		List<Event_detailsBean> eventList = eventService.viewEvents(months);
 		modelMap.put("events", eventList);
 		
 		if (modelMap.isEmpty()) {
-			System.out.println("Error no Model map, Model map is null");
+			//System.out.println("Error no Model map, Model map is null");
+                        logger.error("Error no Model map, Model map is null");
 			return new ModelAndView("403");
 		}
 
@@ -79,7 +86,8 @@ public class EventController {
 		for (Event_detailsBean i : eventList) {
 			companyMap.put(i.getCompany_id(), eventService.getCompanyName(i.getCompany_id()));
 		}
-		System.out.println("Companies Name Map Size" + companyMap.size());
+		//System.out.println("Companies Name Map Size" + companyMap.size());
+                logger.error("Companies Name Map Size" + companyMap.size());
 		modelMap.put("companyMap", companyMap);
 		model = new ModelAndView("viewEvents", modelMap);
 		String msgcurrevent = new String();
@@ -101,7 +109,8 @@ public class EventController {
 		}
 		catch(Exception e)
 			{
-				System.out.println(e);
+				//System.out.println(e);
+                                logger.error(e);
 				ModelAndView model=new ModelAndView("500");
 				model.addObject("exception", "/ViewEvents");
 				return model;

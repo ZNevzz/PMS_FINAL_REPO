@@ -15,6 +15,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import org.apache.log4j.Logger;
 
 import org.crce.interns.beans.CompanyBean;
 import org.crce.interns.service.CompanyService;
@@ -40,6 +41,8 @@ public class EligibilityController {
 
 	@Autowired
 	private NfService nfService;
+        
+        private static final Logger logger = Logger.getLogger(EligibilityController.class.getName());
 
 	String msg = "";
 
@@ -68,7 +71,8 @@ public class EligibilityController {
 			HttpSession session = request.getSession();
 			String username = (String) session.getAttribute("userName");
 
-			System.out.println("This is user:" + username + "   and c_id: " + c_id);
+			//System.out.println("This is user:" + username + "   and c_id: " + c_id);
+                        logger.error("This is user:" + username + "   and c_id: " + c_id);
 
 			/*
 			 * @author Nevil Dsouza code for notification
@@ -97,13 +101,15 @@ public class EligibilityController {
 
 				return new ModelAndView("eligible");
 			} else {
-				System.out.println("oopsie!!  you dont meet the criteria ");
+				//System.out.println("oopsie!!  you dont meet the criteria ");
+                            logger.error("oopsie!!  you dont meet the criteria ");
 				String msg = "Oops....You Don't Meet The Criteria";
 				ModelAndView m = new ModelAndView("JobPostsCriteria");
 				m.addObject("msg", msg);
 				return m;
 			}
 		} catch (Exception e) {
+                        logger.error(e);
 			return new ModelAndView("500");
 		}
 	}
@@ -128,6 +134,7 @@ public class EligibilityController {
 
 			return model;
 		} catch (Exception e) {
+                        logger.error(e);
 			return new ModelAndView("500");
 		}
 	}
@@ -143,7 +150,8 @@ public class EligibilityController {
 				if (E_service.checkCriteria(uname, criteria_id, job_id))
 					return new ModelAndView("eligible");
 				else {
-					System.out.println("oopsie!! !!!!  you dont meet the criteria ");
+					//System.out.println("oopsie!! !!!!  you dont meet the criteria ");
+                                        logger.error("oopsie!! !!!!  you dont meet the criteria ");
 					String msg = "Oops....You Don't Meet The Criteria";
 					ModelAndView m = new ModelAndView("tempform2");
 					m.addObject("msg", msg);
@@ -154,6 +162,7 @@ public class EligibilityController {
 			else
 				return new ModelAndView("403");
 		} catch (Exception e) {
+                        logger.error(e);
 			return new ModelAndView("500");
 		}
 	}

@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Calendar;
+import org.apache.log4j.Logger;
 
 /**
 *
@@ -45,6 +46,8 @@ public class ManageApplicantsController {
 	@Autowired
 	@Qualifier("deleteApplicantsValidator")
 	private DeleteApplicantsValidator deleteApplicantsValidator;
+        
+        private static final Logger logger = Logger.getLogger(ManageApplicantsController.class.getName());
 	
 	@RequestMapping(value = "/manage.html", method = RequestMethod.GET)
 	public ModelAndView gotomanagelist() {
@@ -68,7 +71,8 @@ public class ManageApplicantsController {
 		try{ 
 		ModelAndView model;
 
-		 System.out.println("inside controller"+company);
+		 //System.out.println("inside controller"+company);
+                logger.error("inside controller"+company);
 		 
 		 model = new ModelAndView("candidate-list");
 		 
@@ -88,7 +92,8 @@ public class ManageApplicantsController {
 		/* ProfessionalProfileBean professionalProfileBean=new ProfessionalProfileBean();
 		 PersonalProfileBean personalProfileBean=new PersonalProfileBean();
 */
-		 System.out.println("inside controller..........");
+		 //System.out.println("inside controller..........");
+                 logger.error("inside controller..........");
 		
 		 for(UserCompanyBean d:userBeanList) {
 			 System.out.println(d.getUsername());
@@ -112,7 +117,8 @@ public class ManageApplicantsController {
 		}
 		catch(Exception e)
 		{
-			System.out.println(e);
+			//System.out.println(e);
+                        logger.error(e);
 			ModelAndView model=new ModelAndView("500");
 			model.addObject("exception", "/viewclist");
 			return model;
@@ -137,7 +143,8 @@ public class ManageApplicantsController {
 		}
 		catch(Exception e)
 		{
-			System.out.println(e);
+			//System.out.println(e);
+                        logger.error(e);
 			ModelAndView model=new ModelAndView("500");
 			model.addObject("exception", "/managelist");
 			return model;
@@ -152,7 +159,8 @@ public class ManageApplicantsController {
 		addApplicantsValidator.validate(userBean, bindingResult);
 		
 		if (bindingResult.hasErrors()) {
-			System.out.println("Binding Errors are present...");
+			//System.out.println("Binding Errors are present...");
+                    logger.error("Binding Errors are present...");
 			model = new ModelAndView("add-candidate");
 		} else{
 			int c=crudService.createDetails(userBean);
@@ -180,7 +188,8 @@ public class ManageApplicantsController {
 		}
 		catch(Exception e)
 		{
-			System.out.println(e);
+			//System.out.println(e);
+                    logger.error(e);
 			ModelAndView model=new ModelAndView("500");
 			model.addObject("exception", "/addcandidate");
 			return model;
@@ -196,7 +205,8 @@ public class ManageApplicantsController {
 		deleteApplicantsValidator.validate(userBean, bindingResult);
 	
 		if (bindingResult.hasErrors()) {
-			System.out.println("Binding Errors are present...");
+			//System.out.println("Binding Errors are present...");
+                        logger.error("Binding Errors are present...");
 			model = new ModelAndView("delete-candidate");
 		} else{
 			
@@ -226,7 +236,8 @@ public class ManageApplicantsController {
 		}
 		catch(Exception e)
 		{
-			System.out.println(e);
+			//System.out.println(e);
+                        logger.error(e);
 			ModelAndView model=new ModelAndView("500");
 			model.addObject("exception", "/deletecandidate");
 			return model;
@@ -240,7 +251,8 @@ public class ManageApplicantsController {
 		try{ 
 		ModelAndView model;
 
-		 System.out.println("inside controller"+company);
+		 //System.out.println("inside controller"+company);
+                logger.error("inside controller"+company);
 		 
 		 model = new ModelAndView("redirect:/viewsclist.html");
 		 
@@ -259,7 +271,7 @@ public class ManageApplicantsController {
 		/* ProfessionalProfileBean professionalProfileBean=new ProfessionalProfileBean();
 		 PersonalProfileBean personalProfileBean=new PersonalProfileBean();
 */
-		 System.out.println("inside controller..........");
+		 //System.out.println("inside controller..........");
 		
 		 for(UserCompanyBean d:userBeanList) {
 			 System.out.println(d.getUsername());
@@ -291,7 +303,8 @@ public class ManageApplicantsController {
 		}
 		catch(Exception e)
 		{
-			System.out.println(e);
+			//System.out.println(e);
+                        logger.error(e);
 			ModelAndView model=new ModelAndView("500");
 			model.addObject("exception", "/viewclist");
 			return model;

@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import org.apache.log4j.Logger;
 
 import org.crce.interns.beans.AllotmentBean;
 import org.crce.interns.beans.CompanyBean;
@@ -61,6 +62,8 @@ public class ManageAllotment extends HttpServlet {
 
 	@Autowired
 	public LoginService loginService;
+        
+        private static final Logger logger = Logger.getLogger(ManageAllotment.class.getName());
 
 /*
 	@RequestMapping("/")
@@ -106,14 +109,16 @@ public class ManageAllotment extends HttpServlet {
 					} 
 				catch (IncorrectFileFormatException e) {
 			
-						System.out.println(e);
+						//System.out.println(e);
+                                                logger.error(e);
 						model.addObject("error", 1);
 						
 			
 					} 
 				catch (MaxFileSizeExceededError m) {
 			
-						System.out.println(m);
+						//System.out.println(m);
+                                                logger.error(m);
 						model.addObject("error1", 1);
 			
 					}
@@ -123,7 +128,8 @@ public class ManageAllotment extends HttpServlet {
 				} 
 		catch (Exception e) {
 				// TODO Auto-generated catch block
-				System.out.println(e);
+				//System.out.println(e);
+                                logger.error(e);
 				ModelAndView model1=new ModelAndView("500");
 				model1.addObject("exception", "/saveAllotment");
 				return model1;
@@ -184,7 +190,8 @@ public class ManageAllotment extends HttpServlet {
 		  	} 
 		  catch (Exception e) {
 			  		// TODO Auto-generated catch block
-			  		System.out.println(e);
+			  		//System.out.println(e);
+                                        logger.error(e);
 			  		ModelAndView model1=new ModelAndView("500");
 			  		model1.addObject("exception", "/addAllotment");
 			  		return model1;
@@ -225,7 +232,8 @@ public class ManageAllotment extends HttpServlet {
 			} 
 		catch (Exception e) {
 				// TODO Auto-generated catch block
-				System.out.println(e);
+				//System.out.println(e);
+                                logger.error(e);
 				ModelAndView model1=new ModelAndView("500");
 				model1.addObject("exception", "/viewAllotment");
 				return model1;
@@ -295,7 +303,8 @@ public class ManageAllotment extends HttpServlet {
 		} 
 		catch (Exception e) {
 			// TODO Auto-generated catch block
-			System.out.println(e);
+			//System.out.println(e);
+                        logger.error(e);
 			ModelAndView model1=new ModelAndView("500");
 			model1.addObject("exception", "/list");
 			return model1;
@@ -310,7 +319,8 @@ public class ManageAllotment extends HttpServlet {
 		} 
 		catch (Exception e) {
 			// TODO Auto-generated catch block
-			System.out.println(e);
+			//System.out.println(e);
+                        logger.error(e);
 			ModelAndView model1=new ModelAndView("500");
 			model1.addObject("exception", "/tpclist");
 			return model1;
@@ -325,7 +335,8 @@ public class ManageAllotment extends HttpServlet {
 		} 
 		catch (Exception e) {
 			// TODO Auto-generated catch block
-			System.out.println(e);
+			//System.out.println(e);
+                        logger.error(e);
 			ModelAndView model1=new ModelAndView("500");
 			model1.addObject("exception", "/studentlist");
 			return model1;
@@ -340,7 +351,8 @@ public class ManageAllotment extends HttpServlet {
 		} 
 		catch (Exception e) {
 			// TODO Auto-generated catch block
-			System.out.println(e);
+			//System.out.println(e);
+                        logger.error(e);
 			ModelAndView model1=new ModelAndView("500");
 			model1.addObject("exception", "/dept");
 			return model1;
@@ -355,7 +367,8 @@ public class ManageAllotment extends HttpServlet {
 		} 
 		catch (Exception e) {
 			// TODO Auto-generated catch block
-			System.out.println(e);
+			//System.out.println(e);
+                        logger.error(e);
 			ModelAndView model1=new ModelAndView("500");
 			model1.addObject("exception", "/stats");
 			return model1;
@@ -371,7 +384,8 @@ public class ManageAllotment extends HttpServlet {
 		} 
 		catch (Exception e) {
 			// TODO Auto-generated catch block
-			System.out.println(e);
+			//System.out.println(e);
+                        logger.error(e);
 			ModelAndView model1=new ModelAndView("500");
 			model1.addObject("exception", "/company");
 			return model1;

@@ -18,6 +18,7 @@ package org.crce.interns.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import org.apache.log4j.Logger;
 
 import org.crce.interns.exception.IncorrectFileFormatException;
 import org.crce.interns.exception.MaxFileSizeExceededError;
@@ -46,6 +47,8 @@ public class OfferLetterUploadController {
 
 	@Autowired
 	private CheckRoleService crService;
+        
+        private static final Logger logger = Logger.getLogger(OfferLetterUploadController.class.getName());
 
 	// used to navigate to OfferLetterUpload.jsp
 	@RequestMapping("offerLetterUpload")
@@ -75,7 +78,7 @@ public class OfferLetterUploadController {
 			// fileUpload1 : this is the request parameter model attribute of
 			// FileUpload type
 			fileUpload1.setFile(fileUpload);
-			System.out.println(fileUpload1.getFile().getSize());
+			//System.out.println(fileUpload1.getFile().getSize());
 
 			validator.validate(fileUpload1, result);
 
@@ -87,7 +90,7 @@ public class OfferLetterUploadController {
 			}
 
 			String username = (String) request.getSession(true).getAttribute("userName");
-			System.out.println("in try");
+			//System.out.println("in try");
 
 			// calls the service to actually upload the file
 			offerLetterUploadService.handleFileUpload(request, fileUpload, username);
@@ -95,13 +98,13 @@ public class OfferLetterUploadController {
 			model.addObject("success", 1);
 
 		} catch (IncorrectFileFormatException e) {
-			System.out.println(e);
-
+			//System.out.println(e);
+                        logger.error(e);
 			model.addObject("error", 1); // so that the jsp catches the error
 
 		} catch (MaxFileSizeExceededError m) {
 			System.out.println(m);
-
+                        logger.error(m);
 			model.addObject("error1", 1); // so that the jsp catches the error
 
 		}

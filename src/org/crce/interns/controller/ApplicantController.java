@@ -132,6 +132,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import org.apache.log4j.Logger;
 
 import org.crce.interns.beans.CompanyBean;
 import org.crce.interns.beans.UserDetailsBean;
@@ -164,6 +165,7 @@ public class ApplicantController {
 	@Autowired
 	SearchApplicantValidator searchApplicantValidator;
 	
+        private static final Logger logger = Logger.getLogger(ApplicantController.class.getName());
 	/* ---------------------------------------------------------------------------------------------------------------------  */
 	
 	@RequestMapping(value = "/SearchApplicant", method = RequestMethod.GET)
@@ -184,7 +186,8 @@ public class ApplicantController {
 			} 
 		catch (Exception e) {
 				// TODO Auto-generated catch block
-				System.out.println(e);
+				//System.out.println(e);
+                                logger.error("Exception in /SearchApplicant ",e);
 				ModelAndView model1=new ModelAndView("500");
 				model1.addObject("exception", "/SearchApplicant");
 				return model1;
@@ -199,13 +202,15 @@ public class ApplicantController {
 	public ModelAndView submitCompany(@RequestParam("company") Integer company) {
 		
 		try {
-				System.out.println("Company sent from front end :" + company);
+				//System.out.println("Company sent from front end :" + company);
+                                logger.error("/SubmitCompany-->\"Company sent from front end :" + company);
 				companies = company;
 				return new ModelAndView("redirect:/ViewApplicant");
 			} 
 		catch (Exception e) {
 				// TODO Auto-generated catch block
-				System.out.println(e);
+				//System.out.println(e);
+                                logger.error("EXCEPTION in /submitCompany ",e);
 				ModelAndView model1=new ModelAndView("500");
 				model1.addObject("exception", "/SubmitCompany");
 				return model1;
@@ -223,13 +228,15 @@ public class ApplicantController {
 		
 		
 		try {
-				System.out.println("In View Applicant: " + companies);
+				//System.out.println("In View Applicant: " + companies);
+                                logger.error("In View Applicant: "+ companies);
 				Map<String, Object> modelMap = new HashMap<String, Object>();
 				//modelMap.put("users", applicantService.viewApplicants(companies));
 				modelMap.put("users", applicantService.viewApplicants(companies,curYear));
 			
 				if (modelMap.isEmpty()) {
-					System.out.println("Error no Model map, Model map is null");
+					//System.out.println("Error no Model map, Model map is null");
+                                        logger.error("Error no Model map, Model map is null");
 					return new ModelAndView("403");
 				}
 				if(modelMap.containsValue(null))
@@ -244,7 +251,8 @@ public class ApplicantController {
 			} 
 		catch (Exception e) {
 					// TODO Auto-generated catch block
-					System.out.println(e);
+					//System.out.println(e);
+                                        logger.error("Exception in /ViewApplicant ",e);
 					ModelAndView model1=new ModelAndView("500");
 					model1.addObject("exception", "/ViewApplicant");
 					return model1;
@@ -279,13 +287,15 @@ public class ApplicantController {
 						return model;
 					}
 					searchApplicantValidator.validate(userBean, bindingResult);
-					System.out.println("User sent from front end :" + userName);
+					//System.out.println("User sent from front end :" + userName);
+                                        logger.error("User sent from front end :" + userName);
 					user = userName;
 					return new ModelAndView("redirect:/SetNotify");
 				} 
 			catch (Exception e) {
 					// TODO Auto-generated catch block
-					System.out.println(e);
+					//System.out.println(e);
+                                        logger.error("EXCEPTION in /NotifyStudent",e);
 					ModelAndView model1=new ModelAndView("500");
 					model1.addObject("exception", "/NotifyStudent");
 					return model1;
@@ -308,8 +318,8 @@ public class ApplicantController {
 					Map<String, Object> modelMap = new HashMap<String, Object>();
 					//if(userName.equalsIgnoreCase("")){
 					modelMap.put("users", applicantService.viewApplicants(companies,curYear));
-			
-					System.out.println("In Set Notify: " + user);
+                                        logger.error("In Set Notify: " + user);
+					//System.out.println("In Set Notify: " + user);
 					int check = applicantService.checkNotify(user);
 					if(check==0)
 					{
@@ -338,7 +348,8 @@ public class ApplicantController {
 			} 
 			catch (Exception e) {
 					// TODO Auto-generated catch block
-					System.out.println(e);
+					//System.out.println(e);
+                                        logger.error("Exception in /SetNotify ",e);
 					ModelAndView model1=new ModelAndView("500");
 					model1.addObject("exception", "/SetNotify");
 					return model1;

@@ -14,6 +14,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.log4j.Logger;
 
 import org.crce.interns.beans.DirectoryPathBean;
 import org.crce.interns.service.CheckRoleService;
@@ -42,9 +43,11 @@ public class DownloadController extends HttpServlet {
 	 * field will be added soon so final basePath would look like PMS/year
 	 */
 	DirectoryPathBean dpb = new DirectoryPathBean();
-	private String basePath = dpb.getRoomAllotmentFolder();
+	private String basePath = dpb.getRootContext();
 
 	private static final int BUFFER_SIZE = 4096;
+        
+        private static final Logger logger = Logger.getLogger(DownloadController.class.getName());
 
 	/*
 	 * This method constructs the path of the file the user wants to download
@@ -63,8 +66,8 @@ public class DownloadController extends HttpServlet {
 
 			String fileToBeDownloaded = basePath + "/Users" + "/" + role + "/" + userName + "/" + folderName + "/"
 					+ fileName;
-			System.out.println(fileToBeDownloaded);
-
+			//System.out.println(fileToBeDownloaded);
+                        logger.error(fileToBeDownloaded);
 			ServletContext context = request.getServletContext();
 
 			File downloadFile = new File(fileToBeDownloaded);
@@ -72,7 +75,8 @@ public class DownloadController extends HttpServlet {
 			try {
 				inputStream = new FileInputStream(downloadFile);
 			} catch (FileNotFoundException e) {
-				e.printStackTrace();
+				//e.printStackTrace();
+                                logger.error(e);
 			}
 			String mimeType = context.getMimeType(fileToBeDownloaded);
 			if (mimeType == null) {
@@ -102,10 +106,12 @@ public class DownloadController extends HttpServlet {
 				inputStream.close();
 				outStream.close();
 			} catch (IOException e) {
-				e.printStackTrace();
+				//e.printStackTrace();
+                                logger.error(e);
 			}
 		} catch (Exception e) {
-			System.out.println();
+			//System.out.println();
+                        logger.error(e);
 		}
 	}
 
@@ -126,7 +132,8 @@ public class DownloadController extends HttpServlet {
 				File directory = new File(directoryPath);
 				File[] listOfFiles = directory.listFiles();
 
-				System.out.println(directoryPath);
+				//System.out.println(directoryPath);
+                                logger.error(directoryPath);
 
 				List<String> fileList = new ArrayList<String>();
 				for (File file : listOfFiles) {
@@ -141,6 +148,7 @@ public class DownloadController extends HttpServlet {
 				return new ModelAndView("viewResumes", modelMap);
 			}
 		} catch (Exception e) {
+                        logger.error(e);
 			return new ModelAndView("500");
 		}
 	}
@@ -179,16 +187,19 @@ public class DownloadController extends HttpServlet {
 			if (listOfFiles != null) {
 				for (File file : listOfFiles) {
 					if (file.isFile()) {
-						System.out.println("FILE : " + file.getName());
+						//System.out.println("FILE : " + file.getName());
+                                                logger.error("FILE : " + file.getName());
 						fileList.add(file.getName());
 					} else
-						System.out.println("DIRECTORY : " + file.getName());
+						//System.out.println("DIRECTORY : " + file.getName());
+                                                logger.error("DIRECTORY : " + file.getName());
 				}
 			}
 			Map<String, Object> modelMap = new HashMap<String, Object>();
 			modelMap.put("fileList", fileList);
 			return new ModelAndView("viewCSV", modelMap);
 		} catch (Exception e) {
+                        logger.error(e);
 			return new ModelAndView("500s");
 		}
 	}
@@ -198,8 +209,9 @@ public class DownloadController extends HttpServlet {
 			@RequestParam("fileName") String fileName) {
 		String fileToBeDownloaded = basePath + "/System/CSV" + "/" + fileName;
 
-		System.out.println(fileToBeDownloaded);
-
+		//System.out.println(fileToBeDownloaded);
+                logger.error(fileToBeDownloaded);
+                
 		ServletContext context = request.getServletContext();
 
 		File downloadFile = new File(fileToBeDownloaded);
@@ -207,7 +219,8 @@ public class DownloadController extends HttpServlet {
 		try {
 			inputStream = new FileInputStream(downloadFile);
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+                        logger.error(e);
 		}
 		String mimeType = context.getMimeType(fileToBeDownloaded);
 		if (mimeType == null) {
@@ -237,7 +250,8 @@ public class DownloadController extends HttpServlet {
 			inputStream.close();
 			outStream.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+                        logger.error(e);
 		}
 	}
 
@@ -246,7 +260,8 @@ public class DownloadController extends HttpServlet {
 			@RequestParam("fileName") String fileName) {
 		String folderName = (String) request.getSession().getAttribute("folderName");
 		String fileToBeDownloaded = basePath + "/System/" + folderName + "/" + fileName;
-		System.out.println(fileToBeDownloaded);
+		//System.out.println(fileToBeDownloaded);
+                logger.error(fileToBeDownloaded);
 
 		ServletContext context = request.getServletContext();
 
@@ -255,7 +270,8 @@ public class DownloadController extends HttpServlet {
 		try {
 			inputStream = new FileInputStream(downloadFile);
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+                        logger.error(e);
 		}
 		String mimeType = context.getMimeType(fileToBeDownloaded);
 		if (mimeType == null) {
@@ -285,7 +301,8 @@ public class DownloadController extends HttpServlet {
 			inputStream.close();
 			outStream.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+                        logger.error(e);
 		}
 	}
 
@@ -303,7 +320,8 @@ public class DownloadController extends HttpServlet {
 		try {
 			inputStream = new FileInputStream(downloadFile);
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+                        logger.error(e);
 		}
 		String mimeType = context.getMimeType(fileToBeDownloaded);
 		if (mimeType == null) {

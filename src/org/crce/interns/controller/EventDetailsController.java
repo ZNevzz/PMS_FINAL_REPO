@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import org.apache.log4j.Logger;
 
 import org.crce.interns.beans.AptitudeBean;
 import org.crce.interns.beans.EventBean;
@@ -30,6 +31,8 @@ public class EventDetailsController {
 	
 	@Autowired
 	private EventDetailsService eventDetailsService;
+        
+        private static final Logger logger = Logger.getLogger(EventDetailsController.class.getName());
 	
 	@RequestMapping(value="/getEventForm.html", method=RequestMethod.GET)
 	public ModelAndView getEventForm(){
@@ -46,7 +49,8 @@ public class EventDetailsController {
 		EventBean eventBean=new EventBean();
 		HttpSession session=request.getSession();
 		String userName=(String)session.getAttribute("userName");
-		System.out.println("dfbdjvbjkdfvjfdk"+userName);
+		//System.out.println("dfbdjvbjkdfvjfdk"+userName);
+                logger.error("dfbdjvbjkdfvjfdk"+userName);
 		eventBean.setCreated_by(userName);
 		eventBean.setCreated_date(new Date());
 		//eventBean.setEvent_id((map.get("event_name")));
@@ -59,17 +63,22 @@ public class EventDetailsController {
 		SimpleDateFormat formatter2= new SimpleDateFormat("HH:mm"); 
 		Date date=new Date();
 		date=formatter.parse(map.get("date"));
-		System.out.println(date);
+		//System.out.println(date);
+                logger.error(date);
 		formatter.format(date);
-		System.out.println(date);
+		//System.out.println(date);
+                logger.error(date);
 		eventBean.setDate(date);
-		System.out.println("event bean val 1.................."+eventBean.getDate());
+		//System.out.println("event bean val 1.................."+eventBean.getDate());
+                logger.error("event bean val 1.................."+eventBean.getDate());
 		eventBean.setTime(formatter2.parse(map.get("time")));
 		eventBean.setVenue(map.get("venue"));
-		System.out.println("event bean val 2.................."+eventBean.getDate());
+		//System.out.println("event bean val 2.................."+eventBean.getDate());
+                logger.error("event bean val 2.................."+eventBean.getDate());
 		model.addObject("eventBean",eventBean);
 		int s=eventDetailsService.create(eventBean,cname);
-		System.out.println(s);
+		//System.out.println(s);
+                logger.error(s);
 		
 		//create event-type beans--
 		
@@ -109,7 +118,8 @@ public class EventDetailsController {
 			eventDetailsService.create(pre_placementBean);
 		}
 		
-			System.out.println(eventBean.getEvent_type());
+			//System.out.println(eventBean.getEvent_type());
+                        logger.error(eventBean.getEvent_type());
 			/*
 			 * @author Nevil Dsouza
 			 * code for notification
@@ -117,16 +127,19 @@ public class EventDetailsController {
 			
 			
 			if(nfService.addNotificationForEvent(cname)){
-				System.out.println("notification added");
+				//System.out.println("notification added");
+                                logger.error("notification added");
 			}
 			else{
-				System.out.println("notification not added");
+				//System.out.println("notification not added");
+                                logger.error("notification not added");
 			}
 		return model;
 		}
 		catch(Exception e)
 		{
-			System.out.println(e);
+			//System.out.println(e);
+                        logger.error(e);
 			ModelAndView model=new ModelAndView("500");
 			model.addObject("exception", "/fill");
 			return model;

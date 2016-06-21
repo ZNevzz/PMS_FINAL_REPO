@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import org.apache.log4j.Logger;
 
 /*Author melwyn95
  *Commented by melwyn95
@@ -31,13 +32,16 @@ public class SearchController {
 
 	@Autowired
 	private SearchService searchService;
+        
+        private static final Logger logger = Logger.getLogger(SearchController.class.getName());
 
 	/*
 	 * This method is used to handle the urlmapping for the searchbar
 	 */
 	@RequestMapping(value = "/searchHome", method = RequestMethod.GET)
 	public ModelAndView welcomeSearch() {
-		System.out.println("searchBar");
+		//System.out.println("searchBar");
+                logger.error("searchBar");
 		return new ModelAndView("searchbar");
 	}
 
@@ -48,7 +52,8 @@ public class SearchController {
 	@RequestMapping(value = "/SearchUser", method = RequestMethod.GET)
 	public ModelAndView searchUser(@RequestParam("searchString") String searchString) {
 		try {
-			System.out.println(searchString);
+			//System.out.println(searchString);
+                        logger.error(searchString);
 			List<PersonalProfile> userDetailsList = null;
 			if (!searchString.equals(""))
 				userDetailsList = searchService.searchUser(searchString);
@@ -56,6 +61,7 @@ public class SearchController {
 			modelMap.put("userList", userDetailsList);
 			return new ModelAndView("searchbar", modelMap);
 		} catch (Exception e) {
+                        logger.error(e);
 			return new ModelAndView("500");
 		}
 	}
@@ -67,7 +73,8 @@ public class SearchController {
 	@RequestMapping(value = "/SearchCompany", method = RequestMethod.GET)
 	public ModelAndView searchCompany(@RequestParam("searchString") String searchString) {
 		try {
-			System.out.println(searchString);
+			//System.out.println(searchString);
+                        logger.error(searchString);
 			List<Company> companyList = null;
 			if (!searchString.matches("\\s*"))
 				companyList = searchService.searchCompany(searchString);
@@ -75,6 +82,7 @@ public class SearchController {
 			modelMap.put("companyList", companyList);
 			return new ModelAndView("searchbar", modelMap);
 		} catch (Exception e) {
+                        logger.error(e);
 			return new ModelAndView("500");
 		}
 	}
@@ -86,7 +94,8 @@ public class SearchController {
 	 */
 	@RequestMapping(value = "/Search", method = RequestMethod.GET)
 	public @ResponseBody String searchCombined(@RequestParam("CHARS") String searchString) {
-		System.out.println(searchString);
+		//System.out.println(searchString);
+                logger.error(searchString);
 		List<Company> companyList = null;
 		List<PersonalProfile> userDetailsList = null;
 
@@ -111,7 +120,8 @@ public class SearchController {
 			jarray.add(jobj);
 		}
 
-		System.out.println(jarray);
+		//System.out.println(jarray);
+                    logger.error(jarray);
 		return jarray.toString();
 	}
 }
