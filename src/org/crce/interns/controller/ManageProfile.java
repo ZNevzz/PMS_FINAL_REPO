@@ -400,8 +400,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import org.apache.log4j.Logger;
 
+import org.apache.log4j.Logger;
 //import org.crce.interns.beans.AllotmentBean;
 import org.crce.interns.beans.CompanyBean;
 import org.crce.interns.beans.CriteriaBean;
@@ -419,7 +419,6 @@ import org.crce.interns.validators.CriteriaFormValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.SystemPropertyUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -454,6 +453,7 @@ public class ManageProfile extends HttpServlet implements ConstantValues {
 	
 	//@Autowired
 	//private JobValidator jobValidator;
+
 	
 	@Autowired
 	private CriteriaFormValidator critValidator;
@@ -485,10 +485,49 @@ public class ManageProfile extends HttpServlet implements ConstantValues {
 				@Valid JobBean jobBean,BindingResult bindingResult,@Valid CriteriaBean criteriaBean,BindingResult bindingResult2*/) throws Exception {
 		
 		try{
-				JobBean jobBean = new JobBean();
-				CriteriaBean criteriaBean = new CriteriaBean();
-				CompanyBean companyBean = new CompanyBean();
+			ModelAndView model;
+			String errorMesg = "";
+			int a=0;
+			JobBean jobBean = new JobBean();
+			CriteriaBean criteriaBean = new CriteriaBean();
+			CompanyBean companyBean = new CompanyBean();
 
+			if(r.get("docs_required")=="")
+				a++;
+			if(r.get("job_description")=="")
+				a++;
+			if(r.get("job_category")=="")
+				a++;
+			if(r.get("skills_required")=="")
+				a++;
+			if(r.get("drive_date")=="")
+				a++;
+			if(r.get("eligible_branches")==null)
+				a++;
+			if(r.get("year_of_passing")=="")
+				a++;
+			if(r.get("last_date_to_apply")=="")
+				a++;
+			if(r.get("no_of_live_kts_allowed")=="")
+				a++;
+			if(a>0)
+			{
+			model = new ModelAndView("addProfile");
+			model.addObject("profileBean", jobBean); // adding in model
+			model.addObject("profileBean", criteriaBean);
+			
+			List<CompanyBean> companyList = manageProfileService.listCompanies();
+		    Map<Integer, String> companyMap = new LinkedHashMap<Integer,String>();
+		            for(CompanyBean cb : companyList){
+		            	companyMap.put(cb.getCompany_id(), cb.getCompany_name());
+		            }
+		         
+		    errorMesg="Oops!You left "+a+" field/s blank.Please fill all the fields";
+			model.addObject("errorMesg",errorMesg);
+			model.addObject("companies",companyMap);
+			}
+			else
+			{
 				//Set values for JobBean
 				//jobBean.setJob_id(r.get("job_id"));
 				jobBean.setJob_id(r.get("company_id"));
@@ -566,7 +605,6 @@ public class ManageProfile extends HttpServlet implements ConstantValues {
 				criteriaBean.setSsc_percentage(r.get("ssc_percentage"));
 				criteriaBean.setHsc_or_dip_percentage(r.get("hsc_or_dip_percentage"));
 				criteriaBean.setLast_date_to_apply(sdf.parse(r.get("last_date_to_apply")));
-				
 				/*
 				
 				jobValidator.validate(jobBean, bindingResult);
@@ -588,11 +626,7 @@ public class ManageProfile extends HttpServlet implements ConstantValues {
 				    //model.addObject("success", 1);
 					return model;
 				}
-				
-				
 				*/
-				
-				
 				
 				//Set values for CompanyBean
 		
@@ -623,8 +657,6 @@ public class ManageProfile extends HttpServlet implements ConstantValues {
 			
 				}
 		
-				
-		
 				if(nfService.addNotificationForJobPost(companyName)){
 					System.out.println("notification added");
 				}
@@ -636,25 +668,20 @@ public class ManageProfile extends HttpServlet implements ConstantValues {
 				manageProfileService.addProfile(jobBean);
 				manageProfileService.addProfile(criteriaBean);
 				//manageProfileService.addProfile(companyBean);
-		
-		
-				
-				
 				//List<CompanyBean> companyList = manageProfileService.listCompanies();
 			    Map<Integer, String> companyMap = new LinkedHashMap<Integer,String>();
 			            for(CompanyBean cb : clist){
 			            	companyMap.put(cb.getCompany_id(), cb.getCompany_name());
 			            }
 				
-			    ModelAndView model = new ModelAndView("addProfile","companies",companyMap);
+			    model = new ModelAndView("addProfile","companies",companyMap);
 			    model.addObject("success", 1);
-				return model;
-		
-				//ModelAndView model = new ModelAndView("addProfile");
+				
+			}
+			return model;
+			//ModelAndView model = new ModelAndView("addProfile");
 				//model.addObject("success", 1);
 				//return model;
-				
-		
 				//return new ModelAndView("TPO");
 		}
 		catch(Exception e){

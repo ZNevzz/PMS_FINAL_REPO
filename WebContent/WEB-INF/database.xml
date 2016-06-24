@@ -12,68 +12,36 @@ Still if any doubts, contact Nevil
 <root>
     <notifications>
         <notification>
-            <userOrGroupId>Computer Engineering</userOrGroupId>
-            <category>JOB</category>
-            <type>GROUP</type>
-            <message>JP morgan job interviews</message>
-            <dateTime>15-04-2016 10:59 AM</dateTime>
-            <url>/</url>
-        </notification>
-        <notification>
-            <userOrGroupId>Information Technology</userOrGroupId>
+            <userOrGroupId>ALL</userOrGroupId>
             <category>EVENT</category>
-            <type>GROUP</type>
-            <message>TCS T &amp; P Talk</message>
-            <dateTime>09-04-2016 12:59 PM</dateTime>
-            <url>/</url>
-        </notification>
-        <notification>
-            <userOrGroupId>7000</userOrGroupId>
-            <category>ELIGIBLE</category>
-            <type>USER</type>
-            <message>Candidate for GOOGLE</message>
-            <dateTime>05-04-2016 12:58 PM</dateTime>
-            <url>/</url>
-        </notification>
-        <notification>
-            <userOrGroupId>Computer Engineering</userOrGroupId>
-            <category>JOB</category>
-            <type>GROUP</type>
-            <message>morgan stanley job interviews</message>
-            <dateTime>15-05-2016 12:59 PM</dateTime>
-            <url>/</url>
-        </notification>
-        <notification>
-            <userOrGroupId>7000</userOrGroupId>
-            <category>ELIGIBLE</category>
-            <type>USER</type>
-            <message>Candidate for FACEBOOK</message>
-            <dateTime>15-05-2016 12:58 PM</dateTime>
-            <url>/</url>
-        </notification>
-        <notification>
-            <userOrGroupId></userOrGroupId>
-            <category>WELCOME</category>
             <type>ALL</type>
-            <message>Welcome to Placement Cell FR.CRCE. We are always there to solve any queries or difficulties if any</message>
-            <dateTime>21-02-2016 02:59 AM</dateTime>
-            <url>/</url>
+            <message>A new event has been scheduled forTata Consultancy Services</message>
+            <dateTime>13-06-2016 12:54 AM</dateTime>
+            <url>ViewEvents</url>
         </notification>
         <notification>
-            <userOrGroupId>7000</userOrGroupId>
-            <category>TEST</category>
-            <type>USER</type>
-            <message>ADDED NOTIFICATION. Congratulations</message>
-            <dateTime>15-05-2016 08:25 PM</dateTime>
-            <url>/</url>
+            <userOrGroupId>ALL</userOrGroupId>
+            <category>JOB</category>
+            <type>ALL</type>
+            <message>A new job has been posted for Direct i</message>
+            <dateTime>13-06-2016 12:55 AM</dateTime>
+            <url>JobPosts?companyname=Direct i&amp;year=</url>
         </notification>
-        <notification>
-            <userOrGroupId>7000</userOrGroupId>
-            <category>TEST</category>
-            <type>USER</type>
-            <message>ADDED NOTIFICATION 2. Congratulations</message>
-            <dateTime>15-05-2016 09:49 PM</dateTime>
-            <url>/</url>
+		<notification>
+            <userOrGroupId>ALL</userOrGroupId>
+            <category>JOB</category>
+            <type>ALL</type>
+            <message>A new job has been posted for JP Morgan</message>
+            <dateTime>14-06-2016 11:55 AM</dateTime>
+            <url>JobPosts?companyname=JP Morgan&amp;year=</url>
+        </notification>
+		<notification>
+            <userOrGroupId>ALL</userOrGroupId>
+            <category>JOB</category>
+            <type>ALL</type>
+            <message>A new job has been posted for Morgan Stanley</message>
+            <dateTime>13-06-2016 12:15 AM</dateTime>
+            <url>JobPosts?companyname=Morgan Stanley&amp;year=</url>
         </notification>
     </notifications>
 </root>

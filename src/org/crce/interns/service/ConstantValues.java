@@ -111,7 +111,8 @@ public interface ConstantValues {
 	public String NONDREAM ="Nondream";
 	public String ALLOWED ="Yes";
 	
-	public String JOB_URL = "JobPosts?companyname=";
+	public String JOB_URL1 = "JobPosts?companyname=";
+	public String JOB_URL2 = "&amp;year=";
 	public String ELIGIBLE_URL = "viewclist.html?company=";
 	public String EVENT_URL = "ViewEvents";
 	public String TEST_URL = "TEST";

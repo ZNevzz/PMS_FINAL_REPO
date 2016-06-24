@@ -22,6 +22,7 @@ import org.apache.log4j.Logger;
 
 import org.crce.interns.beans.CompanyBean;
 import org.crce.interns.beans.CriteriaBean;
+import org.crce.interns.beans.FeedbackBean;
 import org.crce.interns.model.Company;
 import org.crce.interns.model.Criteria;
 import org.crce.interns.service.CompanyService;
@@ -36,6 +37,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class CompanyController {
@@ -71,7 +73,7 @@ public class CompanyController {
 		 try{
 		 CompanyBean companyBean=new CompanyBean();
 		 model.addAttribute("companyBean",companyBean);
-			//System.out.println("in controller1");
+			System.out.println("in controller1");
 			return new ModelAndView("addCompany");
 			
 		 }
@@ -89,7 +91,7 @@ public class CompanyController {
 		}
 	 @RequestMapping(value = "/saveCompany", method = RequestMethod.POST)
 		public ModelAndView saveCompany(  HttpServletRequest request,@ModelAttribute("companyBean") CompanyBean companyBean, 
-				BindingResult result) {
+				BindingResult result,final RedirectAttributes redirectAttributes) {
 		 
 		 try{
 		 companyValidator.validate(companyBean, result);
@@ -109,8 +111,14 @@ public class CompanyController {
 
 //			return new ModelAndView("companysuccess");
 
-			return new ModelAndView("redirect:/addCompany");
-         
+			
+			redirectAttributes.addFlashAttribute("msg", "Data added successfully");
+			
+			
+			ModelAndView model1=new ModelAndView("redirect:/addCompany");
+			//model1.addObject("message", "Data added successfully ");
+			return model1;
+			
 		
 	 }
 	 catch(Exception e){

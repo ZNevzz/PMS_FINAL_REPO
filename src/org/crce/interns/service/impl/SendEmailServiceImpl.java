@@ -56,7 +56,7 @@ public class SendEmailServiceImpl implements SendEmailService,ConstantValues {
         System.out.println(request.getParameter("subject"));
         System.out.println(request.getParameter("receiver"));
         DirectoryPathBean directoryPathBean = new DirectoryPathBean();
-        String path = directoryPathBean.getEmailFolder()+"\\";
+        String path = directoryPathBean.getEmailFolder()+"/";
         if (file.length > 0 && file != null) {
             System.out.println("Inside If");
             for (CommonsMultipartFile f : file) {
@@ -480,7 +480,7 @@ public class SendEmailServiceImpl implements SendEmailService,ConstantValues {
     
     @Override
     public boolean checkFile(String name) {
-        String path = directoryPathBean.getEmailFolder()+"\\";
+        String path = directoryPathBean.getEmailFolder()+"/";
         File folder = new File(path);
         File[] listOfFiles = folder.listFiles();
         for (int i = 0; i < listOfFiles.length; i++) {
@@ -500,7 +500,7 @@ public class SendEmailServiceImpl implements SendEmailService,ConstantValues {
     
     @Override
     public void deleteFiles() {
-        String path = directoryPathBean.getEmailFolder()+"\\";
+        String path = directoryPathBean.getEmailFolder()+"/";
         File folder = new File(path);
         File[] files = folder.listFiles();
         for (File f : files) {

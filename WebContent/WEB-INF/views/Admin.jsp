@@ -109,13 +109,13 @@ description: contains various functions for admin -->
 														&nbsp;&nbsp;<div class="col-xs-12 col-sm-4" >
 														  
 														  <a href="RemoveTPO.html" class="btn btn-pink btn-lg btn-block">Remove TPO </a> <br><br>
-														  <a href=AssignRole  class="btn btn-success btn-lg btn-block">Assign Functions to various roles </a><br><br>
+														  <a href=AssignRole  class="btn btn-success btn-lg btn-block">Authorization Controls</a><br><br>
 														
 														</div>
 														
 														<div class="col-xs-12 col-sm-8" >
 														  
-														  <a href="addUser" class="btn btn-inverse btn-lg btn-block">Manage Different Users of System.. </a> <br><br>
+														  <a href="addUser" class="btn btn-inverse btn-lg btn-block">Manage Users</a> <br><br>
 														  
 														</div>
 														

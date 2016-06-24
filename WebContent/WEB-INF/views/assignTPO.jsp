@@ -15,7 +15,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-<title>Statistics</title>
+<!-- <title>Statistics</title> -->
 
 <meta name="description" content="overview &amp; stats" />
 <meta name="viewport"

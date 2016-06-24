@@ -7,15 +7,22 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<!-- <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>-->
 <title>All Allotments</title>
 <link rel="stylesheet" href="assets/css/table.css">
-<meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; width=device-width;">
+<meta name="description" content="overview &amp; stats" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
 </head>
 <body  class="no-skin">
 		<jsp:directive.include file="Header.jsp" />
 		<div class="main-content">
 			<div class="main-content-inner">
+				<div class="breadcrumbs" id="breadcrumbs">
+					<jsp:directive.include file="searchheader.jsp" />
+				</div>
 				<div class="page-content">
 					<h1 align="center"><u>List Allotments</u></h1>
 					<!-- connect to database -->
@@ -89,11 +96,13 @@
 						</c:forEach>  
 					</tbody>
 					</table>
+					<jsp:directive.include file="Footer.jsp" />
+					<jsp:directive.include file="scripts.jsp" />					
 				</div>
 			</div>	
 		</div>
-				<jsp:directive.include file="Footer.jsp" />
-<jsp:directive.include file="scripts.jsp" />
+		<script src="assets/js/ace-elements.min.js"></script>
+		<script src="assets/js/ace.min.js"></script>
 </body>
 </html>
 

@@ -123,7 +123,7 @@
 														class="btn btn-inverse btn-lg btn-block">Add Event </a> <br>
 													<br> <a href="addUser"
 														class="btn btn-warning btn-lg btn-block">Manage
-														different users of System</a>
+														Users</a>
 
 												</div>
 

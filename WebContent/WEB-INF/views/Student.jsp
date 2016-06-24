@@ -97,7 +97,7 @@ description: contains tabs ->  profile,uploads ,notification for student -->
 															
 															<div class="space space-4"></div>
 
-																<a href="edit"><span class="btn btn-md btn-block btn-pink">Edit Profile Data</span></a>
+																<a href="edit"><span class="btn btn-md btn-block btn-pink">Edit Profile</span></a>
 															
 														</div><!-- /.col -->
 

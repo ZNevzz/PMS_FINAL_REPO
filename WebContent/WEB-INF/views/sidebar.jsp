@@ -17,7 +17,7 @@ description: Sidebar, tabs turn active through jquery -->
 </script>
 <body class="skin-3 no-skin">
 
-	<div id="sidebar" class="sidebar responsive">
+	<div id="sidebar" class="sidebar sidebar-default">
 		<script type="text/javascript">
 			try {
 				ace.settings.check('sidebar', 'fixed')
@@ -32,12 +32,7 @@ description: Sidebar, tabs turn active through jquery -->
 		
 					class="menu-icon fa fa-calendar"></i> <span class="menu-text">
 						Events </span>
-			</a> <b class="arrow"></b></li>
-
-			<li class=" " id="searchHome"><a href="searchHome"> <i
-					class="menu-icon fa fa-search"></i> <span class="menu-text">
-						Search </span>
-			</a> <b class="arrow"></b></li>
+			</a> <b class="arrow"></b></li>		
 
 			<li class=" " id="CompaniesPage"><a href="CompaniesPage"> <i
 					class="menu-icon fa fa-gears"></i> <span class="menu-text">
@@ -47,6 +42,13 @@ description: Sidebar, tabs turn active through jquery -->
 			<li class=" " id="Highlights"><a href="Statistics"> <i class="menu-icon
 						fa fa-bar-chart-o"></i> <span class="menu-text"> Statistics </span>
 			</a> <b class="arrow"></b></li>
+			<li class=" " id="viewAllotment"><a href="viewAllotment"> <i class="menu-icon
+						fa fa-building"></i> <span class="menu-text"> Venues </span>
+			</a> <b class="arrow"></b></li>
+			<li class=" " id="FAQ"><a href="FAQ"> <i class="menu-icon
+						fa fa-question"></i> <span class="menu-text">FAQ</span>
+			</a> <b class="arrow"></b></li>
+
 		</ul>
 		<!--  End of nav list-->
 

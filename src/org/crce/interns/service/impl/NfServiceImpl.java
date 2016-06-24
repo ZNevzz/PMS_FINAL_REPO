@@ -191,7 +191,7 @@ public class NfServiceImpl implements NfService, ConstantValues{
 		temp.setType(ALL);
 		temp.setCategory(JOB);
 		temp.setMessage(JOB_M1+companyName);
-		temp.setUrl(JOB_URL+companyName);
+		temp.setUrl(JOB_URL1+companyName+JOB_URL2);
 		temp.setUserOrGroupId(ALL);		
 		temp.setDateTime(new SimpleDateFormat("dd-MM-yyyy hh:mm a").format(new Date()));
 

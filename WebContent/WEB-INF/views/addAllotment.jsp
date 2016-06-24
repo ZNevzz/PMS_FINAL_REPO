@@ -17,9 +17,18 @@
 					font-weight: bold;
 				}
 		</style>
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  			<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  			<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  			<link rel="stylesheet" href="/resources/demos/style.css">
+ 		 <script>
+		  $(function() {
+    $( "#datepicker" ).datepicker();
+  });
+  </script>
 		<meta name="description" content="Common form elements and layouts" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-		<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+<!-- 		<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="assets/font-awesome/4.2.0/css/font-awesome.min.css" />
 		<link rel="stylesheet" href="assets/css/jquery-ui.custom.min.css" />
 		<link rel="stylesheet" href="assets/css/chosen.min.css" />
@@ -31,7 +40,7 @@
 		<script src="assets/js/ace-extra.min.js"></script>		
 		<script src="assets/js/html5shiv.min.js"></script>
 		<script src="assets/js/respond.min.js"></script>
-		<script src="assets/js/jquery.js"></script>
+		<script src="assets/js/jquery.js"></script> -->
 		<!-- <script type="text/javascript">
 		$(document).ready(function() { 
 		$("#validation-form").validate({
@@ -80,7 +89,7 @@
 			<div class="page-content">
 				<form:form method="POST" id="validation-form" enctype="multipart/form-data" modelAttribute="allotmentBean" action="saveAllotment">
 					<h2 align="center"><u>Room Allotment Details</u></h2>
-					<a href="viewAllotment"><h3 align="center">View Allotment</h3></a>
+					
 					<c:if test="${success==1}">
 						<center><p style="color:green;">Room Allotment details added successfully!</p></center>
 					</c:if>
@@ -107,9 +116,7 @@
 							Class.forName("org.postgresql.Driver").newInstance();
 							Connection connection = DriverManager.getConnection
             				("jdbc:postgresql://localhost:5432/placementdb?user=postgres&password=root");
-
        						Statement statement = connection.createStatement() ;
-
        						resultset =statement.executeQuery("select company_name from job_schema.company") ;
 				%>
 				<%  while(resultset.next()){ %>
@@ -186,7 +193,7 @@
 			</tr>
 			<tr>
 				<td><label>Date</label></td>
-				<td><form:input path="drive_date" name="date" id="date" class="form-control date-picker" data-date-format="yyyy/mm/dd"/></td>
+				<td><form:input path="drive_date" name="date" id="datepicker" class="form-control date-picker" data-date-format="yyyy/mm/dd"/></td>
 				<td><form:errors path="drive_date" cssClass="error" /></td>
 			</tr>
 			<tr>
@@ -216,32 +223,23 @@
 			<tr></tr><tr></tr>
 			
 			<tr>
-			
-				<td colspan="2"><input value="Submit" type="submit" class="btn btn-info"/></td>
-				<td ><input type="reset" value="Reset" class="btn btn-info"/></td>
+				<td><h1 align ="center"></h1></td>
+				<td colspan="0"><input value="Submit" type="submit" class="btn btn-info"/></td>
+				<!-- <td ><input type="reset" value="Reset" class="btn btn-info"/></td> -->
 			</tr>
 		</table>
 	</form:form>
-</div>
-</div>
-</div>
-<jsp:directive.include file="scripts.jsp" />
 				<jsp:directive.include file="Footer.jsp" />
-	<script src="assets/js/jquery.2.1.1.min.js"></script>
+</div>
+</div>
+</div>
+
+<!-- 	<script src="assets/js/jquery.2.1.1.min.js"></script>
 	<script src="assets/js/jquery.1.11.1.min.js"></script>
 	<script src="assets/js/jquery.validate.js"></script>
 	<script src="assets/js/jquery.validate.min.js"></script>
-	<script src="assets/js/jquery.js"></script>
-	<script type="text/javascript">
-			window.jQuery || document.write("<script src='assets/js/jquery.min.js'>"+"<"+"/script>");
-	</script>
-	<script type="text/javascript">
- 		window.jQuery || document.write("<script src='assets/js/jquery1x.min.js'>"+"<"+"/script>");
-	</script>
-	<script type="text/javascript">
-			if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
-	</script>
-	<script src="assets/js/bootstrap.min.js"></script>
+	<script src="assets/js/jquery.js"></script> -->
+	<script src="assets/js/bootstrap.min.js"></script> 
 	<script src="assets/js/jquery-ui.custom.min.js"></script>
 	<script src="assets/js/bootstrap-datepicker.min.js"></script>
 	<script src="assets/js/ace-elements.min.js"></script>

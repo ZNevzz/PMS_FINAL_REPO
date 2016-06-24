@@ -109,7 +109,7 @@ public class AssignTPOController {
 		{
 			Map<String, Object> modelMap = new HashMap<String, Object>();
 			modelMap.put("users", userService.viewUsers());
-			return new ModelAndView("viewUserF", modelMap);
+			return new ModelAndView("viewUserA", modelMap);
 		}
 	}
 

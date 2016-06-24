@@ -62,4 +62,9 @@ public class MainController {
 	public String eventspage() {
 		return "EventsPage";
 	}
+	
+	@RequestMapping("/FAQ")
+	public String FAQ() {
+		return "FAQ";
+	}
 }

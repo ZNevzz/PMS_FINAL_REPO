@@ -88,7 +88,11 @@
 									<div class="widget-main">
 										<div align="center">
 											<h2>Add Feedback Data</h2>
-											<br>
+											<c:if test="${not empty msg}">
+			    <font size="5" color="red" face="verdana">${msg}</font>
+		         </c:if>
+	
+<br>
 											<form:form method="POST" action="save.html">
 
 												<table>

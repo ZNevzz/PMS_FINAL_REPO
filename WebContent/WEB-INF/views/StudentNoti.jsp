@@ -89,14 +89,55 @@ description: contain notification received by student and student tpc -->
 												
 												<div id="notificatn" class="tab-pane in active">
 													
-													<div class="col-xs-10 widget-container-col">
+													<div class="col-xs-15 widget-container-col">
 														
 															<div class="widget-box">
 															<div class="widget-header widget-header-large">
 																<h4 class="widget-title">Check out your latest notifications</h4>
 						
 															</div>
+													<div class="widget-body">
+																<div class="widget-main padding-4 scrollable" data-size="400">		
+													
+													
+													
+															
+															<c:if test="${!empty nf}"><c:forEach items="${nf}" var="a">
+															
+															
+																<div class="message-item message-unread">
+																	<i class="ace-icon fa fa-bell-o"></i>
+																	<p class="sender">${a.category}</p>
+																	<br/>
+																	
+																																		
+																	<p class="">
+																	<i class="ace-icon glyphicon glyphicon-time"></i>
+																	${a.dateTime}
+																	</p>
+																																	
+																	<a href="${a.url}">																	
+																	<i class="ace-icon fa fa-envelope-o"></i>
+																		<span class="text">
+																		
+																			${a.message}
+																		</span>
+																	
+																	</a>
+																</div>
+																
+															</c:forEach></c:if>
+																
+															
 
+												</div>
+										</div>
+										</div>
+										</div>
+													
+													
+													
+													<%--
 															<div class="widget-body">
 																<div class="widget-main padding-4 scrollable" data-size="400">
 																	
@@ -110,7 +151,7 @@ description: contain notification received by student and student tpc -->
  																		<strong>
  																		${a.dateTime}
  																		</strong>																	      
- 																<%-- 		${a.type} Notification for ${a.userOrGroupId}:--%><br/>
+ 																<%-- 		${a.type} Notification for ${a.userOrGroupId}:--%><br/><%--
  																		${a.message}<br/>
  																		</a><br/><br/>
  																		</c:forEach>
@@ -121,9 +162,16 @@ description: contain notification received by student and student tpc -->
 															</div>
 															
 														</div>
-												</div>
-												
+													</div>
 													
+													 --%>
+													
+													
+													
+													
+													
+													
+											
 															<!-- PAGE CONTENT BEGINS -->
 															<!-- <div class="row">
 																<div class="col-sm-9">

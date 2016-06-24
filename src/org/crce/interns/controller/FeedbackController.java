@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.crce.interns.beans.FeedbackBean;
 import org.crce.interns.beans.UserCompanyBean;
 import org.crce.interns.model.Feedback;
@@ -102,7 +102,7 @@ public class FeedbackController {
 	}
 
 	@RequestMapping(value = "/addFeedback", method = RequestMethod.GET)
-	public ModelAndView saveFeedback(HttpServletRequest request, @ModelAttribute("command") FeedbackBean feedbackBean,
+	public ModelAndView saveFeedback(@ModelAttribute("command") FeedbackBean feedbackBean,
 			BindingResult result) {
 		//System.out.println("in controller1");
 
@@ -112,10 +112,10 @@ public class FeedbackController {
 
 		try {
 
-			HttpSession session = request.getSession();
+			/*HttpSession session = request.getSession();
 			String roleId = (String) session.getAttribute("roleId");
 			String user = (String) session.getAttribute("userName");
-
+*/
 			/*
 			 * List<UserCompany> userList=new ArrayList<UserCompany>();
 			 * userList.addAll(crudService.retreiveDetails("TCS"));
@@ -165,7 +165,7 @@ public class FeedbackController {
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public ModelAndView addFeedback(HttpServletRequest request, @ModelAttribute("command") FeedbackBean feedbackBean,
-			BindingResult result) {
+			BindingResult result,final RedirectAttributes redirectAttributes) {
 		// validating
 
 		try {
@@ -180,18 +180,32 @@ public class FeedbackController {
 			}
 			boolean b = feedbackService.checkUser(user, feedbackBean.getCompany());
 			if (!b) {
-				ModelAndView m = new ModelAndView("500");
-				m.addObject("message", "You are not eligible to give  feedback for this company");
-				//System.out.println("ERROR IN FEEDBACK");
-                                logger.error("ERROR IN FEEDBACK");
-				return m;
+				 logger.error("ERROR IN FEEDBACK");
+					
+				redirectAttributes.addFlashAttribute("msg", "You are not eligible to give feedback for this company..!!");
+				
+				
+				ModelAndView model1=new ModelAndView("redirect:/addFeedback");
+				//model1.addObject("message", "Data added successfully ");
+				return model1;
+				                   	
 			}
 
 			Feedback feedback = prepareModel(feedbackBean);
 			feedbackService.addFeedback(feedback);
-			Map<String, Object> model = new HashMap<String, Object>();
+			/*Map<String, Object> model = new HashMap<String, Object>();
 			model.put("feedback", prepareList(feedbackService.listFeedback(), feedbackBean.getCompany()));
 			return new ModelAndView("feedbackSaveSuccess", model);
+			*/
+       
+			redirectAttributes.addFlashAttribute("msg", "Data added successfully..!!");
+			
+			
+			ModelAndView model1=new ModelAndView("redirect:/addFeedback");
+			//model1.addObject("message", "Data added successfully ");
+			return model1;
+			
+		
 		}
 
 		catch (Exception e) {
