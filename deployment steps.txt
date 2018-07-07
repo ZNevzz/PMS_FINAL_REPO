@@ -1,0 +1,11 @@
+﻿Steps for deployment :
+1. Open terminal. Cd to web apps folder inside home/apache tomcat/
+2. Now to delete current folder : type "rm - rf folder_name" 
+Ex: rm - rf PMS_new
+3. Delete the war file which is there already in web apps folder
+4. Now paste your new WAR file in web apps folder 
+5. Using terminal, go to bin folder which is inside tomcat folder 
+6. There are two files important for us in bin folder 
+7. To start server type "sh startup.sh"
+8. To stop server type" sh shutdown.sh"
+
