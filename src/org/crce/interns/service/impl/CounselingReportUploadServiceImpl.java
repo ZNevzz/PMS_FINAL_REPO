@@ -48,8 +48,10 @@ DirectoryPathBean directoryPathBean = new DirectoryPathBean();
 		
 		if(role.equals("1") || role.equals("3"))
 			saveDirectory = directoryPathBean.getCounselingReportStudentFolder() + "/";
+			//saveDirectory = directoryPathBean.getCounselingReportStudentFolder() + "\\";	//for windows
 		else
 			saveDirectory = directoryPathBean.getCounselingReportFtpcFolder()+ "/";
+			//saveDirectory = directoryPathBean.getCounselingReportFtpcFolder()+ "\\";	//for windows
 		
 
 		final String fullPath = saveDirectory + fileUpload.getOriginalFilename();

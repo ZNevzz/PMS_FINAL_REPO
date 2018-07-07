@@ -6,27 +6,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Faculty Downloads</title>
+<meta name="description" content="overview &amp; stats" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+<title>Downloads</title>
 
-<!-- page specific plugin styles -->
-<link rel="stylesheet" href="assets/css/jquery-ui.custom.min.css" />
-<link rel="stylesheet" href="assets/css/jquery.gritter.min.css" />
-<link rel="stylesheet" href="assets/css/select2.min.css" />
-
-<link rel="stylesheet" href="assets/css/bootstrap-editable.min.css" />
-
-<link rel="stylesheet" href="assets/css/select2.min.css" />
-
-
-<!-- <link rel="stylesheet" href="assets/css/bootstrap-multiselect.min.css" /> -->
-<link rel="stylesheet" href="assets/css/jquery-ui.min.css" />
-
-
-<!-- page specific plugin for calander styles -->
-<link rel="stylesheet" href="assets/css/jquery-ui.custom.min.css" />
-<link rel="stylesheet" href="assets/css/fullcalendar.min.css" />
-<script src="assets/js/ace-extra.min.js"></script>
 
 
 </head>
@@ -37,36 +21,20 @@
 	<div class="main-content">
 		<div class="main-content-inner">
 			<div class="breadcrumbs" id="breadcrumbs">
-				<script type="text/javascript">
-					try {
-						ace.settings.check('breadcrumbs', 'fixed')
-					} catch (e) {
-					}
-				</script>
 
+				<jsp:directive.include file="searchheader.jsp" />
 
-
-				<div class="nav-search" id="nav-search">
-					<form class="form-search">
-						<span class="input-icon"> <input type="text"
-							placeholder="Search ..." class="nav-search-input"
-							id="nav-search-input" autocomplete="on" /> <i
-							class="ace-icon fa fa-search nav-search-icon"></i>
-						</span>
-					</form>
-				</div>
-				<!-- /.nav-search -->
 			</div>
 			<div class="page-content">
 				<div class="page-header">
 
 					<h1>Welcome ${sessionScope.name} to the profile page</h1>
 
-					<%-- <h2>
-								My name is ${sessionScope.name} , I am a  ${sessionScope.roleName} from  ${sessionScope.branch} branch with username  ${sessionScope.userName}
-							</h2> --%>
+					<%-- <h2>My name is ${sessionScope.name} , I am a
+						${sessionScope.roleName} from ${sessionScope.branch} branch with
+						username ${sessionScope.userName}</h2>
 					<br />
-
+ --%>
 
 				</div>
 				<!-- /.page-header -->
@@ -83,12 +51,18 @@
 								<div class="tabbable">
 									<ul class="nav nav-tabs padding-18">
 										<li><a href="viewprofile"> <i
-												class="orange ace-icon fa fa-rss bigger-120"></i> Activity
+												class="orange ace-icon fa fa-wrench bigger-120"></i> Activity
 										</a></li>
 
 										<li class="active"><a href="#uploads"> <i
-												class="blue ace-icon fa fa-users bigger-120"></i> Uploads
+												class="blue ace-icon fa fa-upload bigger-120"></i> Uploads
 										</a></li>
+										<li>
+											<a href="fnotifications">
+												<i class="pink ace-icon fa fa-check bigger-120"></i>
+												Notification
+											</a>
+										</li>
 
 
 									</ul>
@@ -109,7 +83,7 @@
 																		Student Rollno: <input id="userID" type="text"
 																			name="userId" required><br>
 																		<br> <button class="btn btn-sm btn-success"
-																			onclick="dispFolder()"  >APPLY</button>
+																			onclick="dispFolder()"  >Submit</button>
 																	
 
 
@@ -124,11 +98,11 @@
 																					
 																						</c:if> --%>
 
-
 																	<br> <br>
 																</div>
 
 																<div id="folders"></div>
+																<div id="files"></div>
 															</div>
 														</div>
 													</div>
@@ -180,36 +154,7 @@
 
 
 
-										<!-- <div id="activity" class="tab-pane in active">
-													 <div class="row ">
-														
-														
-														 <br>
-													 
-														<div class="col-xs-12 col-sm-4 left">
-															
-															  <a href="addProfile"  class="btn btn-purple btn-lg btn-block">Add job Profile </a> <br><br>
-
-															<a href="getEventForm.html"  class="btn btn-inverse btn-lg btn-block">Add Event </a> <br><br>
-																<a href="addUser"  class="btn btn-warning btn-lg btn-block">Manage different users of System</a>
-
-														</div>
 										
-														
-														&nbsp;&nbsp;<div class="col-xs-12 col-sm-4 right" >
-														  
-														  <a href="manage.html" class="btn btn-purple btn-lg btn-block">Add/Delete candidate </a> <br><br>
-														  <a href="GroupSendMail"  class="btn btn-inverse btn-lg btn-block">Send Group Email </a><br><br>
-														  <a href="personalMail"  class="btn btn-warning btn-lg btn-block">Send Personal Email </a><br><br>
-														</div>
-														
-												<div class="col-xs-12 col-sm-8 left">
-														<a href="addUser"  class="btn btn-warning btn-lg btn-block">Manage different users of System</a> <br><br>	
-												</div>
-											</div>/#pictures
-											</div>
-								
-							 -->
 
 									</div>
 									<!-- end of tabbable -->
@@ -224,10 +169,12 @@
 
 					</div>
 					<!-- /.row -->
+					
 				</div>
 				<!-- end of page-content -->
 
-
+				<jsp:directive.include file="Footer.jsp" />
+					<jsp:directive.include file="scripts.jsp" />
 
 
 			</div>
@@ -237,8 +184,6 @@
 		<!-- main-content -->
 
 
-		<jsp:directive.include file="Footer.jsp" />
-		<jsp:directive.include file="scripts.jsp" />
 
 
 		<!-- page specific plugin scripts -->
@@ -265,17 +210,10 @@
 		<script src="assets/js/jquery.maskedinput.min.js"></script>
 
 		<!-- ace scripts -->
-		<script src="assets/js/ace-elements.min.js"></script>
-		<script src="assets/js/ace.min.js"></script>
+		
 
 
-		<!-- page specific plugin scripts -->
-
-
-		<!-- ace scripts -->
-		<script src="assets/js/ace-elements.min.js"></script>
-		<script src="assets/js/ace.min.js"></script>
-
+		
 
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
@@ -288,18 +226,20 @@
 				data:'folder='+subfolder,
 				dataType : 'json',
 				success : function(data){
-					console.log("inside subfolder...")
+					console.log("inside subfolder...");
 					console.log(data.length);
 					for (i = 0; i < data.length; i++)
 						console.log(data[i]);
 					// times = data.length;
 					// console.log("times: " + times);
-					$('#folders').text('');
+					$('#files').text('');
 					$.each(data, function() {
 						console.log("print...");
-						$('#folders').append(
-								'<li><a href="${pageContext.request.contextPath}/downloadResume?fileName='
-									+this.actualFileNames+' ">'+this.nameToDisplay+'</a></li>'
+						$('#files').append(
+								' <hr> </hr><table><tr><li type="disk"><a href="${pageContext.request.contextPath}/downloadResume?fileName='
+										+this.actualFileNames+' ">'+this.nameToDisplay+'</a></li></tr></table>'
+								/* '<ol> <li><a href="${pageContext.request.contextPath}/downloadResume?fileName='
+									+this.actualFileNames+' ">'+this.nameToDisplay+'</a></li></ol>' */
 								);
 					});
 				}
@@ -324,8 +264,10 @@
 						$('#folders').text('');
 						$.each(data, function() {
 							console.log("print..."+this.list);
+							var folder = this.list;
+							console.log('<li><a id ="folderName" onClick="x(\''+folder+'\')">'+ this.list+'</a></li>');
 							$('#folders').append(
-									'<li><a id ="folderName" onClick="x(this.list);">'+ this.list+'</a></li>'
+									'<table> <tr><td><li><a id ="folderName" onClick="x(\''+folder+'\')">'+ this.list+'</a></li></table>'
 									);
 						});
 					}
@@ -531,7 +473,8 @@
 			})
 		</script>
 
-
+		<script src="assets/js/ace-elements.min.js"></script>
+	<script src="assets/js/ace.min.js"></script>
 
 		<!--script for changing the profile image and model for buttons -->
 </body>

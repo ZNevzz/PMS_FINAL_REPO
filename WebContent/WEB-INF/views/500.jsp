@@ -62,10 +62,11 @@
 				</button> -->
 
 				<div class="navbar-header navbar-green pull-left">
-					<a href="#" class="navbar-brand">
+					<a href="viewprofile" class="navbar-brand">
 						<small>
 							<i class="fa fa-graduation-cap"></i>
-							Placement Management System
+							C R C E &nbsp;&nbsp;&nbsp;P l a c e m e n t s
+							
 						</small>
 					</a>
 				</div>
@@ -175,13 +176,24 @@
 								<h1 class="grey lighter smaller">
 									<span class="blue bigger-125"> <i
 										class="ace-icon fa fa-random"></i> 500
-									</span> Something Went Wrong
+
+									</span><strong> Something Went Wrong </strong>
+
+									
 								</h1>
 
 								<hr />
 								<h3 class="lighter smaller">
-									Sorry,an unwanted error occured while displaying the
-									URL:"${exception} <br /> ${message} 
+
+									Sorry,an unwanted error occured while displaying this page
+									 <br /> 
+									 <i>${message}</i>
+									 <br/>
+									  
+									<!--wasn't sure which one to keep @Crystal  -->
+									<%-- Sorry,an unwanted error occured while displaying the
+									URL:"${exception} <br /> ${message}  --%>
+
 									<a href="${url}">Let's take you back</a>
 								</h3>
 
@@ -192,11 +204,24 @@
 										following:</h4>
 
 									<ul class="list-unstyled spaced inline bigger-110 margin-15">
-										<li><i class="ace-icon fa fa-hand-o-right blue"></i> Read
+
+								
+										<li><i class="ace-icon fa fa-hand-o-right blue"></i> 
+									<a href="FAQ" style="text-decoration:none">	Have a doubt? Read the FAQs </a>
+										</li>
+								
+										<li><i class="ace-icon fa fa-hand-o-right blue"></i> 
+										
+								<a href="ContactUs" style="text-decoration:none">		Give us feedback about your experience</a>
+										</li>
+
+									<!--wasn't sure which one to keep @Crystal  -->
+										<!-- <li><i class="ace-icon fa fa-hand-o-right blue"></i> Read
 											the faq</li>
 
 										<li><i class="ace-icon fa fa-hand-o-right blue"></i> Give
-											us more info on how this specific error occurred!</li>
+											us more info on how this specific error occurred!</li> -->
+
 									</ul>
 								</div>
 
@@ -233,7 +258,9 @@
 	<!-- /.main-container -->
 
 	<!--[if !IE]> -->
+
 	<script src="assets/js/jquery.2.1.1.min.js"></script>
+
 
 
 	<!-- inline scripts related to this page -->

@@ -30,7 +30,8 @@ description: displays the job when the user clocks on the job post image-->
 			<div class="breadcrumbs" id="breadcrumbs">
 
 				<jsp:directive.include file="searchheader.jsp" />
-			</div><div class="page-content">
+			</div>
+			<div class="page-content">
 
 
 				<%-- <div class="page-header">
@@ -40,7 +41,10 @@ description: displays the job when the user clocks on the job post image-->
 				</div>
  --%>
 				<div class="row">
-					<div class="col-xs-13">
+				<div class="col-xs-2">
+				&nbsp;
+				</div>
+					<div class="col-xs-8">
 						<!-- PAGE CONTENT BEGINS -->
 
 						<div>
@@ -50,9 +54,8 @@ description: displays the job when the user clocks on the job post image-->
 									<div class="tab-content no-border padding-24">
 										<div id="home" class="tab-pane in active">
 											<div class="row">
-												<div class="pricing-span">
-													<div
-														class="widget-box pricing-box-small widget-color-blue">
+												<%-- <div class="pricing-span">
+													<div class="widget-box pricing-box-small widget-color-blue">
 														<div class="widget-header">
 															<h5 class="widget-title bigger lighter">${job.job_description}</h5>
 														</div>
@@ -81,9 +84,48 @@ description: displays the job when the user clocks on the job post image-->
 														</div>
 													</div>
 												</div>
+ --%>
+
+												<div class="widget-box widget-color-blue">
+													<div class="widget-header">
+														<center><h5 class="widget-title bigger lighter">${job.job_description}</h5></center>
+													</div>
+
+
+													<div class="widget-body">
+														<div class="widget-main">
+															<ul class="list-unstyled spaced2">
+																<li><i class="ace-icon fa  fa-circle blue"></i> Job
+																	Category: ${job.job_category}</li>
+
+																<li><i class="ace-icon fa  fa-circle blue"></i> Job
+																	Description:${job.job_description}</li>
+
+																<li><i class="ace-icon fa  fa-circle blue"></i>
+																	Skills required: ${job.skills_required}</li>
+
+																<li><i class="ace-icon fa  fa-circle blue"></i>
+																	CTC:${job.ctc}</li>
+
+																<li><i class="ace-icon fa  fa-circle blue"></i>
+																	Documents Required:${job.docs_required}</li>
+
+															</ul>
+
+															<hr />
+
+														</div>
+
+														<div>
+															<a href="dispcriteria?job_id=${job.job_id}"
+																class="btn btn-block btn-sm btn-primary"> <span>Check
+																	Criteria</span>
+															</a>
+														</div>
+													</div>
+												</div>
 
 											</div>
-
 										</div>
 										<!-- /.row -->
 										<div class="hr hr-8 dotted"></div>
@@ -97,13 +139,14 @@ description: displays the job when the user clocks on the job post image-->
 						</div>
 					</div>
 				</div>
-					<jsp:directive.include file="scripts.jsp" />
+			
+				<jsp:directive.include file="scripts.jsp" />
 
-	<jsp:directive.include file="Footer.jsp" />
+				<jsp:directive.include file="Footer.jsp" />
 
-				
+
 			</div>
-					
+
 		</div>
 
 
@@ -111,8 +154,8 @@ description: displays the job when the user clocks on the job post image-->
 	</div>
 
 	<!-- /.main-content -->
-	
-	
+
+
 
 
 	<!-- inline scripts related to this page -->

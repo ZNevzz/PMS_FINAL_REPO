@@ -43,6 +43,7 @@ DirectoryPathBean directoryPathBean = new DirectoryPathBean();
 		
 		//get the path for saving the resume
 		String saveDirectory = directoryPathBean.getStudentFolder() + "/" + username + "/Offer Letters/";
+		//String saveDirectory = directoryPathBean.getStudentFolder() + "\\" + username + "\\Offer Letters\\";	//for windows
 		
 
 		final String fullPath = saveDirectory + fileUpload.getOriginalFilename();

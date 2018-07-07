@@ -251,13 +251,31 @@ ${msg}
 	font-style: italic;
 	font-weight: bold;
 }
-</style>
-<script>
-	$(document)
-			.ready(
-					function() {
+</style><meta name="description" content="overview &amp; stats" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
-						$('#dynamicsearchcompany')
+
+<style>
+.error {
+	color: #ff0000;
+	font-style: italic;
+	font-weight: bold;
+}
+</style>
+<!-- for autocomplete -->
+
+<jsp:directive.include file="scripts.jsp" />
+<!-- <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script> -->
+<script src="assets/autocomplete/jquery.autocomplete.min.js"></script>
+<link href="assets/autocomplete/main.css" rel="stylesheet">
+<script>
+/* 	$(document)
+			.ready(
+					function() { */
+				jQuery(function($){
+
+						$('#company_id')
 								.autocomplete(
 										{
 											serviceUrl : 'looseSearch2',
@@ -293,24 +311,27 @@ ${msg}
 
 </head>
 <body>
-	<jsp:directive.include file="Header.jsp" />
+<jsp:directive.include file="Header.jsp" />
 	<div class="main-content">
 		<div class="main-content-inner">
 			<div class="breadcrumbs" id="breadcrumbs">
 
 				<jsp:directive.include file="searchheader.jsp" />
+
 			</div>
-
 			<div class="page-content">
-				<div class="page-header"></div>
-				<!-- /.page-header -->
-				<script type="text/javascript">
-					try {
-						ace.settings.check('main-container', 'fixed')
-					} catch (e) {
-					}
-				</script>
+				<div class="page-header">
 
+					<h1>Welcome ${sessionScope.name} to the profile page</h1>
+
+					<%-- <h2>My name is ${sessionScope.name} , I am a
+						${sessionScope.roleName} from ${sessionScope.branch} branch with
+						username ${sessionScope.userName}</h2>
+					<br />
+ --%>
+
+				</div>
+			
 
 
 				<div class="clearfix">
@@ -343,12 +364,12 @@ ${msg}
 																<br> ${msg}<br></td>
 													</tr>
 													<tr>
-														<td><div class="" center>
+														<td><div class="" align="center">
 																<button class="btn  btn-primary" type="submit">
-																	<i class="ace-icon fa fa-check bigger-110"></i> Add
+																	 Add
 																</button>
 															</div></td>
-													</tr>
+													</tr><tr></tr>
 													<tr>
 														<td><a href="view.html">View The List Of Applied
 																Candidates</a></td>

@@ -6,6 +6,7 @@ import java.util.List;
 import org.crce.interns.dao.StatisticsDAO;
 import org.crce.interns.model.PlacementStats;
 import org.crce.interns.model.ProfessionalProfile;
+import org.crce.interns.model.QuickStats;
 import org.crce.interns.model.TotalNoOfStudents;
 import org.crce.interns.model.TotalStudents;
 import org.crce.interns.model.UserDetails;
@@ -108,4 +109,17 @@ public class StatisticsDAOImpl implements StatisticsDAO, ConstantValues {
 				.add(Restrictions.eq("year", year)).list();
 		return totalList.get(0);
 	}
+
+	@Override
+	public List<QuickStats> getQuickStatsList(String year) {
+		List<QuickStats> quickStatsList = sessionFactory.getCurrentSession().createCriteria(QuickStats.class).add(Restrictions.eq("year", year)).list();
+		return quickStatsList;
+	}
+
+	@Override
+	public List<PlacementStats> getPlacementStatsList(String year) {
+		List<PlacementStats> placementStatsList = sessionFactory.getCurrentSession().createCriteria(PlacementStats.class).add(Restrictions.eq("year", year)).list();
+		return placementStatsList;
+	}
+
 }

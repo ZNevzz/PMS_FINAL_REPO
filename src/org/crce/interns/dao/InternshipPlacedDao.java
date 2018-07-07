@@ -9,7 +9,7 @@ import org.crce.interns.model.InternshipPlaced;
 
 public interface InternshipPlacedDao {
 
-	public List<InternshipPlaced> listIhs();
+	public InternshipPlaced listIhs(String year);
 	
 	public void addIP(InternshipPlacedBean ihs);
 	

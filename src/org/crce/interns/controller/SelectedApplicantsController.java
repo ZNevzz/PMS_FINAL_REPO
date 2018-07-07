@@ -9,6 +9,7 @@ import org.crce.interns.beans.PersonalProfileBean;
 import org.crce.interns.beans.ProfessionalProfileBean;
 import org.crce.interns.beans.QuickStatsBean;
 import org.crce.interns.beans.UserCompanyBean;
+import org.crce.interns.service.NfService;
 import org.crce.interns.service.ProfileService;
 import org.crce.interns.service.SelectedApplicantsService;
 import org.crce.interns.validators.AddSelectedValidator;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller("SelectedApplicantsController")
@@ -39,6 +41,9 @@ public class SelectedApplicantsController {
 	@Autowired
 	@Qualifier("deleteSelectedValidator")
 	private DeleteSelectedValidator deleteSelectedValidator;
+	
+	@Autowired
+	private NfService nfService;
         
         private static final Logger logger = Logger.getLogger(SelectedApplicantsController.class.getName());
 
@@ -65,7 +70,7 @@ public class SelectedApplicantsController {
 			@ModelAttribute("professionalProfileBeanList") List<ProfessionalProfileBean> professionalProfileBeanList,
 			@ModelAttribute("personalProfileBeanList") List<PersonalProfileBean> personalProfileBeanList) {
 		try{
-		ModelAndView moel;
+		
 
 		 //System.out.println("inside controller"+company);
                     logger.error("inside controller"+company);
@@ -184,7 +189,14 @@ public class SelectedApplicantsController {
 			else{
 				System.out.println("company is................"+userBean.getCompany_name());
 				selectService.createDetails(userBean);
-				model = new ModelAndView("add-selected-success");
+				
+				if(!nfService.addNotificationForSelectedAddition(
+						userBean.getCompany_name(), userBean.getUsername())){
+					logger.error("ERROR in addNotificationForSelectedAddition");
+				}
+				
+				
+				model = new ModelAndView("redirect:/viewApplicants.html?companyname="+userBean.getCompany_name()+"&year=");
 			}
 		}
 		return model;
@@ -239,7 +251,13 @@ public class SelectedApplicantsController {
 
 			else{
 				selectService.deleteDetails(userBean);
-				model = new ModelAndView("delete-selected-success");
+				
+				if(!nfService.addNotificationForSelectedRemoval(
+						userBean.getCompany_name(), userBean.getUsername())){
+					logger.error("ERROR in addNotificationForSelectedRemoval");
+				}
+				
+				model = new ModelAndView("redirect:/viewApplicants.html?company="+userBean.getCompany_name()+"&year=");
 			}
 		}
 		return model;

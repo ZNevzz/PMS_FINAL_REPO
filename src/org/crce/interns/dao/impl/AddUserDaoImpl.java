@@ -85,8 +85,9 @@ public class AddUserDaoImpl implements AddUserDao {
 		System.out.println("Opened database successfully");
 
 		//to get path where the csv file is stored
-        DirectoryPathBean directoryPathBean = new DirectoryPathBean();    
-		copyFile = new File(directoryPathBean.getCsvFolder() + "\\"  + timeStamp + "\\"+"/" + fileName);
+        DirectoryPathBean directoryPathBean = new DirectoryPathBean();
+        copyFile = new File(directoryPathBean.getCsvFolder() + "/"  + timeStamp + "/" + fileName);
+		//copyFile = new File(directoryPathBean.getCsvFolder() + "\\"  + timeStamp + "\\" + fileName);	//for windows
 
 		// tableName = "loader_schema.loader";
 	

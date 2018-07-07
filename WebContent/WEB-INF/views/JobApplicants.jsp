@@ -130,19 +130,20 @@ description: gives the list of applied aplicants-->
 														</thead>
 
 														<tbody>
-															<tr>
+															
 																<c:forEach items="${quickStatsList}" var="user"
 																	varStatus="loop">
+																<tr>	
 																	<td><font color="blue">${user.username}</font></td>
 																	<td>${selectedPersonal[loop.index].name}</td>
 																	<td><font color="orange">
 																			${selectedProf[loop.index].branch}</font></td>
 
-
+																</tr>
 
 																</c:forEach>
 
-															</tr>
+															
 
 														</tbody>
 													</table>

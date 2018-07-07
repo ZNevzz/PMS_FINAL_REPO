@@ -48,6 +48,8 @@ public class Allotment implements Serializable{
 	@Column(name="room_path")
 	private String fileUpload;
 	
+	@Column(name="year")
+	private String year;
 	
 	public String getCompany_name() {
 		return company_name;
@@ -91,6 +93,12 @@ public class Allotment implements Serializable{
 	}
 	public void setFileUpload(String fileUpload) {
 		this.fileUpload = fileUpload;
+	}
+	public String getYear() {
+		return year;
+	}
+	public void setYear(String year) {
+		this.year = year;
 	}
 	
 

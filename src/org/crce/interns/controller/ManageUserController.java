@@ -61,6 +61,7 @@ public class ManageUserController {
          
          private static final Logger logger = Logger.getLogger(ManageUserController.class.getName());
 	
+	//authorization done - unauthorized call redirected to 405.jsp
 	//actually adding student
 	@RequestMapping(value = "/registerStudent", method = RequestMethod.POST)
 	public ModelAndView addStudent(HttpServletRequest request, @ModelAttribute("studentBean")StudentBean studentBean,BindingResult result) {
@@ -86,6 +87,7 @@ public class ManageUserController {
 		return model;
 	}
 	
+	//authorization done - unauthorized call redirected to 405.jsp
 	//actually adding faculty
 	@RequestMapping(value = "/registerFaculty", method = RequestMethod.POST)
 	public ModelAndView addFaculty(HttpServletRequest request,@ModelAttribute("facultyBean")FacultyBean facultyBean,BindingResult result) {
@@ -117,7 +119,9 @@ public class ManageUserController {
 	public ModelAndView welcomeStudent(HttpServletRequest request,Model model) {
 		HttpSession session=request.getSession();
 		String roleId=(String)session.getAttribute("roleId");
-		if(!crService.checkRole("ManageUser", roleId))
+		
+		//new authorization
+		if(!crService.checkRole("/addstudent", roleId))
 			return new ModelAndView("403");
 		else
 		{
@@ -134,7 +138,9 @@ public class ManageUserController {
 	public ModelAndView welcomeFaculty(HttpServletRequest request,Model model) {
 		HttpSession session=request.getSession();
 		String roleId=(String)session.getAttribute("roleId");
-		if(!crService.checkRole("ManageUser", roleId))
+		
+		//new authorization
+		if(!crService.checkRole("/addfaculty", roleId))
 			return new ModelAndView("403");
 		else
 		{
@@ -151,12 +157,15 @@ public class ManageUserController {
 	public ModelAndView removeUser(HttpServletRequest request) {
 		HttpSession session=request.getSession();
 		String roleId=(String)session.getAttribute("roleId");
-		if(!crService.checkRole("ManageUser", roleId))
+		
+		//new authorization
+		if(!crService.checkRole("/removeuser", roleId))
 			return new ModelAndView("403");
 		else
 		return new ModelAndView("removeUser");		
 	}
 	
+	//authorization done - unauthorized call redirected to 405.jsp
 	//actually removing user
 	@RequestMapping(value = "/removeUser", method = RequestMethod.POST)
 	public ModelAndView removeUser1(@ModelAttribute("command")  StudentBean studentBean,

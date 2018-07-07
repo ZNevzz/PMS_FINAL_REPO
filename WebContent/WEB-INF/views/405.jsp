@@ -58,10 +58,11 @@
 				</button> -->
 
 				<div class="navbar-header navbar-green pull-left">
-					<a href="#" class="navbar-brand">
+					<a href="viewprofile" class="navbar-brand">
 						<small>
 							<i class="fa fa-graduation-cap"></i>
-							Placement Management System
+							C R C E &nbsp;&nbsp;&nbsp;P l a c e m e n t s
+							
 						</small>
 					</a>
 				</div>
@@ -176,7 +177,7 @@
 					} catch (e) {
 					}
 				</script>
-				YOU are not allowed to access this URL directly !!!!!! <br />
+				Access denied <br />
 				<br /> <a href="form">Click here to login again</a>
 										</h1>
 
@@ -192,17 +193,17 @@
 											<ul class="list-unstyled spaced inline bigger-110 margin-15">
 												<li>
 													<i class="ace-icon fa fa-hand-o-right blue"></i>
-													Re-check the url for typos
+											<a href="#" style="text-decoration:none">		Re-check the url for typos</a>
 												</li>
 
 												<li>
 													<i class="ace-icon fa fa-hand-o-right blue"></i>
-													Read the faq
+													<a href="FAQ" style="text-decoration:none">	Have a doubt? Read the FAQs </a>
 												</li>
 
 												<li>
 													<i class="ace-icon fa fa-hand-o-right blue"></i>
-													Tell us about it
+													<a href="ContactUs" style="text-decoration:none">Give us feedback about your experience</a>
 												</li>
 											</ul>
 										</div>

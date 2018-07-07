@@ -14,4 +14,5 @@ public interface SelectedApplicantsDao {
 	public List<QuickStats> retrieveDetails(String company);
 	public List<QuickStats> retrieveDetails(String company, String year);
 	public void deleteDetails(QuickStats user);
+	public boolean check(String userName);
 }

@@ -8,6 +8,6 @@ import org.crce.interns.model.InternshipPlaced;
 public interface InternshipPlacedService {
 
 	public void addIP(InternshipPlacedBean ips);
-	public List<InternshipPlaced> listIhs();
+	public InternshipPlaced listIhs(String year);
 	
 }

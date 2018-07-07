@@ -19,6 +19,7 @@ import org.crce.interns.beans.PersonalProfileBean;
 import org.crce.interns.beans.ProfessionalProfileBean;
 import org.crce.interns.beans.UserDetailsBean;
 import org.crce.interns.dao.ProfileDAO;
+import org.crce.interns.dao.SelectedApplicantsDao;
 import org.crce.interns.model.PersonalProfile;
 import org.crce.interns.model.ProfessionalProfile;
 import org.crce.interns.model.UserDetails;
@@ -38,6 +39,8 @@ public class ProfileServiceImpl implements ProfileService{
 	@Autowired
 	private ProfileDAO profileDAO;
 	
+	@Autowired(required=true)
+	private SelectedApplicantsDao selectDao;
 	
 	/**	GET details from database
 	*	
@@ -233,6 +236,13 @@ public class ProfileServiceImpl implements ProfileService{
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public Map<String, Set<String>> totalStudents(String year){
 		return profileDAO.totalStudents(year);
+	}
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public boolean check(String userName){
+		
+		return selectDao.check(userName);
 	}
 	
 }

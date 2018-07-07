@@ -172,5 +172,28 @@ public class SelectedApplicantsDaoImpl implements SelectedApplicantsDao{
 		session.close();
 	}
 
- 
+	/**
+	 * added by Nevil
+	 */
+	@SuppressWarnings("unchecked")
+	@Override	
+	public boolean check(String userName){
+						
+		
+		String year=Integer.toString(Calendar.getInstance().get(Calendar.YEAR));
+		
+		Query query = sessionFactory.getCurrentSession()
+				.createQuery("SELECT U.username FROM QuickStats U WHERE U.year = :curYear AND U.username = :username");
+		query.setParameter("curYear", year);
+		query.setParameter("username", userName);
+		
+		
+		if(query.list().size()>=1){
+			
+			return true;
+		}
+		return false;
+		
+		
+	}
 }

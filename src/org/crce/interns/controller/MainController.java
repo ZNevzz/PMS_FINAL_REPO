@@ -67,4 +67,12 @@ public class MainController {
 	public String FAQ() {
 		return "FAQ";
 	}
+	@RequestMapping("/about_us")
+	public String about_us() {
+		return "about_us";
+	}
+	@RequestMapping("/")
+	public String homepage() {
+		return "home";
+	}
 }

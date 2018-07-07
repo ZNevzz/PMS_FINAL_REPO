@@ -17,7 +17,7 @@ description: Sidebar, tabs turn active through jquery -->
 </script>
 <body class="skin-3 no-skin">
 
-	<div id="sidebar" class="sidebar sidebar-default">
+	<div id="sidebar" class="sidebar responsive">
 		<script type="text/javascript">
 			try {
 				ace.settings.check('sidebar', 'fixed')
@@ -47,6 +47,9 @@ description: Sidebar, tabs turn active through jquery -->
 			</a> <b class="arrow"></b></li>
 			<li class=" " id="FAQ"><a href="FAQ"> <i class="menu-icon
 						fa fa-question"></i> <span class="menu-text">FAQ</span>
+			</a> <b class="arrow"></b></li>
+			<li class=" " id="about_us"><a href="about_us"> <i class="menu-icon fa 
+						fa-info-circle"></i> <span class="menu-text">About Us</span>
 			</a> <b class="arrow"></b></li>
 
 		</ul>

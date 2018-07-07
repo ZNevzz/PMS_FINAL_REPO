@@ -4,7 +4,7 @@ import java.util.Date;
 
 // Room Allotment Entries(room_allotment.allotment)
 
-public class AllotmentBean {
+public class AllotmentBean{
 
 	private Integer allotment_id;
 	private String company_name;
@@ -13,6 +13,7 @@ public class AllotmentBean {
 	private String job_description;
 	private Date drive_date;
 	private String fileUpload;
+	private String year;
 	
 	public String getCompany_name() {
 		return company_name;
@@ -57,6 +58,12 @@ public class AllotmentBean {
 	}
 	public void setFileUpload(String fileUpload) {
 		this.fileUpload = fileUpload;
+	}
+	public String getYear() {
+		return year;
+	}
+	public void setYear(String year) {
+		this.year = year;
 	}
 	
 	

@@ -32,6 +32,7 @@ import org.crce.interns.model.UserCompany;
 import org.crce.interns.service.CheckRoleService;
 import org.crce.interns.service.FeedbackService;
 import org.crce.interns.service.ManageApplicantsService;
+import org.crce.interns.service.ProfileService;
 import org.crce.interns.validators.FeedbackFormValidator;
 
 @Controller
@@ -40,6 +41,10 @@ public class FeedbackController {
 	@Autowired
 	private FeedbackService feedbackService;
 
+	
+	@Autowired
+	private ProfileService profileService;
+	
 	@Autowired
 	FeedbackFormValidator validator;
 
@@ -48,7 +53,9 @@ public class FeedbackController {
 
 	@Autowired
 	private ManageApplicantsService crudService;
-        
+	
+	 Map<String, List<String>> map = new HashMap<String, List<String>>();
+  
         private static final Logger logger = Logger.getLogger(FeedbackController.class.getName());
 	/*
 	 * @InitBinder private void initBinder(WebDataBinder binder) {
@@ -64,32 +71,31 @@ public class FeedbackController {
 		try {
 			HttpSession session = request.getSession();
 			String roleId = (String) session.getAttribute("roleId");
-
-			// Map<String, Object> model = new HashMap<String, Object>();
+			
+			Map ml = new HashMap(); 
+			
+			
+			
 			List<FeedbackBean> list = prepareListofBean(feedbackService.listFeedback());
 			FeedbackBean fb = new FeedbackBean();
 			List<FeedbackBean> list1 = new ArrayList<FeedbackBean>();
 			for (FeedbackBean fbl : list) {
-				// System.out.println(fb1);
 				if (fbl.getCompany().equalsIgnoreCase(companyname)) {
 
-					//System.out.println("fdvgidmgvdlkmglkdfmkl" + companyname);
-                                        logger.error("fdvgidmgvdlkmglkdfmkl" + companyname);
+				                        logger.error("fdvgidmgvdlkmglkdfmkl" + companyname);
 					list1.add(fbl);
+				
 
 				}
 			}
 
-			//System.out.println(list1.size());
-                        logger.error(list1.size());
-			// model.put("feedback",prepareListofBean(feedbackService.listFeedback()));
+			            logger.error(list1.size());
 			ModelAndView model = new ModelAndView("CompanyFeedback");
 			model.addObject("l", list1);
-			//System.out.println(fb.getUsername());
-                        logger.error(fb.getUsername());
+			model.addObject("m",map);
+			            logger.error(fb.getUsername());
 			return model;
-			// return new ModelAndView("feedbackList", fb);
-		} catch (Exception e) {
+				} catch (Exception e) {
 			//System.out.println(e);
                         logger.error(e);
 			ModelAndView model = new ModelAndView("500");
@@ -171,7 +177,9 @@ public class FeedbackController {
 		try {
 			HttpSession session = request.getSession();
 			String user = (String) session.getAttribute("userName");
-
+			
+ 			
+			
 			validator.validate(feedbackBean, result);
 			if (result.hasErrors()) {
 				//System.out.println("Error in form");
@@ -185,20 +193,23 @@ public class FeedbackController {
 				redirectAttributes.addFlashAttribute("msg", "You are not eligible to give feedback for this company..!!");
 				
 				
+				
 				ModelAndView model1=new ModelAndView("redirect:/addFeedback");
 				//model1.addObject("message", "Data added successfully ");
 				return model1;
 				                   	
 			}
+			String name = (String) session.getAttribute("name");
+			String branch = (String) session.getAttribute("branch");
 
+			List<String> valSetOne = new ArrayList<String>();
+	        valSetOne.add(name);
+	        valSetOne.add(branch);
+	        map.put(user, valSetOne);  
+			
 			Feedback feedback = prepareModel(feedbackBean);
 			feedbackService.addFeedback(feedback);
-			/*Map<String, Object> model = new HashMap<String, Object>();
-			model.put("feedback", prepareList(feedbackService.listFeedback(), feedbackBean.getCompany()));
-			return new ModelAndView("feedbackSaveSuccess", model);
-			*/
-       
-			redirectAttributes.addFlashAttribute("msg", "Data added successfully..!!");
+				redirectAttributes.addFlashAttribute("msg", "Data added successfully..!!");
 			
 			
 			ModelAndView model1=new ModelAndView("redirect:/addFeedback");

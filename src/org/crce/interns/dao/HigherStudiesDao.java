@@ -10,7 +10,7 @@ public interface HigherStudiesDao {
 
 	
 	public void addHS(InterestedInHigherStudiesBean ihs);
-	public List<InterestedInHigherStudies> listIhs();
+	public InterestedInHigherStudies listIhs(String year);
 			
 	
 }

@@ -37,7 +37,7 @@
 					<table border="3" class="table-fill">
 					<thead>
 						<tr>
-							<th class="text-center"><b>Allotment ID</b></td>
+							<!-- <th class="text-center"><b>Allotment ID</b></td> -->
 							<th class="text-center"><b>Company Name</b></td>
 							<th class="text-center"><b>Round No.</b></td>
 							<th class="text-center"><b>Room No.</b></td>
@@ -86,7 +86,7 @@
 						
 						<c:forEach items="${allotments}" var="allotment">
 						<tr>
-							<td class="text-center"><c:out value="${allotment.allotment_id}"/></td>
+							<%-- <td class="text-center"><c:out value="${allotment.allotment_id}"/></td> --%>
 							<td class="text-center"><c:out value="${allotment.company_name}"/></td>
 							<td class="text-center"><c:out value="${allotment.round_no}"/></td>
 							<td class="text-center"><c:out value="${allotment.room_no}"/></td>

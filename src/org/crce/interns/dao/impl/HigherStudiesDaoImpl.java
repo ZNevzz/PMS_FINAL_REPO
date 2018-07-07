@@ -7,8 +7,10 @@ import org.crce.interns.beans.InterestedInHigherStudiesBean;
 import org.crce.interns.dao.HigherStudiesDao;
 import org.crce.interns.model.Feedback;
 import org.crce.interns.model.InterestedInHigherStudies;
+import org.crce.interns.model.TotalNoOfStudents;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -30,27 +32,20 @@ public class HigherStudiesDaoImpl implements HigherStudiesDao{
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<InterestedInHigherStudies> listIhs() {
-		List<InterestedInHigherStudies> list = null;
+	public InterestedInHigherStudies listIhs(String year) {
 		
 				
 		
-		
-		String y = Integer.toString(Calendar.getInstance().get(Calendar.YEAR));
-		
-		Query query = sessionFactory.getCurrentSession()
-				.createQuery("SELECT U FROM InterestedInHigherStudies U WHERE U.year = :curYear");
-		query.setParameter("curYear",y);
-		list = query.list();
-		
+		List<InterestedInHigherStudies> totalList = sessionFactory.getCurrentSession().createCriteria(InterestedInHigherStudies.class)
+				.add(Restrictions.eq("year", year)).list();
+		System.out.println("inside dao size of list = " + totalList.size());
+
+		return  totalList.get(0);
+
 		
 		
 		
-		
-		System.out.println("inside dao size of list = " + list.size());
-		
-		return list;
-	}
+			}
 
 
 

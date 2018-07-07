@@ -10,6 +10,7 @@ import org.crce.interns.model.InterestedInHigherStudies;
 import org.crce.interns.model.InternshipPlaced;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -31,23 +32,19 @@ public class InternshipPlacedDaoImpl implements InternshipPlacedDao {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<InternshipPlaced> listIhs() {
-List<InternshipPlaced> list = null;
-		
+	public InternshipPlaced listIhs(String year) {
+       
 
 
 		
 		
-		String y = Integer.toString(Calendar.getInstance().get(Calendar.YEAR));
-		
-		Query query = sessionFactory.getCurrentSession()
-				.createQuery("SELECT U FROM InternshipPlaced U WHERE U.year = :curYear");
-		query.setParameter("curYear", y);
-		list = query.list();
-		
-		System.out.println("inside dao size of list = " + list.size());
-		
-		return list;
+       List<InternshipPlaced> totalList = sessionFactory.getCurrentSession().createCriteria(InternshipPlaced.class)
+				.add(Restrictions.eq("year", year)).list();
+		System.out.println("inside dao size of list = " + totalList.size());
+
+		return  totalList.get(0);
+
+
 	}
 
 

@@ -36,6 +36,7 @@ description: contains tabs ->  profile,uploads ,notification for student -->
 					<div class="breadcrumbs" id="breadcrumbs">
 
 				<jsp:directive.include file="searchheader.jsp" />
+				
 			</div>
 
 					<div class="page-content">

@@ -103,6 +103,49 @@ public class NfController implements ConstantValues{
 	}
 	}
 	
+	@RequestMapping(value="/fnotifications", method = RequestMethod.GET)
+	public ModelAndView fcheckNf(HttpServletRequest request) {
+	try{
+		//System.out.println("Inside NfController");
+		//nfService.checkNf();
+		
+		String userName=(String)request.getSession(true).getAttribute("userName");
+		String roleId=(String)request.getSession(true).getAttribute("roleId");		
+		
+		UserDetailsBean userDetailsBean= new UserDetailsBean();			
+		ProfessionalProfileBean professionalProfileBean=new ProfessionalProfileBean();
+		PersonalProfileBean personalProfileBean=new PersonalProfileBean();
+	
+	
+		userDetailsBean.setUserName(userName);
+		professionalProfileBean.setUserName(userName);
+		personalProfileBean.setUserName(userName);
+	
+	
+		userDetailsBean = profileService.getProfile(userDetailsBean);
+		professionalProfileBean = profileService.getProfile(professionalProfileBean);
+		personalProfileBean = profileService.getProfile(personalProfileBean);	
+	
+		List<NotificationBean> nfList = nfService.getNf(userDetailsBean, professionalProfileBean, personalProfileBean);
+		nfList = nfService.sortByDate(nfList);
+		
+		
+		ModelAndView model=null;
+		
+		model = new ModelAndView("FacNoti");
+		model.addObject("nf",nfList);
+		
+		return model;
+	}
+	catch(Exception e){
+		//System.out.println(e);
+                logger.error(e);
+		ModelAndView model=new ModelAndView("500");
+		model.addObject("exception", "/checkNf");
+		return model;
+	}
+	}
+	
 	//------------------------------------------------------------------------------------------------	
 	@RequestMapping(value="/addNf", method = RequestMethod.POST)
 	public ModelAndView addNf(HttpServletRequest request) {

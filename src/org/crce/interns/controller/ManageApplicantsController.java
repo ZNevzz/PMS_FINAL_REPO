@@ -6,6 +6,7 @@ import org.crce.interns.beans.PersonalProfileBean;
 import org.crce.interns.beans.ProfessionalProfileBean;
 import org.crce.interns.beans.UserCompanyBean;
 import org.crce.interns.service.ManageApplicantsService;
+import org.crce.interns.service.NfService;
 import org.crce.interns.service.ProfileService;
 import org.crce.interns.validators.AddApplicantsValidator;
 import org.crce.interns.validators.DeleteApplicantsValidator;
@@ -46,6 +47,9 @@ public class ManageApplicantsController {
 	@Autowired
 	@Qualifier("deleteApplicantsValidator")
 	private DeleteApplicantsValidator deleteApplicantsValidator;
+	
+	@Autowired
+	private NfService nfService;
         
         private static final Logger logger = Logger.getLogger(ManageApplicantsController.class.getName());
 	
@@ -65,7 +69,7 @@ public class ManageApplicantsController {
 
 	// @SuppressWarnings("unused")
 
-	@RequestMapping(value = "/viewclist.html", method = RequestMethod.POST)
+	@RequestMapping(value = "/viewclist.html", method = RequestMethod.GET)
 	public ModelAndView viewcandidate(@RequestParam("company") String company,
 			@RequestParam("year") String year) {
 		try{ 
@@ -156,6 +160,7 @@ public class ManageApplicantsController {
 		try{
 		ModelAndView model;
 		String msg="";
+		
 		addApplicantsValidator.validate(userBean, bindingResult);
 		
 		if (bindingResult.hasErrors()) {
@@ -182,7 +187,17 @@ public class ManageApplicantsController {
 				
 			}
 			else
-			model = new ModelAndView("add-success");
+				
+				
+				if(!nfService.addNotificationForApplicantAddition(
+						userBean.getCompany(), userBean.getUsername())){
+					logger.error("ERROR in addNotificationForApplicantAddition");
+				}
+			
+			
+			
+			
+			model = new ModelAndView("redirect:/viewclist.html?company="+userBean.getCompany()+"&year=");
 		}
 		return model;
 		}
@@ -230,7 +245,14 @@ public class ManageApplicantsController {
 				model.addObject("msg",msg);				
 			}
 			else
-				model = new ModelAndView("delete-success");
+				
+				
+				if(!nfService.addNotificationForApplicantRemoval(
+						userBean.getCompany(), userBean.getUsername())){
+					logger.error("ERROR in addNotificationForApplicantRemoval");
+				}
+				
+				model = new ModelAndView("redirect:/viewclist.html?company="+userBean.getCompany()+"&year=");
 		}
 			return model;
 		}
@@ -299,6 +321,27 @@ public class ManageApplicantsController {
 			 //model.addObject("professionalProfileBeanList",professionalProfileBeanList);
 			 //model.addObject("personalProfileBeanList",personalProfileBeanList);
 		 }
+		 if(userBeanList.isEmpty()){
+				System.out.println("testing here//////////////////////////// im here /////////");
+				 ProfessionalProfileBean professionalProfileBean=new ProfessionalProfileBean();
+				 PersonalProfileBean personalProfileBean=new PersonalProfileBean();
+				 //professionalProfileBean.setUserName("nil");
+				 //personalProfileBean.setUserName("nil");
+				 //personalProfileBean.setName("nil");
+				 //professionalProfileBean.setBranch("nil");
+				 UserCompanyBean userBean=new UserCompanyBean();
+				 //userBean.setUsername("nil");
+				 userBeanList.add(userBean);
+				 professionalProfileBeanList.add(professionalProfileBean);
+				 personalProfileBeanList.add(personalProfileBean);
+					System.out.println("testing here//////////////////////////// im here 2/////////");
+					redirectAttributes.addFlashAttribute("company", company);
+					 redirectAttributes.addFlashAttribute("year", year);
+					 redirectAttributes.addFlashAttribute("userList",userBeanList);
+					 redirectAttributes.addFlashAttribute("professionalProfileBeanList",professionalProfileBeanList);
+					 redirectAttributes.addFlashAttribute("personalProfileBeanList",personalProfileBeanList);
+			
+			}
 		 return model;
 		}
 		catch(Exception e)

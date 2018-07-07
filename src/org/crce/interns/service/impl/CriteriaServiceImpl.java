@@ -29,6 +29,7 @@ public class CriteriaServiceImpl implements CriteriaService {
 	}
 	
 	@Override  
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	 public List<CriteriaBean> getCriteria() {  
 	  return criteriaDao.getCriteria();  
 	 }  

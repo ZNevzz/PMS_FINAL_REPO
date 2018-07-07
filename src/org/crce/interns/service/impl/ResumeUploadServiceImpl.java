@@ -55,6 +55,7 @@ public class ResumeUploadServiceImpl implements ResumeUploadService {
 		
 		//get the path for saving the resume
 		String saveDirectory = directoryPathBean.getStudentFolder() + "/" + username + "/Resume/";
+		//String saveDirectory = directoryPathBean.getStudentFolder() + "\\" + username + "\\Resume\\";	//for windows
 		
 
 		final String fullPath = saveDirectory + fileUpload.getOriginalFilename();

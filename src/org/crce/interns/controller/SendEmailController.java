@@ -85,6 +85,8 @@ public class SendEmailController {
 	 * @throws IllegalStateException
 	 * @throws IOException
 	 */
+	
+	//authorization done - unauthorized call redirected to 405.jsp
 	@RequestMapping(value = "/GroupSubmitEmail", method = RequestMethod.POST)
 	public ModelAndView sendEmail(HttpServletRequest request,
 			@RequestParam(value = "fileUpload") CommonsMultipartFile[] file) throws IllegalStateException, IOException {
@@ -132,6 +134,7 @@ public class SendEmailController {
 	 * @param request
 	 * @return ModelAndView
 	 */
+	
 	@RequestMapping(method = RequestMethod.GET, value = "/GroupSendMail")
 	public ModelAndView email_welcome(HttpServletRequest request) {
 
@@ -140,7 +143,9 @@ public class SendEmailController {
                         logger.error("Mapped to /GroupSendMail");
 			HttpSession session = request.getSession();
 			String roleId = (String) session.getAttribute("roleId");
-			if (!crService.checkRole("SendEmail", roleId)) {
+			
+			//new authorization
+			if (!crService.checkRole("/GroupSendMail", roleId)) {
 				return new ModelAndView("403");
 			} else {
 				List<CompanyBean> companyList = manageProfileService.listCompanies();
@@ -175,7 +180,9 @@ public class SendEmailController {
                         logger.error("Mapped to personalMail");
 			HttpSession session = request.getSession();
 			String roleId = (String) session.getAttribute("roleId");
-			if (!crService.checkRole("SendEmail", roleId)) {
+			
+			//new authorization
+			if (!crService.checkRole("/personalMail", roleId)) {
 				return new ModelAndView("403");
 			} else {
 
@@ -202,6 +209,7 @@ public class SendEmailController {
 	 * @throws IOException
 	 */
 
+	//authorization done - unauthorized call redirected to 405.jsp
 	@RequestMapping(method = RequestMethod.POST, value = "/SendPersonalMail")
 	public ModelAndView submitIndividualMail(HttpServletRequest request,
 			@RequestParam(value = "fileUpload") CommonsMultipartFile[] file) throws IllegalStateException, IOException {

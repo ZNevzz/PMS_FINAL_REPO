@@ -31,8 +31,9 @@ public interface ProfileService {
 	public UserDetailsBean updateUserDetails(UserDetailsBean userDetailsBean);
 	
 	public List<String> listProfessionalProfile(String year);
-	
-	
+		
 	public Map<String, Set<String>> totalStudents(String year);
+	
+	public boolean check(String userName);
 
 }

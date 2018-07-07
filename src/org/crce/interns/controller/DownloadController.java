@@ -15,6 +15,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.crce.interns.beans.ApplicantCSVBean;
 import org.crce.interns.beans.DirectoryPathBean;
@@ -75,11 +76,11 @@ public class DownloadController extends HttpServlet {
 	public void downloadResume(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam("fileName") String fileName) {
 		try {
-			String userName = (String) request.getSession().getAttribute("userName");
+			String userId = (String) request.getSession().getAttribute("userId");
 			String role = getRole((String) request.getSession().getAttribute("roleId"));
 			String folderName = (String) request.getSession().getAttribute("folderName");
 
-			String fileToBeDownloaded = basePath + "/Users" + "/" + role + "/" + userName + "/" + folderName + "/"
+			String fileToBeDownloaded = basePath + "/Users" + "/" + "Student" + "/" + userId + "/" + folderName + "/"
 					+ fileName;
 			//System.out.println(fileToBeDownloaded);
                         logger.error(fileToBeDownloaded);
@@ -371,8 +372,17 @@ public class DownloadController extends HttpServlet {
 	}
 
 	@RequestMapping("/downloads")
-	public String StudentNotification() {
-		return "facultyDownloads";
+	public ModelAndView StudentNotification(HttpServletRequest request) {
+		
+		HttpSession session=request.getSession();
+		 String roleId=(String)session.getAttribute("roleId");
+			
+			//new authorization
+			if(!crService.checkRole("/downloads", roleId))
+				return new ModelAndView("403");
+			else{
+					return new ModelAndView("facultyDownloads");
+			}
 	}
 	
 	

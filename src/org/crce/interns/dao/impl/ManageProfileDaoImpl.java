@@ -95,6 +95,7 @@ import java.util.List;
 import org.crce.interns.beans.JobBean;
 import org.crce.interns.dao.ManageProfileDao;
 import org.hibernate.Query;
+import org.hibernate.Session;
 //import org.crce.interns.model.Profile;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -129,7 +130,16 @@ public class ManageProfileDaoImpl implements ManageProfileDao{
 	
 	public void createProfile(Job job) {
 		// TODO Auto-generated method stub
+		
+		/*Query query = sessionFactory.getCurrentSession()
+				.createQuery("SELECT job FROM Job job WHERE job.year = :curYear and job.job_id is not null");
+		
+		String curYear=Integer.toString(Calendar.getInstance().get(Calendar.YEAR));
+		query.setParameter("curYear",curYear);
+		*/
 		sessionFactory.getCurrentSession().save(job);	//change made @Crystal	
+		
+		
 	}
 
 	public void createProfile(Criteria criteria) {
@@ -206,5 +216,6 @@ public class ManageProfileDaoImpl implements ManageProfileDao{
 		
 		//return (List<Job>) sessionFactory.getCurrentSession().createCriteria(Job.class).list();
 	}
+
 	 
 }

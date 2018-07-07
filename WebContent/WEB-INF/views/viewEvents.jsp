@@ -130,13 +130,13 @@
 
 										<div class="timeline-items">
 
-											<div class="timeline-item clearfix">
+											
 												<c:if test="${!empty events}">
 
 
 
 													<c:forEach items="${events}" var="ed">
-
+														<div class="timeline-item clearfix">
 														<!--display contents-->
 
 
@@ -160,8 +160,7 @@
 																<h5 class="widget-title bigger-180">${companyMap[ed.company_id]}</h5>
 
 																<span class="widget-toolbar"> <a href="#"
-																	data-action="reload"> <i
-																		class="ace-icon fa fa-refresh"></i>
+																	data-action="reload"> 
 																</a> <a href="#" data-action="collapse"> <i
 																		class="ace-icon fa fa-chevron-up"></i>
 																</a>
@@ -194,11 +193,12 @@
 																</div>
 															</div>
 														</div>
+														</div>
 													</c:forEach>
 
 
 												</c:if>
-											</div>
+											
 
 										</div>
 										<!-- /.timeline-items -->
@@ -217,16 +217,16 @@
 					<!-- /.col -->
 				</div>
 				<!-- /.row -->
+				
+
+				<jsp:directive.include file="Footer.jsp" />
+				<jsp:directive.include file="scripts.jsp" />
 			</div>
 			<!-- /.page-content -->
 		</div>
 
 
 	</div>
-	<!-- /.main-content -->
-
-	<jsp:directive.include file="Footer.jsp" />
-
 
 	<!-- page specific plugin scripts -->
 

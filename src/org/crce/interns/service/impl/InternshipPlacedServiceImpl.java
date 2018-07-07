@@ -27,9 +27,12 @@ public class InternshipPlacedServiceImpl implements InternshipPlacedService {
 		hsDao.addIP(ihs);
 	
 }
-	public List<InternshipPlaced> listIhs() {
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	
+	public InternshipPlaced listIhs(String year) {
 		System.out.println("inside service");
-		return hsDao.listIhs();
+		return hsDao.listIhs(year);
 	}
 
 }

@@ -213,7 +213,7 @@ ${msg}
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-<title>Delete</title> <
+<title>Delete Candidate</title> <
 
 <style>
 .error {
@@ -222,13 +222,19 @@ ${msg}
 	font-weight: bold;
 }
 </style>
+<!-- for autocomplete -->
 
+<jsp:directive.include file="scripts.jsp" />
+<!-- <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script> -->
+<script src="assets/autocomplete/jquery.autocomplete.min.js"></script>
+<link href="assets/autocomplete/main.css" rel="stylesheet">
 <script>
-	$(document)
+/* 	$(document)
 			.ready(
-					function() {
+					function() { */
+				jQuery(function($){
 
-						$('#dynamicsearchcompany')
+						$('#company_id')
 								.autocomplete(
 										{
 											serviceUrl : 'looseSearch2',
@@ -261,42 +267,31 @@ ${msg}
 </script>
 
 
+
 </head>
 <body>
-	<jsp:directive.include file="Header.jsp" />
+<jsp:directive.include file="Header.jsp" />
 	<div class="main-content">
 		<div class="main-content-inner">
 			<div class="breadcrumbs" id="breadcrumbs">
 
 				<jsp:directive.include file="searchheader.jsp" />
+
 			</div>
-
-
 			<div class="page-content">
-				<div class="page-header"></div>
-				<!-- /.page-header -->
+				<div class="page-header">
 
+					<h1>Welcome ${sessionScope.name} to the profile page</h1>
 
-
-				<script type="text/javascript">
-					try {
-						ace.settings.check('main-container', 'fixed')
-					} catch (e) {
-					}
-				</script>
-
-				<%-- <form:form action="deletecandidate.html" modelAttribute="userBean" method="post">
-Name:<form:input name="name" type="text" path="username" />
-<form:errors path="username" cssClass="error"/><br/>
-Company:<form:input name="company" type="text" path="company" />
-<form:errors path="company" cssClass="error"/>
-<br/>
-${msg}
-<br/> 
-<input type="submit" value="Delete"/>
-</form:form><br />
-<jsp:directive.include file="Footer.jsp" />
+					<%-- <h2>My name is ${sessionScope.name} , I am a
+						${sessionScope.roleName} from ${sessionScope.branch} branch with
+						username ${sessionScope.userName}</h2>
+					<br />
  --%>
+
+				</div>
+			
+
 
 
 
@@ -324,7 +319,7 @@ ${msg}
 													<tr>
 														<td><div class="col-sm-16">
 																<br>Company:
-																<form:input name="company" type="text" path="company" />
+																<form:input name="company" type="text" path="company" id="company_id" />
 																<form:errors path="company" cssClass="error" />
 																<br /> ${msg} <br /></td>
 													</tr>

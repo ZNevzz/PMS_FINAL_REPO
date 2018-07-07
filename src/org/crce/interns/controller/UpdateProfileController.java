@@ -24,6 +24,7 @@ import org.crce.interns.beans.UserDetailsBean;
 import org.crce.interns.model.Company;
 import org.crce.interns.model.PersonalProfile;
 import org.crce.interns.service.CheckRoleService;
+import org.crce.interns.service.ConstantValues;
 import org.crce.interns.service.ProfileService;
 import org.crce.interns.service.SearchService;
 
@@ -41,7 +42,7 @@ import com.google.gson.Gson;
 import org.apache.log4j.Logger;
 
 @Controller
-public class UpdateProfileController {
+public class UpdateProfileController implements ConstantValues {
 
 	@Autowired
 	private ProfileService profileService;
@@ -88,19 +89,30 @@ public class UpdateProfileController {
 
 			userDetailsBean.setUserName(userName);
 			userDetailsBean = profileService.getProfile(userDetailsBean);
-
+			
 			userDetailsBean.setAccountActive("YES");
 			userDetailsBean.setCurrentState("online");
 			userDetailsBean.setLastLogin(new Date());
 			userDetailsBean.setModifiedBy(userDetailsBean.getUserName());
-			userDetailsBean.setModifiedDate(new Date());
+			userDetailsBean.setModifiedDate(new Date());			
 
 			professionalProfileBean.setUserName(userName);
+			professionalProfileBean = profileService.getProfile(professionalProfileBean);
+			
 			personalProfileBean.setUserName(userName);
 
 			userDetailsBean = profileService.updateUserDetails(userDetailsBean);
+			
+			if(profileService.check(userName)){
+				professionalProfileBean.setStatus(PLACED);
+				professionalProfileBean = profileService.updateProfessionalProfile(professionalProfileBean);
+			}
+			else{
+				professionalProfileBean.setStatus(NOT_PLACED);
+				professionalProfileBean = profileService.updateProfessionalProfile(professionalProfileBean);
+			}
 
-			professionalProfileBean = profileService.getProfile(professionalProfileBean);
+			
 			personalProfileBean = profileService.getProfile(personalProfileBean);
 
 			request.getSession(true).setAttribute("name", personalProfileBean.getName());
@@ -310,104 +322,7 @@ public class UpdateProfileController {
 
 	}
 
-	// -----------------------------------------------------------------------------------------//
-
-	// -----------------------------------------------------
-	// extra
-	/*
-	 * @RequestMapping(value="/update-password", method = RequestMethod.POST)
-	 * public ModelAndView updateUserDetails(@RequestParam("username") String
-	 * username,@RequestParam("password") String password) {
-	 * 
-	 * System.out.println("Inside Controller");
-	 * 
-	 * ModelAndView model=null;
-	 * 
-	 * 
-	 * UserDetailsBean userDetailsBean= new UserDetailsBean();
-	 * ProfessionalProfileBean professionalProfileBean=new
-	 * ProfessionalProfileBean(); PersonalProfileBean personalProfileBean=new
-	 * PersonalProfileBean();
-	 * 
-	 * 
-	 * 
-	 * 
-	 * userDetailsBean.setUserName(username);
-	 * 
-	 * professionalProfileBean.setUserName(username);
-	 * personalProfileBean.setUserName(username);
-	 * 
-	 * 
-	 * userDetailsBean = profileService.getProfile(userDetailsBean);
-	 * professionalProfileBean =
-	 * profileService.getProfile(professionalProfileBean); personalProfileBean =
-	 * profileService.getProfile(personalProfileBean);
-	 * 
-	 * 
-	 * 
-	 * userDetailsBean = profileService.updateUserDetails(userDetailsBean);
-	 * 
-	 * 
-	 * 
-	 * model = new ModelAndView("viewprofile"); model.addObject("change",true);
-	 * model.addObject("userDetails",userDetailsBean);
-	 * model.addObject("professionalProfile",professionalProfileBean);
-	 * model.addObject("personalProfile",personalProfileBean);
-	 * 
-	 * return model; }
-	 */
-	// -----------------------------------------------------
-	// extra
-	@RequestMapping(value = "/nevz-feedback", method = RequestMethod.GET)
-	public ModelAndView f(HttpServletRequest request) {
-		try {
-			System.out.println("Inside UpdateController");
-			HttpSession session = request.getSession();
-			String id = (String) session.getAttribute("userName");
-			String roleId = (String) session.getAttribute("roleId");
-			/*
-			 * if(!crService.checkRole("UpdateProfile", roleId)) return new
-			 * ModelAndView("403"); else {
-			 */
-			ModelAndView model = null;
-
-			model = new ModelAndView("FeedbackForm");
-
-			return model;
-		} catch (Exception e) {
-                        logger.error(e);
-			return new ModelAndView("500");
-		}
-		// }
-	}
-
-	// -----------------------------------------------------
-	// extra
-	@RequestMapping(value = "/nevz-feedbacks", method = RequestMethod.GET)
-	public ModelAndView fs(HttpServletRequest request) {
-		try {
-			System.out.println("Inside Controller");
-			HttpSession session = request.getSession();
-			String id = (String) session.getAttribute("userName");
-			String roleId = (String) session.getAttribute("roleId");
-			/*
-			 * if(!crService.checkRole("UpdateProfile", roleId)) return new
-			 * ModelAndView("403"); else {
-			 */
-			ModelAndView model = null;
-
-			model = new ModelAndView("feedbacks");
-
-			return model;
-		} catch (Exception e) {
-                        logger.error(e);
-			return new ModelAndView("500");
-		}
-		// }
-	}
-
 	// ----------------------------------------------------------------------------------------------
-
 	@RequestMapping(value = "/ajaxtest", method = RequestMethod.GET)
 	public @ResponseBody String getanswer(@RequestParam(value = "num1") int n1, @RequestParam(value = "num2") int n2) {
 		int n3 = n1 + n2;
@@ -415,7 +330,7 @@ public class UpdateProfileController {
 		return result;
 	}
 
-	// ----------------------------------------------------------------------------------------------
+
 	// ----------------------------------------------------------------------------------------------
 	// AJAX test controller method
 	@RequestMapping("/test")
@@ -450,7 +365,7 @@ public class UpdateProfileController {
 			return "exception at /looseSearch";
 		}
 	}
-
+	// ----------------------------------------------------------------------------------------------
 	@RequestMapping("/looseSearch2")
 	public @ResponseBody String loosesearch2(@RequestParam("CHARS") String chars) {
 		try {
@@ -475,6 +390,7 @@ public class UpdateProfileController {
 
 	}
 
+	// ----------------------------------------------------------------------------------------------
 	@RequestMapping(value = "/searchProfile", method = RequestMethod.GET)
 
 	public ModelAndView search(final RedirectAttributes redirectAttributes, @RequestParam String userName) {
@@ -489,6 +405,8 @@ public class UpdateProfileController {
 			ProfessionalProfileBean professionalProfileBean = new ProfessionalProfileBean();
 			PersonalProfileBean personalProfileBean = new PersonalProfileBean();
 
+			
+			
 			userDetailsBean.setUserName(userName);
 			professionalProfileBean.setUserName(userName);
 			personalProfileBean.setUserName(userName);
@@ -519,6 +437,7 @@ public class UpdateProfileController {
 		}
 	}
 
+	// ----------------------------------------------------------------------------------------------
 	@RequestMapping(value = "/searchStaff", method = RequestMethod.GET)
 
 	public ModelAndView searchStaff(@ModelAttribute("userDetails") final UserDetailsBean userDetailsBean,
@@ -545,6 +464,7 @@ public class UpdateProfileController {
 
 	}
 
+	// ----------------------------------------------------------------------------------------------
 	@RequestMapping(value = "/searchStudent", method = RequestMethod.GET)
 
 	public ModelAndView searchStudent(@ModelAttribute("userDetails") final UserDetailsBean userDetailsBean,
@@ -570,6 +490,20 @@ public class UpdateProfileController {
 		}
 
 	}
+	
+	// ----------------------------------------------------------------------------------------------
+	@RequestMapping(value = "/placedStatus")
+	public @ResponseBody String placedStatus(HttpServletRequest request) {
+		
+		String u = (String) request.getSession(true).getAttribute("userName");
+		
+		ProfessionalProfileBean professionalProfileBean = new ProfessionalProfileBean();
+		
+		
+		
+		return "";
+	}
+
 }
 
 /*

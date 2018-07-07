@@ -99,10 +99,10 @@
 							<tr>
 								<td colspan="2" class="text-center">Interested in Higher
 									Studies</td>
-								<td class="text-center">2</td>
-								<td class="text-center">2</td>
-								<td class="text-center">2</td>
-								<td class="text-center">2</td>
+								<td class="text-center">${hs.prod}</td>
+								<td class="text-center">${hs.elex}</td>
+								<td class="text-center">${hs.comps}</td>
+								<td class="text-center">${hs.it}</td>
 							</tr>
 							<tr>
 								<td colspan="2" class="text-center">% Placement</td>
@@ -113,11 +113,11 @@
 							</tr>
 							<tr>
 								<td colspan="2" class="text-center">Internship Placed</td>
-								<td class="text-center">2</td>
-								<td class="text-center">2</td>
-								<td class="text-center">2</td>
-								<td class="text-center">2</td>
-							</tr>
+								<td class="text-center">${ip.prod}</td>
+								<td class="text-center">${ip.elex}</td>
+								<td class="text-center">${ip.comps}</td>
+								<td class="text-center">${ip.it}</td>
+													</tr>
 						</tbody>
 					</table>
 				</div>

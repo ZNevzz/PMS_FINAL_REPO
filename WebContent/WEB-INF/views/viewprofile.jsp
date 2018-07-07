@@ -279,7 +279,7 @@ description: contains Fields to edit  student profile -->
 		<!-- /.page-content -->
 
 
-	</div>
+	
 
 
 	<!-- inline scripts related to this page -->

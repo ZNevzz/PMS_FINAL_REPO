@@ -57,14 +57,14 @@ public class OfferLetterUploadController {
 		HttpSession session = request.getSession();
 		String role = (String) session.getAttribute("roleId");
 
-		/*
-		 * if(!crService.checkRole("OfferLetterUpload", role)) return new
-		 * ModelAndView("403"); else
-		 */
-
-		return new ModelAndView("OfferLetterUpload");
+		//new authorization
+		 if(!crService.checkRole("offerLetterUpload", role)) 
+			 return new ModelAndView("403"); 
+		 else
+			 return new ModelAndView("OfferLetterUpload");
 	}
 
+	//authorization done - unauthorized call redirected to 405.jsp
 	// used to actually upload the file
 	@RequestMapping(value = "/uploadOfferLetter", method = RequestMethod.POST)
 	public ModelAndView offerLetterUpload(HttpServletRequest request,

@@ -65,7 +65,8 @@ public class AssignTPCController {
 			HttpSession session = request.getSession();
 			String roleId = (String) session.getAttribute("roleId");
 
-			if (!crService.checkRole("AssignTPC", roleId))
+			//new authorization
+			if (!crService.checkRole("/TPOHome", roleId))
 				return new ModelAndView("403");
 			else
 				return new ModelAndView("TPO");
@@ -86,7 +87,8 @@ public class AssignTPCController {
 		HttpSession session = request.getSession();
 		String roleId = (String) session.getAttribute("roleId");
 
-		if (!crService.checkRole("AssignTPC", roleId))
+		//new authorization
+		if (!crService.checkRole("/ViewUsersT", roleId))
 			return new ModelAndView("403");
 		else {
 			Map<String, Object> modelMap = new HashMap<String, Object>();
@@ -108,7 +110,8 @@ public class AssignTPCController {
 			HttpSession session = request.getSession();
 			String roleId = (String) session.getAttribute("roleId");
 
-			if (!crService.checkRole("AssignTPC", roleId))
+			//new authorization
+			if (!crService.checkRole("/ViewFacultyTasks", roleId))
 				return new ModelAndView("403");
 			else {
 				Map<String, Object> modelMap = new HashMap<String, Object>();
@@ -136,7 +139,8 @@ public class AssignTPCController {
 			HttpSession session = request.getSession();
 			String roleId = (String) session.getAttribute("roleId");
 
-			if (!crService.checkRole("AssignTPC", roleId))
+			//new authorization
+			if (!crService.checkRole("/InsertWork", roleId))
 				return new ModelAndView("403");
 			else {
 				Map<String, Object> modelMap = new HashMap<String, Object>();
@@ -164,6 +168,7 @@ public class AssignTPCController {
 			HttpSession session = request.getSession();
 			String roleId = (String) session.getAttribute("roleId");
 
+			
 			if (!crService.checkRole("AssignTPC", roleId))
 				return new ModelAndView("403");
 			else
@@ -187,7 +192,8 @@ public class AssignTPCController {
 			HttpSession session = request.getSession();
 			String roleId = (String) session.getAttribute("roleId");
 
-			if (!crService.checkRole("AssignTPC", roleId))
+			//new authorization
+			if (!crService.checkRole("/RemoveTPC", roleId))
 				return new ModelAndView("403");
 			else
 				return new ModelAndView("removeTPC");
@@ -197,6 +203,7 @@ public class AssignTPCController {
 		}
 	}
 
+	//authorization done - unauthorized call redirected to 405.jsp
 	@RequestMapping(value = "/SubmitAssignTPC", method = RequestMethod.POST)
 	public ModelAndView submitAssignTPC(HttpServletRequest request, @ModelAttribute("command") UserDetailsBean userBean,
 			/* @ModelAttribute("fuserBean")FacultyUserBean fuserBean, */ BindingResult bindingResult) {

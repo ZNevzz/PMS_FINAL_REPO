@@ -23,6 +23,7 @@ import org.crce.interns.dao.StatisticsDAO;
 import org.crce.interns.model.Company;
 import org.crce.interns.model.PlacementStatistics;
 import org.crce.interns.model.PlacementStats;
+import org.crce.interns.model.QuickStats;
 import org.crce.interns.model.TotalNoOfStudents;
 import org.crce.interns.model.UserCompany;
 import org.crce.interns.service.ConstantValues;
@@ -172,25 +173,41 @@ public class StatisticsServiceImpl implements StatisticsService, ConstantValues 
 3.
 A.get details of no_applied
 get details from job_schema.applicant_company
-This gives count(username) group by branch where branch=”Computer Engineering” company=”companyName”
+<<<<<<< HEAD
+This gives count(username) group by branch where branch=ï¿½Computer Engineeringï¿½ company=ï¿½companyNameï¿½
+=======
+This gives count(username) group by branch where branch=ï¿½Computer Engineeringï¿½ company=ï¿½companyNameï¿½
+>>>>>>> c728019207724db2fa8826f5f30b727a59ec25b8
 similarly for it,prod,elex
 
 Set the values branch,  no_applied in the table;
 
 B.get details of total_no_of_students
 get details from user_schema.professional_profile
-This gives count(username) group by branch  where branch=”Computer Engineering”
+<<<<<<< HEAD
+This gives count(username) group by branch  where branch=ï¿½Computer Engineeringï¿½
+=======
+This gives count(username) group by branch  where branch=ï¿½Computer Engineeringï¿½
+>>>>>>> c728019207724db2fa8826f5f30b727a59ec25b8
 similarly for it,prod,elex
 
 Set the values   total_no_of_students in the table;
 
 C.no_selected
 get details from placement_statistics_schema.quick_stats
-count(username) group by branch where branch=”Computer Engineering” company=”companyName”
+<<<<<<< HEAD
+count(username) group by branch where branch=ï¿½Computer Engineeringï¿½ company=ï¿½companyNameï¿½
 
 Set the values no_selected in the table;
 
-D. no_joined leave blank…
+D. no_joined leave blankï¿½
+=======
+count(username) group by branch where branch=ï¿½Computer Engineeringï¿½ company=ï¿½companyNameï¿½
+
+Set the values no_selected in the table;
+
+D. no_joined leave blankï¿½
+>>>>>>> c728019207724db2fa8826f5f30b727a59ec25b8
 
 E. no_dual_placed
 
@@ -305,6 +322,16 @@ Return list of beans to front end. Done (y)
 	@Override
 	public TotalNoOfStudents getTotalNoOfStudents(String year) {
 		return statisticsDAO.getTotalNoOfStudents(year);
+	}
+	
+	@Override
+	public List<QuickStats> getQuickStatsList(String year) {
+		return statisticsDAO.getQuickStatsList(year);
+	}
+
+	@Override
+	public List<PlacementStats> getPlacementStatsList(String year) {
+		return statisticsDAO.getPlacementStatsList(year);
 	}
 
 }

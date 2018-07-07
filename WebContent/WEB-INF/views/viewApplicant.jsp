@@ -132,8 +132,15 @@
 					<td>UserName/Roll No. :</td>
 					<td> <input name="userName" /> </td> -->
 											<td><form:label path="userName">User name:</form:label></td>
-											<td><form:input path="userName" /></td>
+									<%-- 	<td><form:input path="userName" /></td> 	--%>
 											<td><form:errors path="userName" cssClass="error" /></td>
+											<td><form:select name="userName" id="userName"
+									path="userName">
+
+									<c:forEach items="${users}" var="user">
+										<form:option value="${user.username}">${user.username}</form:option>
+									</c:forEach>
+											</form:select></td>
 										</tr>
 
 										<tr>

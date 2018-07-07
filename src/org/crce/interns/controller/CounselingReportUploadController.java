@@ -24,9 +24,9 @@ import org.crce.interns.exception.IncorrectFileFormatException;
 import org.crce.interns.exception.MaxFileSizeExceededError;
 import org.crce.interns.model.FileUpload;
 import org.crce.interns.service.CheckRoleService;
+import org.crce.interns.service.ConstantValues;
 import org.crce.interns.service.CounselingReportUploadService;
 import org.crce.interns.service.LoginService;
-import org.crce.interns.service.OfferLetterUploadService;
 import org.crce.interns.validators.FileUploadValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,6 +37,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
 
 @Controller
 public class CounselingReportUploadController {
@@ -52,8 +53,9 @@ public class CounselingReportUploadController {
 
 	@Autowired
 	public LoginService loginService;
-        
-        private static final Logger logger = Logger.getLogger(CounselingReportUploadController.class.getName());
+       
+    private static final Logger logger = Logger.getLogger(CounselingReportUploadController.class.getName());
+
 
 	// used to navigate to CounselingReportUpload.jsp
 	@RequestMapping("counselingReportUpload")
@@ -64,10 +66,11 @@ public class CounselingReportUploadController {
 			String user = (String) session.getAttribute("userName");
 			String name = loginService.checkSR(user);
 
-			if ((role.equals("4")
-					&& !(crService.checkRole("CounselingReportUpload", role) && name.equals("COUNSELLING_REPORT")))
-					|| ((role.equals("1") || role.equals("3"))
-							&& !(crService.checkRole("CounselingReportUpload", role))))
+			//new authorization
+			if ((role.equals(ConstantValues.FTPCId)
+					&& !(crService.checkRole("counselingReportUpload", role) && name.equals(ConstantValues.task3)))
+					|| ((role.equals(ConstantValues.StudentId) || role.equals(ConstantValues.STPCId))
+							&& !(crService.checkRole("counselingReportUpload", role))))
 				return new ModelAndView("403");
 
 			else
@@ -78,6 +81,7 @@ public class CounselingReportUploadController {
 
 	}
 
+	//authorization done - unauthorized call redirected to 405.jsp
 	// used to actually upload the file
 	@RequestMapping(value = "/uploadCounselingReport", method = RequestMethod.POST)
 	public ModelAndView counselingReportUpload(HttpServletRequest request,
@@ -126,9 +130,21 @@ public class CounselingReportUploadController {
 
 	// @pankaj added following for upload page
 	// --------------------------------------------------------------------
-
+	
+	//modified @Crystal -- dont over write changes
+	//this URL is used to access uploads tab of STPC page
 	@RequestMapping("/StudentUploads")
-	public String StudentNotification() {
-		return "StudentUploads";
+	public ModelAndView StudentNotification(HttpServletRequest request) {
+	
+		try{
+			HttpSession session = request.getSession();
+			String role = (String) session.getAttribute("roleId");
+			if(!role.equals(ConstantValues.STPCId))
+				return new ModelAndView("403");
+			else
+				return new ModelAndView("StudentUploads");
+	} catch (Exception e) {
+		return new ModelAndView("500");
+	}
 	}
 }

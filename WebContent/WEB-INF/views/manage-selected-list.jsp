@@ -3,38 +3,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-
 <title>Add/Delete Candidate</title>
+
 
 <meta name="description" content="overview &amp; stats" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
-<!-- bootstrap & fontawesome -->
-<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-<link rel="stylesheet"
-	href="assets/font-awesome/4.2.0/css/font-awesome.min.css" />
-
-<!-- page specific plugin styles -->
-
-<!-- text fonts -->
-<link rel="stylesheet" href="assets/fonts/fonts.googleapis.com.css" />
-
-<!-- ace styles -->
-<link rel="stylesheet" href="assets/css/ace.min.css"
-	class="ace-main-stylesheet" id="main-ace-style" />
 
 
-
-
-
-<!-- inline styles related to this page -->
-
-<!-- ace settings handler -->
-<script src="assets/js/ace-extra.min.js"></script>
-
-<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
 
 
 </head>
@@ -42,19 +19,27 @@
 	<jsp:directive.include file="Header.jsp" />
 	<div class="main-content">
 		<div class="main-content-inner">
+			<div class="breadcrumbs" id="breadcrumbs">
 
+				<jsp:directive.include file="searchheader.jsp" />
+
+			</div>
 			<div class="page-content">
-				<div class="page-header"></div>
-				<!-- /.page-header -->
+				<div class="page-header">
+
+					<h1>Welcome ${sessionScope.name} to the profile page</h1>
+
+					<%-- <h2>My name is ${sessionScope.name} , I am a
+						${sessionScope.roleName} from ${sessionScope.branch} branch with
+						username ${sessionScope.userName}</h2>
+					<br />
+ --%>
+
+				</div>
 
 
 
-				<script type="text/javascript">
-					try {
-						ace.settings.check('main-container', 'fixed')
-					} catch (e) {
-					}
-				</script>
+				
 
 				<%-- <form action="managelist.html" method=POST>
 					Edit User List:<select name="option">
@@ -76,30 +61,34 @@
 										<div align="center">
 											<h2>Add/Delete Selected Candidate</h2>
 											<br><form action="manageslist.html" method=POST>
-													<table>
-													<tr>
-														<td><label class="col-sm-0">Edit User List</label> <select
+													<div class="row">
+														<div class="col-sm-6 ">
+														<label>Edit User List</label> <select
 															name="option" class="chosen-select">
 																<option value="Add">Add A Candidate</option>
 																<option value="Delete">Delete A Candidate</</option>
 														</select>
-															<button class="btn btn-xs btn-primary" type="submit">
+														
+															<button class="btn btn-xs  btn-primary" type="submit">
 																<i class="ace-icon fa fa-check bigger-110"></i> Submit
+
 															</button></td>
 
 													</tr>
 													</table>
 												<table>
-							<!-- 						<tr>
+							 						<tr>
+
 														<td>
 															
-																<a href="views.html">View The
-																	List Of Applied Candidates</a>
+													<!-- 			<a href="views.html">View The
+																	List Of Applied Candidates</a>   -->
 															
 														</td>
-													</tr> -->
+
+													</tr> 
 													</table>
-											</form>
+									</form>
 												
 
 											<br> <br> <br> <br> <br> <br>
@@ -118,6 +107,8 @@
 
 
 				<jsp:directive.include file="Footer.jsp" />
+				<jsp:directive.include file="scripts.jsp" />
+
 			</div>
 		</div>
 	</div>
@@ -125,12 +116,6 @@
 	<!-- /.main-container -->
 
 
-
-	<!--[if !IE]> -->
-	<script src="assets/js/jquery.2.1.1.min.js"></script>
-
-
-	<!-- inline scripts related to this page -->
 
 	<!-- ace scripts -->
 	<script src="assets/js/ace-elements.min.js"></script>

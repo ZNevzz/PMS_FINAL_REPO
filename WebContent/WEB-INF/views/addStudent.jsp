@@ -32,7 +32,7 @@ description: contains text fields to add details of student manually->
 
 <!-- page specific plugin styles -->
 <link rel="stylesheet" href="assets/css/jquery-ui.custom.min.css" />
-
+<link rel="stylesheet" href="assets/css/datepicker.min.css" />
 
 
 <!-- text fonts -->
@@ -132,7 +132,7 @@ description: contains text fields to add details of student manually->
 												</tr>
 												<tr>
 													<td>Date of birth :</td>
-													<td><form:input path="dob" /></td>
+													<td><form:input path="dob" name="date" id="date" class="form-control date-picker" data-date-format="yyyy/mm/dd" /></td>
 													<td><form:errors path="dob" cssClass="error" /></td>
 												</tr>
 												<tr>
@@ -402,12 +402,25 @@ description: contains text fields to add details of student manually->
 	<!-- ace scripts -->
 	<script src="assets/js/ace-elements.min.js"></script>
 	<script src="assets/js/ace.min.js"></script>
-	
+	<script src="assets/js/bootstrap-datepicker.min.js"></script>
 		<!-- /.main-container -->
 
 </div>
 	
 	
+		<script>
+			<!-- date picker-->
+					jQuery(function($) {		
+						$('.date-picker').datepicker({
+							autoclose: true,
+							todayHighlight: true
+						})
+						.next().on(ace.click_event, function(){
+							$(this).prev().focus();
+						});
+									
+					});	
+				</script>
 
 
 </body>

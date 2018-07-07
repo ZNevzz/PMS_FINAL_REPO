@@ -27,7 +27,7 @@ Still if any doubts, contact Nevil
             <dateTime>13-06-2016 12:55 AM</dateTime>
             <url>JobPosts?companyname=Direct i&amp;year=</url>
         </notification>
-		<notification>
+        <notification>
             <userOrGroupId>ALL</userOrGroupId>
             <category>JOB</category>
             <type>ALL</type>
@@ -35,13 +35,109 @@ Still if any doubts, contact Nevil
             <dateTime>14-06-2016 11:55 AM</dateTime>
             <url>JobPosts?companyname=JP Morgan&amp;year=</url>
         </notification>
-		<notification>
+        <notification>
             <userOrGroupId>ALL</userOrGroupId>
             <category>JOB</category>
             <type>ALL</type>
             <message>A new job has been posted for Morgan Stanley</message>
             <dateTime>13-06-2016 12:15 AM</dateTime>
             <url>JobPosts?companyname=Morgan Stanley&amp;year=</url>
+        </notification>
+        <notification>
+            <userOrGroupId>7000</userOrGroupId>
+            <category>ELIGIBILITY</category>
+            <type>USER</type>
+            <message>Congratulations! Your application forJP Morganhas been approved by Placement Council</message>
+            <dateTime>24-06-2016 03:48 PM</dateTime>
+            <url>viewApplicants?companyname=JP Morgan&amp;amp;year=</url>
+        </notification>
+        <notification>
+            <userOrGroupId>7001</userOrGroupId>
+            <category>ELIGIBILITY</category>
+            <type>USER</type>
+            <message>Attention! Your name has been removed from the applicant list forJP Morgan. For any discussion, please approach the Placement Council</message>
+            <dateTime>24-06-2016 03:50 PM</dateTime>
+            <url>viewApplicants?companyname=JP Morgan&amp;amp;year=</url>
+        </notification>
+        <notification>
+            <userOrGroupId>7000</userOrGroupId>
+            <category>SELECTED</category>
+            <type>USER</type>
+            <message>Congratulations! You have been recruited in JP Morgan as an Employee</message>
+            <dateTime>24-06-2016 04:42 PM</dateTime>
+            <url>viewApplicants?companyname=JP Morgan&amp;amp;year=</url>
+        </notification>
+        <notification>
+            <userOrGroupId>7000</userOrGroupId>
+            <category>SELECTED</category>
+            <type>USER</type>
+            <message>Attention! Your name has been removed from the selected applicants list for JP Morgan. For any discussion, please approach the Placement Council</message>
+            <dateTime>24-06-2016 04:55 PM</dateTime>
+            <url>viewApplicants?companyname=JP Morgan&amp;amp;year=</url>
+        </notification>
+        <notification>
+            <userOrGroupId>7000</userOrGroupId>
+            <category>SELECTED</category>
+            <type>USER</type>
+            <message>Congratulations! You have been recruited in JP Morgan as an Employee</message>
+            <dateTime>24-06-2016 05:01 PM</dateTime>
+            <url>viewApplicants?companyname=JP Morgan&amp;amp;year=</url>
+        </notification>
+        <notification>
+            <userOrGroupId>7000</userOrGroupId>
+            <category>SELECTED</category>
+            <type>USER</type>
+            <message>Attention! Your name has been removed from the selected applicants list for JP Morgan. For any discussion, please approach the Placement Council</message>
+            <dateTime>24-06-2016 05:03 PM</dateTime>
+            <url>viewApplicants?companyname=JP Morgan&amp;amp;year=</url>
+        </notification>
+        <notification>
+            <userOrGroupId>7001</userOrGroupId>
+            <category>SELECTED</category>
+            <type>USER</type>
+            <message>Congratulations! You have been recruited in JP Morgan as an Employee</message>
+            <dateTime>24-06-2016 05:22 PM</dateTime>
+            <url>viewApplicants?companyname=JP Morgan&amp;amp;year=</url>
+        </notification>
+        <notification>
+            <userOrGroupId>7000</userOrGroupId>
+            <category>SELECTED</category>
+            <type>USER</type>
+            <message>Congratulations! You have been recruited in JP Morgan as an Employee</message>
+            <dateTime>24-06-2016 05:31 PM</dateTime>
+            <url>viewApplicants?companyname=JP Morgan&amp;amp;year=</url>
+        </notification>
+        <notification>
+            <userOrGroupId>7001</userOrGroupId>
+            <category>ELIGIBILITY</category>
+            <type>USER</type>
+            <message>Congratulations! Your application for JP Morgan has been approved by Placement Council</message>
+            <dateTime>24-06-2016 11:58 PM</dateTime>
+            <url>viewApplicants?companyname=JP Morgan&amp;amp;year=</url>
+        </notification>
+        <notification>
+            <userOrGroupId>8000</userOrGroupId>
+            <category>ELIGIBILITY</category>
+            <type>USER</type>
+            <message>Attention! Your name has been removed from the applicant list for JP Morgan. For any discussion, please approach the Placement Council</message>
+            <dateTime>24-06-2016 11:59 PM</dateTime>
+            <url>viewApplicants?companyname=JP Morgan&amp;amp;year=</url>
+        </notification>
+        <notification>
+            <userOrGroupId>8000</userOrGroupId>
+            <category>SELECTED</category>
+            <type>USER</type>
+            <message>Congratulations! You have been recruited in Direct i as an Employee</message>
+            <dateTime>24-06-2016 11:59 PM</dateTime>
+            <url>viewApplicants?companyname=Direct i&amp;amp;year=</url>
+        </notification>
+        <notification>
+            <userOrGroupId>7001</userOrGroupId>
+            <category>SELECTED</category>
+            <type>USER</type>
+            <message>Congratulations! You have been recruited in Direct i as an Employee</message>
+            <dateTime>25-06-2016 12:06 AM</dateTime>
+            <url>viewApplicants?companyname=Direct i&amp;amp;year=</url>
         </notification>
     </notifications>
 </root>

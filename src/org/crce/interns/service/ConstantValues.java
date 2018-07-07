@@ -34,6 +34,32 @@ public interface ConstantValues {
 	public String ZS = "ZS Associates";
 	public String GOD = "Godrej";
 	public String LNT = "Laursen & Tubro";
+	public String INF = "Infosys";
+	public String NSE = "National Stock Exchange of India";
+	public String WIP = "Wipro";
+	public String NER = "Kansai Nerolac Paints";
+	public String AMD = "Amdocs";
+	public String SYN = "Syntel";
+	public String HSBC = "HSBC";
+	public String TM = "Tech Mahindra";
+	public String HP = "Hewlett-Packard";
+	public String MH = "Mahindra";
+	public String FB = "Federal Bank";
+	public String CG = "Capgemini";
+	public String PAT = "Patni";
+	public String GIT = "Godrej Infotech";
+	public String MAQ = "MAQ Software";
+	public String CSI = "CSI Technologies";
+	public String GOG = "Google";
+	public String QUI = "Quinnox";
+	public String GEN = "Genesys";
+	public String IBM = "IBM";
+	public String WF = "Weatherford";
+	
+	String[] cNames = new String[]{
+			JPM,DIRECTI,MS,TCS,ACC,ZS,GOD,LNT,INF,NSE,WIP,NER,AMD,SYN,HSBC,TM,HP,MH,
+			FB,CG,PAT,GIT,MAQ,MAQ,CSI,GOG,QUI,GEN,IBM,WF
+	};
 	
 	// COMPANY ABOUT US URL
 	public String JPM_LINK = "https://www.jpmorgan.com/country/IN/EN/about";
@@ -44,10 +70,31 @@ public interface ConstantValues {
 	public String ZS_LINK = "http://www.zsassociates.com/careers/india.aspx";
 	public String GOD_LINK = "http://www.godrejcareers.com/";
 	public String LNT_LINK = "http://www.larsentoubro.com/";
-	
+	public String INF_LINK = "https://www.infosys.com/";
+	public String NSE_LINK = "https://www.nseindia.com/";
+	public String WIP_LINK = "http://www.wipro.com/";
+	public String NER_LINK = "https://www.nerolac.com/";
+	public String AMD_LINK = "http://www.amdocs.com/pages/homepage.aspx";
+	public String SYN_LINK = "http://www.syntelinc.com/";
+	public String HSBC_LINK = "https://www.hsbc.co.in/1/2/homepage";
+	public String TM_LINK = "http://www.techmahindra.com/pages/default.aspx";
+	public String HP_LINK = "http://www.hp.com/";
+	public String MH_LINK = "http://www.mahindra.com/";
+	public String FB_LINK = "http://www.federalbank.co.in/";
+	public String CG_LINK = "https://www.capgemini.com/";
+	public String PAT_LINK = "https://www.capgemini.com/";
+	public String GIT_LINK = "http://www.godrejinfotech.com/";
+	public String MAQ_LINK = "http://maqsoftware.com/";
+	public String CSI_LINK = "http://www.csitech.com/";
+	public String GOG_LINK = "https://www.google.co.in/";
+	public String QUI_LINK = "http://www.quinnox.com/";
+	public String GEN_LINK = "http://www.genesys.com/";
+	public String IBM_LINK = "https://www.ibm.com/in-en/";
+	public String WF_LINK = "http://www.weatherford.com/en";
+
 	//NOTIFICATION CATEGORIES	
 	public String JOB = "JOB";
-	public String ELIGIBLE = "ELIGIBLE";
+	public String ELIGIBLE = "ELIGIBILITY";
 	public String EVENT = "EVENT";
 	public String TEST = "TEST";
 	public String COUNSELLING = "COUNSELLING";
@@ -73,17 +120,25 @@ public interface ConstantValues {
 	
 	public String TEST_M = "";
 	
-	public String COUNSELLING_M = "You have been selected to give a counselling report based on your placement experience for ";
-		
-	public String SELECTED_M = "Congratulations !! You have been selected as an employee for ";
+	public String COUNSELLING_M = "You have been selected to give a counselling report based on your placement experience for ";			
 	
-	public String ROOM_M = "Check out the room allotment";
+	public String ROOM_M = "Venue has been posted for an event. Check the Venue list";
 	
 	public String EMAIL_M = "";
 	
 	public String ROLE_M = "";
 	
 	public String DOWNLOAD_M = "";
+	
+	public String APPLICANTS_MSG1 = "Congratulations! Your application for ";
+	public String APPLICANTS_MSG2 = " has been approved by Placement Council";
+	public String APPLICANTS_MSG3 = "Attention! Your name has been removed from the applicant list for ";
+	public String APPLICANTS_MSG4 = ". For any discussion, please approach the Placement Council";
+	
+	public String SELECTED_MSG1 = "Congratulations! You have been recruited in ";
+	public String SELECTED_MSG2 = " as an Employee";
+	public String SELECTED_MSG3 = "Attention! Your name has been removed from the selected applicants list for ";
+	public String SELECTED_MSG4 = ". For any discussion, please approach the Placement Council";
 	
 	
 	// BRANCHES
@@ -107,6 +162,7 @@ public interface ConstantValues {
 
 	// STUDENT PLACEMENT STATUS
 	public String PLACED = "Placed";
+	public String NOT_PLACED = "Not Placed";
 	public String DREAM ="Dream";
 	public String NONDREAM ="Nondream";
 	public String ALLOWED ="Yes";
@@ -122,6 +178,8 @@ public interface ConstantValues {
 	public String EMAIL_URL = "EMAIL";
 	public String ROLE_URL = "ROLE";
 	public String DOWNLOAD_URL = "DOWNLOAD";
+	public String APPLICANTS_URL1 = "viewApplicants?companyname=";
+	public String APPLICANTS_URL2 = "&amp;year=";
 	
 }
 

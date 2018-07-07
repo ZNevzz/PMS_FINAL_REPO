@@ -1,8 +1,12 @@
 package org.crce.interns.controller;
 
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.crce.interns.beans.CriteriaBean;
 import org.crce.interns.model.Criteria;
+import org.crce.interns.service.CheckRoleService;
 import org.crce.interns.service.CriteriaService;
 import org.crce.interns.validators.CriteriaFormValidator;
 import org.springframework.beans.BeanUtils;
@@ -22,23 +26,37 @@ public class CriteriaController {
 	CriteriaFormValidator criteriaValidator;
 
 	@Autowired
+	private CheckRoleService crService;
+	
+	@Autowired
 	private CriteriaService criteriaService;
         
         private static final Logger logger = Logger.getLogger(CriteriaController.class.getName());
 
 	@RequestMapping(value = "/addCriteria", method = RequestMethod.GET)
-	public ModelAndView addCriteria(Model model) {
+	public ModelAndView addCriteria(HttpServletRequest request, Model model) {
+		
 		try {
+			
+			HttpSession session=request.getSession();
+			 String roleId=(String)session.getAttribute("roleId");
+				
+		//new authorization
+		if(!crService.checkRole("/addCriteria", roleId))
+			return new ModelAndView("403");
+		else{
 			CriteriaBean criteriaBean = new CriteriaBean();
 			model.addAttribute("criteriaBean", criteriaBean);
 			//System.out.println("in controller11");
 			return new ModelAndView("addCriteria");
+			}
 		} catch (Exception e) {
                         logger.error(e);
 			return new ModelAndView("500");
 		}
 	}
 
+	//authorization done - unauthorized call redirected to 405.jsp
 	@RequestMapping(value = "/saveCriteria", method = RequestMethod.POST)
 	public ModelAndView saveEmployee(@ModelAttribute("criteriaBean") CriteriaBean criteriaBean, BindingResult result)
 			throws Exception {

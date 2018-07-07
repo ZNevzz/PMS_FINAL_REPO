@@ -78,6 +78,7 @@
 										<div class="timeline-items">
 
 											<c:forEach var="flist" items="${l}">
+											 
 												<div class="timeline-item clearfix">
 													<div class="timeline-info">
 														<i
@@ -86,7 +87,10 @@
 
 													<div class="widget-box transparent">
 														<div class="widget-header widget-header-small">
-															<h5 class="widget-title smaller">${flist.username}</h5>
+														
+														<c:set var="keyString">${flist.username}</c:set>
+														
+															<h5 class="widget-title smaller"><c:out value="${m[keyString]}"/></h5>
 
 														</div>
 

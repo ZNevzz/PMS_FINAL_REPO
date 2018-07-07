@@ -27,9 +27,12 @@ public class HigherStudiesServiceImpl implements HigherStudiesService{
 		hsDao.addHS(ihs);
 	}
 	
-	public List<InterestedInHigherStudies> listIhs() {
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	
+	public InterestedInHigherStudies listIhs(String year) {
 		System.out.println("inside service");
-		return hsDao.listIhs();
+		return hsDao.listIhs(year);
 	}
 
 	

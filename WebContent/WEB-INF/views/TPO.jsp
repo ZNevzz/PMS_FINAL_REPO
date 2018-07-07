@@ -1,5 +1,3 @@
-
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -8,7 +6,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<meta name="description" content="overview &amp; stats" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+<!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> -->
+
 <title>TPO | HOME</title>
 
 
@@ -50,14 +54,30 @@
 							<div id="user-profile-2" class="user-profile">
 								<div class="tabbable">
 									<ul class="nav nav-tabs padding-18">
-										<li class="active"><a data-toggle="tab" href="#activity">
-												<i class="orange ace-icon fa fa-rss bigger-120"></i>
-												Activity
-										</a></li>	
 
-										<li><a href="downloads"> <i
-												class="blue ace-icon fa fa-users bigger-120"></i> Uploads
-										</a></li>
+
+										<li class="active">
+											<a  href="viewprofile">
+												<i class="orange ace-icon fa fa-wrench bigger-120"></i>
+												Activity
+											</a>
+										</li>
+										
+										<li>
+											<a  href="downloads">
+												<i class="blue ace-icon fa fa-upload bigger-120"></i>
+												Uploads
+											</a>
+										</li>
+
+										
+										<li >
+											<a href="fnotifications">
+												<i class="pink ace-icon fa fa-check bigger-120"></i>
+												Notification
+											</a>
+										</li>
+
 
 
 									</ul>
@@ -116,14 +136,12 @@
 
 												<div class="col-xs-12 col-sm-4 left">
 
-													<a href="addProfile"
-														class="btn btn-purple btn-lg btn-block">Add job
-														Profile </a> <br>
+													<a href="addProfile" class="btn btn-purple btn-lg btn-block">Add Job Profile </a> <br>
 													<br> <a href="getEventForm.html"
 														class="btn btn-inverse btn-lg btn-block">Add Event </a> <br>
 													<br> <a href="addUser"
-														class="btn btn-warning btn-lg btn-block">Manage
-														Users</a>
+														class="btn btn-warning btn-lg btn-block">Manage Users</a>
+
 
 												</div>
 
@@ -131,21 +149,33 @@
 												&nbsp;&nbsp;
 												<div class="col-xs-12 col-sm-4 right">
 
-													<a href="manage.html"
-														class="btn btn-purple btn-lg btn-block">Add candidate
-													</a> <br>
-													<br> <a href="GroupSendMail"
-														class="btn btn-inverse btn-lg btn-block">Send Group
-														Email </a><br>
-													<br> <a href="personalMail"
-														class="btn btn-warning btn-lg btn-block">Send Personal
-														Email </a><br>
-													<br>
+
+												 	<a href="manage.html"
+														class="btn btn-purple btn-lg btn-block">Job Applicants
+														</a> <br>
+													<br> <a href="manageselected.html"
+														class="btn btn-inverse btn-lg btn-block">Selected Applicants </a> <br>
+													<br> <button data-toggle="dropdown" class="btn btn-warning btn-lg  dropdown-toggle btn-block">
+																								Send E-mail
+														<i class="ace-icon fa fa-angle-down icon-on-right"></i>
+													</button> <br><br>
+													<ul class="dropdown-menu dropdown-pink dropdown-menu-right">
+														<li>
+															<a href="GroupSendMail">send to Group</a>
+														</li>
+	
+														<li>
+															<a href="personalMail">send to individual</a>
+														</li>
+													
+													</ul>
+												 
+												 
 												</div>
 
-												<!-- <div class="col-xs-12 col-sm-8 left">
-														<a href="addUser"  class="btn btn-warning btn-lg btn-block">Manage different users of System</a> <br><br>	
-												</div> -->
+												
+
+													
 											</div>
 										</div>
 										<!-- /#pictures -->
@@ -221,7 +251,11 @@
 
 
 	<!-- inline scripts related to this page -->
-	<script type="text/javascript">
+
+	<!-- <script type="text/javascript">
+
+
+
 		jQuery(function($) {
 
 			var sampleData = initiateDemoData();//see below
@@ -384,7 +418,7 @@
 			}
 
 		})
-	</script>
+	</script> -->
 
 
 

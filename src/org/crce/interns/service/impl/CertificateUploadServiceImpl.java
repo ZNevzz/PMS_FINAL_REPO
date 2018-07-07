@@ -46,6 +46,7 @@ public class CertificateUploadServiceImpl implements CertificateUploadService {
 		
 		//get the path for saving the resume
 		String saveDirectory = directoryPathBean.getStudentFolder() + "/" + username + "/Certificates/";
+		//String saveDirectory = directoryPathBean.getStudentFolder() + "\\" + username + "\\Certificates\\";	//for windows
 		
 		String type=  request.getParameter("type");
 		final String fullPath = saveDirectory + fileUpload.getOriginalFilename();

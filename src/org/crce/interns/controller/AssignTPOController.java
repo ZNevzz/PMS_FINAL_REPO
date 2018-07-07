@@ -60,7 +60,8 @@ public class AssignTPOController {
 		HttpSession session=request.getSession();
 		String roleId=(String)session.getAttribute("roleId");
 		
-		if(!crService.checkRole("AssignTPO", roleId))
+		//new authorization
+		if(!crService.checkRole("/AdminHome", roleId))
 			return new ModelAndView("403");
 		else
 		return new ModelAndView("Admin");
@@ -73,7 +74,8 @@ public class AssignTPOController {
 		HttpSession session=request.getSession();
 		String roleId=(String)session.getAttribute("roleId");
 		
-		if(!crService.checkRole("AssignTPCF", roleId))
+		//new authorization
+		if(!crService.checkRole("/FTPCHome", roleId))
 			return new ModelAndView("403");
 		else
 		return new ModelAndView("FacultyTPC");
@@ -86,7 +88,8 @@ public class AssignTPOController {
 		HttpSession session=request.getSession();
 		String roleId=(String)session.getAttribute("roleId");
 		
-		if(!crService.checkRole("AssignTPO", roleId))
+		//new authorization
+		if(!crService.checkRole("/ViewUsersA", roleId))
 			return new ModelAndView("403");
 		else
 		{
@@ -103,7 +106,8 @@ public class AssignTPOController {
 		HttpSession session=request.getSession();
 		String roleId=(String)session.getAttribute("roleId");
 		
-		if(!crService.checkRole("AssignTPCF", roleId))
+		//new authorization
+		if(!crService.checkRole("/ViewUsersF", roleId))
 			return new ModelAndView("403");
 		else
 		{
@@ -121,6 +125,7 @@ public class AssignTPOController {
 		HttpSession session=request.getSession();
 		String roleId=(String)session.getAttribute("roleId");
 		
+		//new authorization
 		if(!crService.checkRole("AssignTPCF", roleId))
 			return new ModelAndView("403");
 		else
@@ -134,11 +139,13 @@ public class AssignTPOController {
 		HttpSession session=request.getSession();
 		String roleId=(String)session.getAttribute("roleId");
 		
+		//new authorization
 		if(!crService.checkRole("AssignTPO", roleId))
 			return new ModelAndView("403");
 		else
 		return new ModelAndView("assignTPO");	}
 
+	
 	@RequestMapping(value = "/RemoveTPCF", method = RequestMethod.GET)//Call to jsp to get username
 	public ModelAndView removeTPCF(HttpServletRequest request,@ModelAttribute("command") UserDetailsBean userBean, BindingResult result) {
 		//System.out.println("In Controller : Remove TPCF\n");
@@ -146,7 +153,8 @@ public class AssignTPOController {
 		HttpSession session=request.getSession();
 		String roleId=(String)session.getAttribute("roleId");
 		
-		if(!crService.checkRole("AssignTPCF", roleId))
+		//new authorization
+		if(!crService.checkRole("/RemoveTPCF", roleId))
 			return new ModelAndView("403");
 		else
 		return new ModelAndView("removeTPCF");
@@ -159,12 +167,14 @@ public class AssignTPOController {
 		HttpSession session=request.getSession();
 		String roleId=(String)session.getAttribute("roleId");
 		
-		if(!crService.checkRole("AssignTPO", roleId))
+		//new authorization
+		if(!crService.checkRole("/RemoveTPO", roleId))
 			return new ModelAndView("403");
 		else
 		return new ModelAndView("removeTPO");
 	}
 
+	//authorization done - unauthorized call redirected to 405.jsp
 	@RequestMapping(value = "/SubmitAssignTPO", method = RequestMethod.POST)
 	public ModelAndView createUser(HttpServletRequest request,@ModelAttribute("command") UserDetailsBean userBean, BindingResult bindingResult) {
 		//System.out.println("In Controller: Submit Assign TPO");
@@ -229,6 +239,7 @@ public class AssignTPOController {
 		//return new ModelAndView("redirect:/AdminHome");
 	}
 		
+	//authorization done - unauthorized call redirected to 405.jsp
 	@RequestMapping(value = "/SubmitAssignTPCF", method = RequestMethod.POST)
 	public ModelAndView createTPCF(@ModelAttribute("command") UserDetailsBean userBean, BindingResult bindingResult,HttpServletRequest request, HttpServletResponse response) {
 		//System.out.println("In Controller: Submit Assign TPCF");
@@ -314,6 +325,7 @@ public class AssignTPOController {
 		//return new ModelAndView("redirect:/AdminHome");
 	}
 	
+	//authorization done - unauthorized call redirected to 405.jsp
 	@RequestMapping(value = "/SubmitRemoveTPO", method = RequestMethod.POST)
 	public ModelAndView deleteUser(HttpServletRequest request,@ModelAttribute("command") UserDetailsBean userBean, BindingResult bindingResult) {
 		//System.out.println("In Controller: Submit Remove TPO");	
@@ -372,6 +384,7 @@ public class AssignTPOController {
 		//return new ModelAndView("redirect:/AdminHome");
 	}
 	
+	//authorization done - unauthorized call redirected to 405.jsp
 	@RequestMapping(value = "/SubmitRemoveTPCF", method = RequestMethod.POST)
 	public ModelAndView deleteTPCF(@ModelAttribute("command") UserDetailsBean userBean, BindingResult bindingResult,HttpServletRequest request, HttpServletResponse response) {
 		//System.out.println("In Controller: Submit Remove TPCF");

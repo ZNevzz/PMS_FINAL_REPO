@@ -27,8 +27,7 @@ description: contain ALL professional and personal details of STUDENT tpc -->
 		<link rel="stylesheet" href="assets/css/fullcalendar.min.css" />
 		
 </head>
-<body onload="noBack();"
-    onpageshow="if (event.persisted) noBack();" onunload="">
+<body>
 
 <jsp:directive.include file="Header.jsp" />
 

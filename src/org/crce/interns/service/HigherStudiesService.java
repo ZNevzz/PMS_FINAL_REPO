@@ -9,6 +9,6 @@ import org.crce.interns.model.InternshipPlaced;
 public interface HigherStudiesService {
 
 	public void addHS(InterestedInHigherStudiesBean ihs);
-	public List<InterestedInHigherStudies> listIhs();
+	public InterestedInHigherStudies listIhs(String year);
 	
 }

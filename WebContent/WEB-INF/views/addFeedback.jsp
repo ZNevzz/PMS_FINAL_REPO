@@ -18,42 +18,6 @@
 }
 </style>
 
-<script>
-	$(document)
-			.ready(
-					function() {
-
-						$('#dynamicsearchcompany')
-								.autocomplete(
-										{
-											serviceUrl : 'looseSearch2',
-											paramName : "CHARS",
-											delimiter : ",",
-											transformResult : function(response) {
-
-												return {
-													//must convert json to javascript object before process
-													suggestions : $
-															.map(
-																	$
-																			.parseJSON(response),
-																	function(
-																			company) {
-
-																		return {
-																			value : company.company_name,
-																			data : company.company_id
-																		};
-																	})
-
-												};
-
-											}
-
-										});
-
-					});
-</script>
 </head>
 
 <body>
@@ -88,11 +52,11 @@
 									<div class="widget-main">
 										<div align="center">
 											<h2>Add Feedback Data</h2>
+											
 											<c:if test="${not empty msg}">
 			    <font size="5" color="red" face="verdana">${msg}</font>
 		         </c:if>
-	
-<br>
+		         <br>
 											<form:form method="POST" action="save.html">
 
 												<table>
@@ -147,13 +111,50 @@
 					<!-- /#home -->
 				</div>
 				<jsp:directive.include file="Footer.jsp" />
-<jsp:directive.include file="scripts.jsp" />
+				<jsp:directive.include file="scripts.jsp" />
 
 			</div>
 		</div>
 	</div>
 
 	<!-- ace scripts -->
+	
+<script>
+	$(document)
+			.ready(
+					function() {
+
+						$('#dynamicsearchcompany')
+								.autocomplete(
+										{
+											serviceUrl : 'looseSearch2',
+											paramName : "CHARS",
+											delimiter : ",",
+											transformResult : function(response) {
+
+												return {
+													//must convert json to javascript object before process
+													suggestions : $
+															.map(
+																	$
+																			.parseJSON(response),
+																	function(
+																			company) {
+
+																		return {
+																			value : company.company_name,
+																			data : company.company_id
+																		};
+																	})
+
+												};
+
+											}
+
+										});
+
+					});
+</script>
 	<script src="assets/js/ace-elements.min.js"></script>
 	<script src="assets/js/ace.min.js"></script>
 </body>
